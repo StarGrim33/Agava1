@@ -5,8 +5,9 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     [SerializeField] private Goal _goal;
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private GameObject _goalText;
+    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private GameObject _textContainer;
+    [SerializeField] private TMP_Text _goalText;
     [SerializeField] private ParticleSystem _particleSystem;
 
     private int _score;
@@ -24,10 +25,9 @@ public class Score : MonoBehaviour
 
     private void OnGoalScored()
     {
-        string text = "Твой счет: ";
         _score += _scorePerGoal;
-        _text.text = text + _score.ToString();
-        _goalText.SetActive(true);
+        _scoreText.text = _score.ToString();
+        _textContainer.SetActive(true);
         _particleSystem.Play();
         StartCoroutine(TextFading());
     }
@@ -37,20 +37,22 @@ public class Score : MonoBehaviour
         float duration = 3f;
         float elapsedTime = 0f;
 
-        Color originalColor = _text.color;
+        Color startColor = _goalText.color;
+        Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
 
-        while(elapsedTime < duration)
+        while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
-            Color newColor = originalColor;
-            newColor.a = alpha;
-            _text.color = newColor;
+            float t = elapsedTime / duration;
+            Color newColor = Color.Lerp(startColor, targetColor, t);
+            _goalText.color = newColor;
 
             yield return null;
         }
 
-        _goalText.SetActive(false);
-        _text.color = originalColor;
+        _textContainer.SetActive(false);
+        _goalText.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+
+        yield return null;
     }
 }
