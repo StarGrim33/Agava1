@@ -2,44 +2,40 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class KickingBall : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public abstract class KickingBall : MonoBehaviour
 {
-    private const string AxisName = "Mouse X";
-
-    [SerializeField] private Rigidbody _ballRigidbody;
-    [SerializeField] private Transform _ballSpawnPoint;
-    [SerializeField] private float _hifForce = 10.0f;
-    [SerializeField] private GameObject _player;
-    [SerializeField] private AnimatorPlayer _playerAnimator;
-    [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private int _hitsRemained;
+    [SerializeField] protected Rigidbody _ballRigidbody;
+    [SerializeField] protected Transform _ballSpawnPoint;
+    [SerializeField] protected float _hifForce = 10.0f;
+    [SerializeField] protected GameObject _fooballPlayer;
+    [SerializeField] protected AnimatorPlayer _playerAnimator;
+    [SerializeField] protected ParticleSystem _particleSystem;
+    [SerializeField] protected int _hitsRemained;
 
     public event UnityAction OnBallKicked;
 
-    public bool IsAiming => _hitsRemained > 0;
+    protected Animator _animator;
+    protected Vector3 _hitDirection = Vector3.forward;
+    protected float _angleRotation = 5.0f;
+    protected float _timeHitsReload = 3f;
 
-    private Animator _animator;
-    private Vector3 _hitDirection = Vector3.forward;
-    private bool _isMouseDown = false;
-    private float _angleRotation = 5.0f;
-    private float _timeHitsReload = 3f;
-
-    private void OnEnable()
+    protected void OnEnable()
     {
         _playerAnimator.OnKickedAnimationFinished += OnKickedAnimationFinished;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         _playerAnimator.OnKickedAnimationFinished -= OnKickedAnimationFinished;
     }
 
-    private void Start()
+    protected void Start()
     {
         _animator = GetComponent<Animator>();
     }
 
-    private void OnKickedAnimationFinished()
+    protected void OnKickedAnimationFinished()
     {
         OnBallKicked?.Invoke();
         _particleSystem.Play();
@@ -62,7 +58,6 @@ public class KickingBall : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _isMouseDown = true;
                 Time.timeScale = 0.3f;
                 StartCoroutine(Kicking());
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, true);
@@ -71,13 +66,12 @@ public class KickingBall : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
             {
                 Time.timeScale = 1f;
-                _isMouseDown = false;
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
             }
         }
     }
 
-    private IEnumerator ReloadHits()
+    protected IEnumerator ReloadHits()
     {
         var waitForSeconds = new WaitForSeconds(_timeHitsReload);
 
@@ -88,21 +82,15 @@ public class KickingBall : MonoBehaviour
         }
     }
 
-    private IEnumerator Kicking()
+    protected virtual IEnumerator Kicking()
     {
-        while (_isMouseDown && _hitsRemained > 0)
+        while (_hitsRemained > 0)
         {
-            float mouseX = Input.GetAxis(AxisName);
-            _player.transform.Rotate(0, mouseX * _angleRotation, 0);
-            Quaternion rotation = Quaternion.Euler(0, mouseX * _angleRotation, 0);
-            _hitDirection = rotation * _hitDirection;
-
             yield return null;
         }
 
         if (_hitsRemained <= 0)
         {
-            _isMouseDown = false;
             _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
         }
     }

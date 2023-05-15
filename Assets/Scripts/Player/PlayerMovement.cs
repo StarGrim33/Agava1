@@ -1,42 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : BasePlayer
 {
-    [SerializeField] private Ball _ball;
-    [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private KickingBall _kickingBall;
-
-    private float _delay = 1f;
-    private bool _canTeleport = false;
-
-    private void OnEnable()
-    {
-        _kickingBall.OnBallKicked += OnBallKicked;
-    }
-
-    private void OnDisable()
-    {
-        _kickingBall.OnBallKicked -= OnBallKicked;
-    }
-
-    private void OnBallKicked()
-    {
-        _canTeleport = true;
-    }
+    [SerializeField] protected PlayerKickingBall _kickBall;
 
     private void Update()
     {
         StartCoroutine(Teleport());
     }
 
-    private IEnumerator Teleport()
+
+    protected override IEnumerator Teleport()
     {
         var waitForSeconds = new WaitForSeconds(_delay);
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > 1f && _kickingBall.IsAiming)
+            if (transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > 1f && _kickBall.IsAiming)
             {
                 transform.position = _ball.transform.position;
                 _particleSystem.Play();
