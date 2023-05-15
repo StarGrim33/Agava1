@@ -15,7 +15,7 @@ public class Gate : MonoBehaviour
             Debug.Log("Goal");
             ScoreGoal();
             _particleSystem.Play();
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 1f);
         }
     }
 

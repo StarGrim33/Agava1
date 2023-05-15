@@ -12,7 +12,7 @@ public class KickingBall : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private AnimatorPlayer _playerAnimator;
     [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private int _hitsRemained = 3;
+    [SerializeField] private int _hitsRemained;
 
     public event UnityAction OnBallKicked;
 

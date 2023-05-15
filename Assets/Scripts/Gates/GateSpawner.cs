@@ -32,7 +32,7 @@ public class GateSpawner : MonoBehaviour
 
     private IEnumerator Spawner()
     {
-        var waitForSeconds = new WaitForSeconds(4f);
+        var waitForSeconds = new WaitForSeconds(2f);
         yield return waitForSeconds;
         int randomPosition = Random.Range(0, _gatePositions.Count);
         Transform spawnPoint = _gatePositions[randomPosition];
