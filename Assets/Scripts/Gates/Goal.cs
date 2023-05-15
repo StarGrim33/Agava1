@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class Goal : MonoBehaviour
 {
+    [SerializeField] private Gate _gate;
     public event UnityAction OnGoalScored;
 
     [SerializeField] private ParticleSystem _particleSystem;
