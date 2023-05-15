@@ -1,29 +1,26 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gate : MonoBehaviour
 {
-    [SerializeField] private Goal _goal;
+    public event UnityAction<Gate> OnGoalScored;
 
-    private void OnEnable()
+    [SerializeField] private ParticleSystem _particleSystem;
+
+    private void OnTriggerEnter(Collider other)
     {
-        _goal.OnGoalScored += OnGoalScored;
+        if (other.TryGetComponent<Ball>(out Ball ball))
+        {
+            Debug.Log("Goal");
+            ScoreGoal();
+            _particleSystem.Play();
+            Destroy(gameObject, 3f);
+        }
     }
 
-    private void OnGoalScored()
+    private void ScoreGoal()
     {
-        StartCoroutine(Destoyer());
-    }
-
-    private void OnDisable()
-    {
-        _goal.OnGoalScored -= OnGoalScored;
-    }
-
-    private IEnumerator Destoyer()
-    {
-        var waitForSeconds = new WaitForSeconds(2f);
-        yield return waitForSeconds;
-        Destroy(gameObject);
+        OnGoalScored?.Invoke(this);
     }
 }
