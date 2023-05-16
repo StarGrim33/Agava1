@@ -626,8 +626,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885468445520259471}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.06524065, z: -0, w: 0.9978696}
+  m_LocalPosition: {x: -0.048166707, y: 0, z: -0.014545381}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -641,7 +641,7 @@ Transform:
   - {fileID: 906746841100828378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 7.481, z: 0}
 --- !u!95 &5152535753195841871
 Animator:
   serializedVersion: 4
@@ -709,6 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ball: {fileID: 4300964628976212833}
   _enemy: {fileID: 1885468445520259471}
+  _particleSystem: {fileID: 0}
   _kickingBall: {fileID: 5152535753195841864}
 --- !u!1 &1986162226152179624
 GameObject:

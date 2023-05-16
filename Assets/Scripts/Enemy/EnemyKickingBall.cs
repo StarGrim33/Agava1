@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class EnemyKickingBall : KickingBall
 {
@@ -38,10 +37,8 @@ public class EnemyKickingBall : KickingBall
 
     private void Update()
     {
-        if(_hitsRemained > 0 && !_isKickingCoroutineRunning)
-        {
+        if (_hitsRemained > 0 && !_isKickingCoroutineRunning)
             StartCoroutine(Kicking());
-        }
     }
 
     protected override IEnumerator Kicking()
@@ -54,9 +51,7 @@ public class EnemyKickingBall : KickingBall
         {
             if (!_isKicking)
             {
-                _hitDirection = CalculateEnemyHitDirection();
-                _fooballPlayer.transform.rotation = Quaternion.LookRotation(_hitDirection);
-
+                _hitDirection = CalculateEnemyHitDirection();                
                 _animator.SetBool(AnimatorEnemyPlayer.Params.IsAiming, true);
                 _animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0f);
                 _isKicking = true;
