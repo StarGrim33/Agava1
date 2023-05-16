@@ -8,7 +8,6 @@ public abstract class BasePlayer : MonoBehaviour
     [SerializeField] protected KickingBall _kickingBall;
 
     protected float _delay = 1f;
-    protected bool _canTeleport = false;
 
     protected void Update()
     {
@@ -19,14 +18,13 @@ public abstract class BasePlayer : MonoBehaviour
     {
         var waitForSeconds = new WaitForSeconds(_delay);
 
-        if (Input.GetMouseButtonDown(0))
+        if (transform.position != _ball.transform.position)
         {
-            if (transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > 1f)
-            {
-                transform.position = _ball.transform.position;
-                _particleSystem.Play();
-                _ball.StopMoving();
-            }
+            Vector3 newPosition = _ball.transform.position;
+            newPosition.y = 0f;
+            transform.position = newPosition;
+            _particleSystem.Play();
+            _ball.StopMoving();
         }
 
         yield return waitForSeconds;

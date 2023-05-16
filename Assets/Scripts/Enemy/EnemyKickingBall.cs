@@ -6,11 +6,13 @@ public class EnemyKickingBall : KickingBall
 {
     [SerializeField] private AnimatorEnemyPlayer _enemyAnimator;
     [SerializeField] private GateSpawner _gateSpawner;
+    [SerializeField] private Ball _ball;
 
     public bool IsKicking => _isKicking;
 
     private bool _isKicking = false;
     private Vector3 _goalPosition;
+    private bool _isKickingCoroutineRunning = false;
 
     private void OnEnable()
     {
@@ -32,27 +34,34 @@ public class EnemyKickingBall : KickingBall
     protected override void Start()
     {
         _animator = GetComponent<Animator>();
-        StartCoroutine(Kicking());
+    }
+
+    private void Update()
+    {
+        if(_hitsRemained > 0 && !_isKickingCoroutineRunning)
+        {
+            StartCoroutine(Kicking());
+        }
     }
 
     protected override IEnumerator Kicking()
     {
-        yield return new WaitForSeconds(2f);
+        _isKickingCoroutineRunning = true;
 
-        while (_hitsRemained > 0)
+        yield return new WaitForSeconds(3f);
+
+        while (_hitsRemained > 0 && _goalPosition != null)
         {
             if (!_isKicking)
             {
-                Vector3 enemyHitDirection = CalculateEnemyHitDirection();
-
-                _fooballPlayer.transform.rotation = Quaternion.LookRotation(enemyHitDirection);
-                _hitDirection = enemyHitDirection;
+                _hitDirection = CalculateEnemyHitDirection();
+                _fooballPlayer.transform.rotation = Quaternion.LookRotation(_hitDirection);
 
                 _animator.SetBool(AnimatorEnemyPlayer.Params.IsAiming, true);
                 _animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0f);
                 _isKicking = true;
 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(3f);
                 _isKicking = false;
             }
 
@@ -60,17 +69,29 @@ public class EnemyKickingBall : KickingBall
         }
 
         _animator.SetBool(AnimatorEnemyPlayer.Params.IsAiming, false);
+        _isKickingCoroutineRunning = false;
     }
 
     protected override void OnKickedAnimationFinished()
     {
-        base.OnKickedAnimationFinished();
+        _particleSystem.Play();
+        _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
+
+        if (_hitsRemained > 0)
+        {
+            _hitsRemained--;
+        }
+
+        if (_hitsRemained <= 0)
+            StartCoroutine(ReloadHits());
+
         _isKicking = false;
     }
 
     private Vector3 CalculateEnemyHitDirection()
     {
-        Vector3 kickDirection = _goalPosition - transform.position;
+        Debug.Log(_goalPosition);
+        Vector3 kickDirection = _goalPosition - _ball.transform.position;
         kickDirection.y = 0f;
         return kickDirection.normalized;
     }
