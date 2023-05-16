@@ -10,22 +10,7 @@ public abstract class BasePlayer : MonoBehaviour
     protected float _delay = 1f;
     protected bool _canTeleport = false;
 
-    protected void OnEnable()
-    {
-        _kickingBall.OnBallKicked += OnBallKicked;
-    }
-
-    protected void OnDisable()
-    {
-        _kickingBall.OnBallKicked -= OnBallKicked;
-    }
-
-    protected void OnBallKicked()
-    {
-        _canTeleport = true;
-    }
-
-    private void Update()
+    protected void Update()
     {
         StartCoroutine(Teleport());
     }

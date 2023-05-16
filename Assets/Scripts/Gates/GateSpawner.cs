@@ -9,6 +9,7 @@ public class GateSpawner : MonoBehaviour
     [SerializeField] private List<Transform> _gatePositions;
 
     public event UnityAction<Gate> OnGoalGateSpawned;
+    public event UnityAction<Vector3> OnGateSpawned;
 
     private Gate _currentGate;
 
@@ -38,5 +39,7 @@ public class GateSpawner : MonoBehaviour
         _currentGate = Instantiate(_gatePrefab, spawnPoint.position, Quaternion.Euler(-90f, 0f, 0f));
         _currentGate.OnGoalScored += OnGoalScored;
         OnGoalGateSpawned?.Invoke(_currentGate);
+        Vector3 gatePosition = _currentGate.transform.position;
+        OnGateSpawned?.Invoke(gatePosition);
     }
 }

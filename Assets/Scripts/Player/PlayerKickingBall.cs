@@ -4,10 +4,22 @@ using UnityEngine.Events;
 
 public class PlayerKickingBall : KickingBall
 {
+    [SerializeField] private AnimatorPlayer _playerAnimator;
+
     private const string AxisName = "Mouse X";
 
     public bool IsAiming => _hitsRemained > 0;
     private bool _isMouseDown = false;
+
+    private void OnEnable()
+    {
+        _playerAnimator.OnKickedAnimationFinished += OnKickedAnimationFinished;
+    }
+
+    private void OnDisable()
+    {
+        _playerAnimator.OnKickedAnimationFinished -= OnKickedAnimationFinished;
+    }
 
     private void Update()
     {
@@ -28,6 +40,22 @@ public class PlayerKickingBall : KickingBall
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
             }
         }
+    }
+
+    protected override void OnKickedAnimationFinished()
+    {
+        _particleSystem.Play();
+        _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
+
+        if (_hitsRemained > 0)
+        {
+            _hitsRemained--;
+        }
+
+        if (_hitsRemained <= 0)
+            StartCoroutine(ReloadHits());
+
+        Time.timeScale = 1f;
     }
 
     protected override IEnumerator Kicking()

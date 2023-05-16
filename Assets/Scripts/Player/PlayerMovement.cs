@@ -5,12 +5,6 @@ public class PlayerMovement : BasePlayer
 {
     [SerializeField] protected PlayerKickingBall _kickBall;
 
-    private void Update()
-    {
-        StartCoroutine(Teleport());
-    }
-
-
     protected override IEnumerator Teleport()
     {
         var waitForSeconds = new WaitForSeconds(_delay);
