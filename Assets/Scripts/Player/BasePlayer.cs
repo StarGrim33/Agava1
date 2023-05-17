@@ -8,6 +8,7 @@ public abstract class BasePlayer : MonoBehaviour
     [SerializeField] protected KickingBall _kickingBall;
 
     protected float _delay = 1f;
+    protected bool _canTeleport = false;
 
     protected void Update()
     {

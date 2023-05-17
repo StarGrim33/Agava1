@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Gate : MonoBehaviour
 {
-    public event UnityAction<Gate> OnGoalScored;
+    public event UnityAction<Gate, bool> OnGoalScored;
 
     [SerializeField] private ParticleSystem _particleSystem;
 
@@ -12,15 +11,22 @@ public class Gate : MonoBehaviour
     {
         if (other.TryGetComponent<Ball>(out Ball ball))
         {
-            Debug.Log("Goal");
-            ScoreGoal();
-            _particleSystem.Play();
-            Destroy(gameObject, 1f);
+            ScoreGoal(false);
+        }
+
+        if(other.TryGetComponent<EnemyBall>(out EnemyBall enemyBall))
+        {
+            Debug.Log("Enemy Goal");
+            ScoreGoal(true);
         }
     }
 
-    private void ScoreGoal()
+    private void ScoreGoal(bool isEnemyGoal)
     {
-        OnGoalScored?.Invoke(this);
+        Debug.Log("Goal");
+        ScoreGoal(isEnemyGoal);
+        _particleSystem.Play();
+        OnGoalScored?.Invoke(this, isEnemyGoal);
+        Destroy(gameObject, 1f);
     }
 }

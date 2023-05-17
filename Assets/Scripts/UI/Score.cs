@@ -5,11 +5,13 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     [SerializeField] private GateSpawner _gateSpawner;
-    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _playerScoreText;
+    [SerializeField] private TMP_Text _enemyScoreText;
     [SerializeField] private GameObject _textContainer;
     [SerializeField] private TMP_Text _goalText;
 
-    private int _score;
+    private int _playerScore;
+    private int _enemyScore;
     private int _scorePerGoal = 10;
 
     private void OnEnable()
@@ -27,10 +29,19 @@ public class Score : MonoBehaviour
         gate.OnGoalScored += OnGoalScored;
     }
 
-    private void OnGoalScored(Gate gate)
+    private void OnGoalScored(Gate gate, bool isEnemyGoal)
     {
-        _score += _scorePerGoal;
-        _scoreText.text = _score.ToString();
+        if(isEnemyGoal)
+        {
+            _enemyScore += _scorePerGoal;
+            _enemyScoreText.text = _playerScore.ToString();
+        }
+        else
+        {
+            _playerScore += _scorePerGoal;
+            _playerScoreText.text = _playerScore.ToString();
+        }
+
         _textContainer.SetActive(true);
         gate.OnGoalScored -= OnGoalScored;
         StartCoroutine(TextFading());

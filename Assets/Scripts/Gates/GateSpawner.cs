@@ -18,7 +18,7 @@ public class GateSpawner : MonoBehaviour
         SpawnGate();
     }
 
-    public void OnGoalScored(Gate gate)
+    public void OnGoalScored(Gate gate, bool isEnemyGoal)
     {
         gate.OnGoalScored -= OnGoalScored;
         _currentGate = null;
