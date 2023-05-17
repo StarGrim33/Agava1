@@ -96,6 +96,7 @@ public class GateSpawner : MonoBehaviour
                 return _rightSide[index];
             }
         }
+
         public List<Transform> GetLeftSideSpawnPoints()
         {
             return _leftSide;
