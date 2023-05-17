@@ -39,7 +39,7 @@ public class GateSpawner : MonoBehaviour
         _currentGate = Instantiate(_gatePrefab, spawnPoint.position, Quaternion.Euler(-90f, 0f, 0f));
         _currentGate.OnGoalScored += OnGoalScored;
         OnGoalGateSpawned?.Invoke(_currentGate);
-        Vector3 gatePosition = _currentGate.transform.position;
+        Vector3 gatePosition = _currentGate.MiddleTarget();
         OnGateSpawned?.Invoke(gatePosition);
     }
 }

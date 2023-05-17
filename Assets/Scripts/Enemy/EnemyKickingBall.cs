@@ -19,11 +19,6 @@ public class EnemyKickingBall : KickingBall
         _enemyAnimator.OnKickedEnemyAnimation += OnKickedAnimationFinished;
     }
 
-    private void OnGateSpawned(Vector3 position)
-    {
-        _goalPosition = position;
-    }
-
     private void OnDisable()
     {
         _gateSpawner.OnGateSpawned -= OnGateSpawned;
@@ -45,7 +40,7 @@ public class EnemyKickingBall : KickingBall
     {
         _isKickingCoroutineRunning = true;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
 
         while (_hitsRemained > 0 && _goalPosition != null)
         {
@@ -56,7 +51,7 @@ public class EnemyKickingBall : KickingBall
                 _animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0f);
                 _isKicking = true;
 
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
                 _isKicking = false;
             }
 
@@ -72,6 +67,7 @@ public class EnemyKickingBall : KickingBall
         _particleSystem.Play();
         _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
 
+        
         if (_hitsRemained > 0)
         {
             _hitsRemained--;
@@ -89,5 +85,10 @@ public class EnemyKickingBall : KickingBall
         Vector3 kickDirection = _goalPosition - _ball.transform.position;
         kickDirection.y = 0f;
         return kickDirection.normalized;
+    }
+
+    private void OnGateSpawned(Vector3 position)
+    {
+        _goalPosition = position;
     }
 }

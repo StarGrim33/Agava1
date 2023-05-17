@@ -6,6 +6,7 @@ public class Gate : MonoBehaviour
     public event UnityAction<Gate, bool> OnGoalScored;
 
     [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private Transform _middleTarget;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,5 +27,11 @@ public class Gate : MonoBehaviour
         _particleSystem.Play();
         OnGoalScored?.Invoke(this, isEnemyGoal);
         Destroy(gameObject, 1f);
+    }
+
+    public Vector3 MiddleTarget()
+    {
+        Vector3 target = _middleTarget.position;
+        return target;
     }
 }
