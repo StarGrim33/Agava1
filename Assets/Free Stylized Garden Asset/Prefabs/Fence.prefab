@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 33246045317173496}
   - component: {fileID: 23694511658926990}
   - component: {fileID: 1370652071}
-  - component: {fileID: 2024605945}
-  - component: {fileID: 1343357740}
   m_Layer: 0
   m_Name: Fence
   m_TagString: Untagged
@@ -99,29 +97,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.002083492, y: 0.009581082, z: 0.018969273}
   m_Center: {x: -0.00072719477, y: 0.0052381954, z: -0.0000000020604056}
---- !u!65 &2024605945
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698917995293774}
-  m_Material: {fileID: 13400000, guid: 9216e1cd81cccab45a6f4db821271c63, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0007746085, y: 0.0095810825, z: 0.018969279}
-  m_Center: {x: -0.00007274543, y: 0.0052381954, z: -0.000000001396984}
---- !u!65 &1343357740
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698917995293774}
-  m_Material: {fileID: 13400000, guid: 9216e1cd81cccab45a6f4db821271c63, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0007746085, y: 0.0095810825, z: 0.018969279}
-  m_Center: {x: -0.00007274543, y: 0.0052381954, z: -4.656614e-10}
