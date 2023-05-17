@@ -9,7 +9,7 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Ball>(out Ball ball))
+        if (other.TryGetComponent<PlayerBall>(out PlayerBall playerBall))
         {
             ScoreGoal(false);
         }
@@ -23,8 +23,6 @@ public class Gate : MonoBehaviour
 
     private void ScoreGoal(bool isEnemyGoal)
     {
-        Debug.Log("Goal");
-        ScoreGoal(isEnemyGoal);
         _particleSystem.Play();
         OnGoalScored?.Invoke(this, isEnemyGoal);
         Destroy(gameObject, 1f);

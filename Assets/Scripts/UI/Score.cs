@@ -31,10 +31,10 @@ public class Score : MonoBehaviour
 
     private void OnGoalScored(Gate gate, bool isEnemyGoal)
     {
-        if(isEnemyGoal)
+        if (isEnemyGoal)
         {
             _enemyScore += _scorePerGoal;
-            _enemyScoreText.text = _playerScore.ToString();
+            _enemyScoreText.text = _enemyScore.ToString();
         }
         else
         {
