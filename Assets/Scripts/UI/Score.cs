@@ -1,4 +1,3 @@
-using LayerLab;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -11,6 +10,7 @@ public class Score : MonoBehaviour
     [SerializeField] private GameObject _textContainer;
     [SerializeField] private TMP_Text _goalText;
     [SerializeField] private GameObject _loseScreen;
+    [SerializeField] private int _scoreForWin;
 
     private int _playerScore;
     private int _enemyScore;
@@ -35,7 +35,7 @@ public class Score : MonoBehaviour
     {
         if (isEnemyGoal)
         {
-            if(_enemyScore >= 70)
+            if(_enemyScore >= _scoreForWin)
             {
                 ShowLoseScreen();
             }
@@ -80,7 +80,7 @@ public class Score : MonoBehaviour
 
     private void ShowLoseScreen()
     {
-        _loseScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
+        _loseScreen.gameObject.SetActive(true);
     }
 }

@@ -6,6 +6,7 @@ public class EnemyKickingBall : KickingBall
     [SerializeField] private AnimatorEnemyPlayer _enemyAnimator;
     [SerializeField] private GateSpawner _gateSpawner;
     [SerializeField] private Ball _ball;
+    [SerializeField] private float _missProbability;
 
     public bool IsKicking => _isKicking;
 
@@ -40,7 +41,7 @@ public class EnemyKickingBall : KickingBall
     {
         _isKickingCoroutineRunning = true;
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3f);
 
         while (_hitsRemained > 0 && _goalPosition != null)
         {
@@ -51,7 +52,7 @@ public class EnemyKickingBall : KickingBall
                 _animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0f);
                 _isKicking = true;
 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(4f);
                 _isKicking = false;
             }
 
@@ -81,14 +82,33 @@ public class EnemyKickingBall : KickingBall
 
     private Vector3 CalculateEnemyHitDirection()
     {
-        Debug.Log(_goalPosition);
-        Vector3 kickDirection = _goalPosition - _ball.transform.position;
-        kickDirection.y = 0f;
-        return kickDirection.normalized;
+        if(IsKickMissed() == false)
+        {
+            Vector3 kickDirection = _goalPosition - _ball.transform.position;
+            kickDirection.y = 0f;
+            return kickDirection.normalized;
+        }
+        else if(IsKickMissed()) 
+        {
+            Vector2 randomPoint = Random.insideUnitCircle.normalized;
+            Vector3 kickDirection = new Vector3(randomPoint.x, 0f, randomPoint.y);
+            Debug.Log("Missed");
+            return kickDirection.normalized;
+        }
+
+        return _goalPosition;
     }
 
     private void OnGateSpawned(Vector3 position)
     {
         _goalPosition = position;
+    }
+
+    private bool IsKickMissed()
+    {
+        if(Random.value < _missProbability) 
+            return true;
+
+        return false;
     }
 }
