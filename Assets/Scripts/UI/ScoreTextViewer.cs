@@ -17,6 +17,8 @@ public class ScoreTextViewer : MonoBehaviour
     {
         _score.OnPlayerScoreChanged += OnPlayerScoreChanged;
         _score.OnEnemyScoreChanged += OnEnemyScoreChanged;
+        _enemyScoreText.text = $"{_score.EnemyScore}/{_score.ScoreForWin}";
+        _playerScoreText.text = $"{_score.PlayerScore}/{_score.ScoreForWin}";
     }
 
     private void OnDisable()
@@ -32,12 +34,12 @@ public class ScoreTextViewer : MonoBehaviour
 
     private void OnEnemyScoreChanged()
     {
-        _enemyScoreText.text = _score.EnemyScore.ToString();
+        _enemyScoreText.text = $"{_score.EnemyScore}/{_score.ScoreForWin}";
     }
 
     private void OnPlayerScoreChanged()
     {
-        _playerScoreText.text = _score.PlayerScore.ToString();
+        _playerScoreText.text = $"{_score.PlayerScore}/{_score.ScoreForWin}";
         _textContainer.SetActive(true);
 
         StartCoroutine(TextFading());
