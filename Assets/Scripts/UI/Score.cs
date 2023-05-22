@@ -30,6 +30,7 @@ public class Score : MonoBehaviour
     private int _playerScore = 0;
     private int _enemyScore = 0;
     private int _scorePerGoal = 10;
+    private int _playerTotalScore = 0;
 
     private void OnEnable()
     {
@@ -39,6 +40,12 @@ public class Score : MonoBehaviour
     private void OnDisable()
     {
         _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
+    }
+
+    public void DoubleScoreForAD()
+    {
+        _playerTotalScore *= 2;
+        Debug.Log(_playerTotalScore);
     }
 
     private void OnGoalGateSpawned(Gate gate)
@@ -56,6 +63,7 @@ public class Score : MonoBehaviour
         else
         {
             PlayerScore += _scorePerGoal;
+            _playerTotalScore += _scorePerGoal;
             OnPlayerScoreChanged.Invoke();
         }
 

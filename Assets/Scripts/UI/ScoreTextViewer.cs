@@ -12,8 +12,6 @@ public class ScoreTextViewer : MonoBehaviour
     [SerializeField] private TMP_Text _totalScore;
     [SerializeField] private GateSpawner _spawner;
     [SerializeField] private Score _score;
-    [SerializeField] private GameObject _loseScreen;
-    [SerializeField] private GameObject _victoryScreen;
 
     private void OnEnable()
     {
@@ -27,25 +25,20 @@ public class ScoreTextViewer : MonoBehaviour
         _score.OnEnemyScoreChanged -= OnEnemyScoreChanged;
     }
 
+    public void ShowTotalPlayerScore()
+    {
+        _totalScore.text = _score.PlayerScore.ToString();
+    }
+
     private void OnEnemyScoreChanged()
     {
         _enemyScoreText.text = _score.EnemyScore.ToString();
-
-        if (_score.EnemyScore >= _score.ScoreForWin)
-        {
-            ShowPanel(_loseScreen);
-        }
     }
 
     private void OnPlayerScoreChanged()
     {
         _playerScoreText.text = _score.PlayerScore.ToString();
         _textContainer.SetActive(true);
-
-        if (_score.PlayerScore >= _score.ScoreForWin)
-        {
-            ShowPanel(_victoryScreen);
-        }
 
         StartCoroutine(TextFading());
     }
@@ -72,16 +65,5 @@ public class ScoreTextViewer : MonoBehaviour
         _goalText.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
 
         yield return null;
-    }
-
-    private void ShowPanel(GameObject screen)
-    {
-        Time.timeScale = 0f;
-        screen.gameObject.SetActive(true);
-
-        if (screen == _victoryScreen)
-        {
-            _totalScore.text = _score.PlayerScore.ToString();
-        }
     }
 }
