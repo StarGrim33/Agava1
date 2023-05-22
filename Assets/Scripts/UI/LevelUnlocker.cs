@@ -16,7 +16,7 @@ public class LevelUnlocker : MonoBehaviour
     {
         _levelsUnlocked = PlayerPrefs.GetInt(LevelsUnlocked, 1);
 
-        for(int i = 0; i < _buttons.Length; i++)
+        for (int i = 0; i < _buttons.Length; i++)
         {
             _buttons[i].interactable = false;
         }
