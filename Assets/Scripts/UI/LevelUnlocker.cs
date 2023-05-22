@@ -21,7 +21,7 @@ public class LevelUnlocker : MonoBehaviour
             _buttons[i].interactable = false;
         }
 
-        for (int i = 0; i < _levelsUnlocked; i++)
+        for (int i = 0; i < _levelsUnlocked - 1; i++)
         {
             _buttons[i].interactable = true;
         }

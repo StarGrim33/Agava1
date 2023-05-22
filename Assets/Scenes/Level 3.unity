@@ -2522,7 +2522,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.05
+  m_fontSize: 39
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3511,7 +3511,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.24635102, g: 0.3018868, b: 0.25613624, a: 1}
+  m_Color: {r: 1, g: 0.69260925, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4467,7 +4467,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2374898, y: 0.7509839, z: -0.3533502, w: 0.504743}
+  m_LocalRotation: {x: 0.23749633, y: 0.7509746, z: -0.35334578, w: 0.5047568}
   m_LocalPosition: {x: -6.4399996, y: 8.51, z: 3.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4898,7 +4898,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023220242}
-  m_LocalRotation: {x: 0.2374898, y: 0.7509839, z: -0.3533502, w: 0.504743}
+  m_LocalRotation: {x: 0.23749633, y: 0.7509746, z: -0.35334578, w: 0.5047568}
   m_LocalPosition: {x: -6.4399996, y: 8.51, z: 3.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5411,6 +5411,7 @@ MonoBehaviour:
     - {fileID: 1388634028}
     - {fileID: 518589912}
     - {fileID: 942232173}
+  _isRandomSpawn: 0
 --- !u!4 &1127713242
 Transform:
   m_ObjectHideFlags: 0
@@ -7841,6 +7842,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c954a7e383194f246b3502f6c815acb4, type: 3}
+--- !u!1001 &1583340982
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7308217931748352543, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_Name
+      value: Border
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.7603
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.896
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308217931748352738, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08e64540bb9e6644e81082da8d60d057, type: 3}
 --- !u!1 &1594062978
 GameObject:
   m_ObjectHideFlags: 0
@@ -9726,7 +9784,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.6
+  m_fontSize: 45.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

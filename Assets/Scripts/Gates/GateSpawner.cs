@@ -7,6 +7,7 @@ public class GateSpawner : MonoBehaviour
 {
     [SerializeField] private Gate _gatePrefab;
     [SerializeField] private SpawnPointParts _spawnPointParts;
+    [SerializeField] private bool _isRandomSpawn;
 
     public event UnityAction<Gate> OnGoalGateSpawned;
     public event UnityAction<Vector3> OnGateSpawned;
@@ -47,11 +48,11 @@ public class GateSpawner : MonoBehaviour
     {
         if (_spawnPointParts.GetLeftSideSpawnPoints().Contains(spawnPoint))
         {
-            return Quaternion.Euler(-90f, -90f, -90f); 
+            return Quaternion.Euler(-90f, -90f, -90f);
         }
         else if (_spawnPointParts.GetRightSideSpawnPoints().Contains(spawnPoint))
         {
-            return Quaternion.Euler(-90f, 0f, 0f); 
+            return Quaternion.Euler(-90f, 0f, 0f);
         }
 
         return Quaternion.identity;
