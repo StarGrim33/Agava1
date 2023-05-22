@@ -1,21 +1,34 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Score : MonoBehaviour
 {
     [SerializeField] private GateSpawner _gateSpawner;
-    [SerializeField] private TMP_Text _playerScoreText;
-    [SerializeField] private TMP_Text _enemyScoreText;
-    [SerializeField] private GameObject _textContainer;
-    [SerializeField] private TMP_Text _goalText;
-    [SerializeField] private GameObject _loseScreen;
-    [SerializeField] private GameObject _victoryScreen;
     [SerializeField] private int _scoreForWin;
-    [SerializeField] private TMP_Text _totalScore;
 
-    private int _playerScore;
-    private int _enemyScore;
+    public event UnityAction OnPlayerScoreChanged;
+    public event UnityAction OnEnemyScoreChanged;
+
+    public int ScoreForWin
+    {
+        get { return _scoreForWin; }
+        private set { _scoreForWin = value; }
+    }
+
+    public int PlayerScore
+    {
+        get { return _playerScore; }
+        private set { _playerScore = value; }
+    }
+    
+    public int EnemyScore
+    {
+        get { return _enemyScore; }
+        private set { _enemyScore = value; }
+    }
+
+    private int _playerScore = 0;
+    private int _enemyScore = 0;
     private int _scorePerGoal = 10;
 
     private void OnEnable()
@@ -37,62 +50,15 @@ public class Score : MonoBehaviour
     {
         if (isEnemyGoal)
         {
-            if(_enemyScore >= _scoreForWin)
-            {
-                ShowPanel(_loseScreen);
-            }
-            
-            _enemyScore += _scorePerGoal;
-            _enemyScoreText.text = _enemyScore.ToString();
+            EnemyScore += _scorePerGoal;
+            OnEnemyScoreChanged?.Invoke();
         }
         else
         {
-            if (_playerScore >= _scoreForWin)
-            {
-                ShowPanel(_victoryScreen);
-            }
-
-            _playerScore += _scorePerGoal;
-            _playerScoreText.text = _playerScore.ToString();
-            _textContainer.SetActive(true);
+            PlayerScore += _scorePerGoal;
+            OnPlayerScoreChanged.Invoke();
         }
 
         gate.OnGoalScored -= OnGoalScored;
-        StartCoroutine(TextFading());
-    }
-
-    private IEnumerator TextFading()
-    {
-        float duration = 3f;
-        float elapsedTime = 0f;
-
-        Color startColor = _goalText.color;
-        Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
-
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / duration;
-            Color newColor = Color.Lerp(startColor, targetColor, t);
-            _goalText.color = newColor;
-
-            yield return null;
-        }
-
-        _textContainer.SetActive(false);
-        _goalText.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
-
-        yield return null;
-    }
-
-    private void ShowPanel(GameObject screen)
-    {
-        Time.timeScale = 0f;
-        screen.gameObject.SetActive(true);
-
-        if(screen == _victoryScreen)
-        {
-            _totalScore.text = _playerScore.ToString();
-        }
     }
 }
