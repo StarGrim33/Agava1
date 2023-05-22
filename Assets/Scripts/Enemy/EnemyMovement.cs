@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] protected Ball _ball;
+    [SerializeField] private Ball _ball;
     [SerializeField] private GameObject _enemy;
-    [SerializeField] protected ParticleSystem _particleSystem;
-    [SerializeField] protected EnemyKickingBall _kickingBall;
+    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private EnemyKickingBall _kickingBall;
 
-    protected float _delay = 1f;
+    private float _delay = 1f;
 
-    protected void Update()
+    private void Update()
     {
         if (_kickingBall.IsKicking && Vector3.Distance(_enemy.transform.position, _ball.transform.position) > 1f)
            Teleport();
     }
 
-    protected void Teleport()
+    private void Teleport()
     {
         _ball.StopMoving();
         Vector3 ballLastPosition = _ball.transform.position;
@@ -27,5 +27,6 @@ public class EnemyMovement : MonoBehaviour
         _ball.transform.position = newPosition;
         _particleSystem.Play();
         transform.position = ballLastPosition;
+        transform.LookAt(newPosition);
     }
 }

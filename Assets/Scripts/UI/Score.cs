@@ -10,7 +10,9 @@ public class Score : MonoBehaviour
     [SerializeField] private GameObject _textContainer;
     [SerializeField] private TMP_Text _goalText;
     [SerializeField] private GameObject _loseScreen;
+    [SerializeField] private GameObject _victoryScreen;
     [SerializeField] private int _scoreForWin;
+    [SerializeField] private TMP_Text _totalScore;
 
     private int _playerScore;
     private int _enemyScore;
@@ -37,7 +39,7 @@ public class Score : MonoBehaviour
         {
             if(_enemyScore >= _scoreForWin)
             {
-                ShowLoseScreen();
+                ShowPanel(_loseScreen);
             }
             
             _enemyScore += _scorePerGoal;
@@ -45,6 +47,11 @@ public class Score : MonoBehaviour
         }
         else
         {
+            if (_playerScore >= _scoreForWin)
+            {
+                ShowPanel(_victoryScreen);
+            }
+
             _playerScore += _scorePerGoal;
             _playerScoreText.text = _playerScore.ToString();
             _textContainer.SetActive(true);
@@ -78,9 +85,14 @@ public class Score : MonoBehaviour
         yield return null;
     }
 
-    private void ShowLoseScreen()
+    private void ShowPanel(GameObject screen)
     {
         Time.timeScale = 0f;
-        _loseScreen.gameObject.SetActive(true);
+        screen.gameObject.SetActive(true);
+
+        if(screen == _victoryScreen)
+        {
+            _totalScore.text = _playerScore.ToString();
+        }
     }
 }

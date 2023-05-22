@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class LevelUnlocker : MonoBehaviour
 {
+    [SerializeField] private Button[] _buttons;
+
     private const string LevelsUnlocked = "_levelsUnlocked";
 
-    [SerializeField] private Button[] _buttons;
     private int _levelsUnlocked;
-    private int _currentLevel;
 
     private void Start()
     {
@@ -26,14 +26,4 @@ public class LevelUnlocker : MonoBehaviour
             _buttons[i].interactable = true;
         }
     }
-
-    private void UnlockNextLevel()
-    {
-        if(_currentLevel > PlayerPrefs.GetInt(LevelsUnlocked))
-        {
-            _currentLevel +=1;
-            PlayerPrefs.SetInt(LevelsUnlocked, _currentLevel);
-        }
-    }
-
 }
