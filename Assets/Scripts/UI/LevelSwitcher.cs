@@ -14,6 +14,7 @@ public class LevelSwitcher : MonoBehaviour
 
         currentLevelIndex += 1;
         PlayerPrefs.SetInt(LevelsUnlocked, currentLevelIndex);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(1);
     }
 
@@ -21,5 +22,6 @@ public class LevelSwitcher : MonoBehaviour
     {
         VideoAd.Show();
         _score.DoubleScoreForAD();
+        UnlockNextLevel();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class RulesViewer : MonoBehaviour
 {
     [SerializeField] private GameObject _levelRules;
+    [SerializeField] private string _additionalRuleText;
     [SerializeField] private float _delay;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Score _score;
@@ -29,7 +30,7 @@ public class RulesViewer : MonoBehaviour
     private void SetScoreRule()
     {
         var score = _score.ScoreForWin;
-        var rule = $"Набери первым {score} очков";
+        var rule = $"Набери первым {score} очков {_additionalRuleText}";
         _text.text = rule.ToString();
     }
 }

@@ -690,10 +690,12 @@ MonoBehaviour:
   _hifForce: 20
   _fooballPlayer: {fileID: 1885468445520259471}
   _particleSystem: {fileID: 1939109781186502632}
-  _hitsRemained: 4
   _enemyAnimator: {fileID: 5152535753195841865}
   _gateSpawner: {fileID: 0}
   _ball: {fileID: 3399391569767634237}
+  _missProbability: 0
+  _hitsRemained: 4
+  _hits: 4
 --- !u!114 &578782750
 MonoBehaviour:
   m_ObjectHideFlags: 0

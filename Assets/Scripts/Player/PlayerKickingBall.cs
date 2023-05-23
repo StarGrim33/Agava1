@@ -5,10 +5,14 @@ using UnityEngine.Events;
 public class PlayerKickingBall : KickingBall
 {
     [SerializeField] private AnimatorPlayer _playerAnimator;
+    [SerializeField] private int _hits;
 
     private const string AxisName = "Mouse X";
 
     public bool IsAiming => _hitsRemained > 0;
+
+    public int HitsRemained => _hitsRemained;
+
     private bool _isMouseDown = false;
 
     private void OnEnable()
@@ -74,6 +78,16 @@ public class PlayerKickingBall : KickingBall
         {
             _isMouseDown = false;
             _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
+        }
+    }
+    protected override IEnumerator ReloadHits()
+    {
+        var waitForSeconds = new WaitForSeconds(_timeHitsReload);
+
+        if (_hitsRemained <= 0)
+        {
+            yield return waitForSeconds;
+            _hitsRemained = _hits;
         }
     }
 }

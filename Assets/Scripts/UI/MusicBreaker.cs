@@ -1,3 +1,4 @@
+using Agava.WebUtility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,16 @@ public class MusicBreaker : MonoBehaviour
 
     private Image _startImage;
     private bool _isPlaying;
+
+    private void OnEnable()
+    {
+        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+    }
+
+    private void OnDisable()
+    {
+        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+    }
 
     private void Start()
     {
@@ -36,6 +47,12 @@ public class MusicBreaker : MonoBehaviour
             _startImage.sprite = _turnedOnMusicImage;
             _isPlaying = true;
         }
+    }
+
+    private void OnInBackgroundChange(bool inBackground)
+    {
+        AudioListener.pause = inBackground;
+        AudioListener.volume = inBackground ? 0f : 1f;
     }
 }
 

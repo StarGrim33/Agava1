@@ -7,6 +7,7 @@ public class EnemyKickingBall : KickingBall
     [SerializeField] private GateSpawner _gateSpawner;
     [SerializeField] private Ball _ball;
     [SerializeField] private float _missProbability;
+    [SerializeField] private int _hits;
 
     public bool IsKicking => _isKicking;
 
@@ -78,6 +79,16 @@ public class EnemyKickingBall : KickingBall
             StartCoroutine(ReloadHits());
 
         _isKicking = false;
+    }
+    protected override IEnumerator ReloadHits()
+    {
+        var waitForSeconds = new WaitForSeconds(_timeHitsReload);
+
+        if (_hitsRemained <= 0)
+        {
+            yield return waitForSeconds;
+            _hitsRemained = _hits;
+        }
     }
 
     private Vector3 CalculateEnemyHitDirection()

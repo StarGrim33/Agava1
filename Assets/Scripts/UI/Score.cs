@@ -3,6 +3,8 @@ using UnityEngine.Events;
 
 public class Score : MonoBehaviour
 {
+    public const string TotalScoreKey = "TotalScore";
+
     [SerializeField] private GateSpawner _gateSpawner;
     [SerializeField] private int _scoreForWin;
 
@@ -35,11 +37,13 @@ public class Score : MonoBehaviour
     private void OnEnable()
     {
         _gateSpawner.OnGoalGateSpawned += OnGoalGateSpawned;
+        LoadTotalScore();
     }
 
     private void OnDisable()
     {
         _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
+        SaveTotalScore();
     }
 
     public void DoubleScoreForAD()
@@ -64,9 +68,25 @@ public class Score : MonoBehaviour
         {
             PlayerScore += _scorePerGoal;
             _playerTotalScore += _scorePerGoal;
+            SaveTotalScore();
             OnPlayerScoreChanged.Invoke();
         }
 
         gate.OnGoalScored -= OnGoalScored;
+    }
+
+    private void SaveTotalScore()
+    {
+        PlayerPrefs.SetInt(TotalScoreKey, _playerTotalScore);
+        Debug.Log($"—чет: {_playerTotalScore}");
+        PlayerPrefs.Save();
+    }
+
+    private void LoadTotalScore()
+    {
+        if (PlayerPrefs.HasKey(TotalScoreKey))
+        {
+            _playerTotalScore = PlayerPrefs.GetInt(TotalScoreKey);
+        }
     }
 }

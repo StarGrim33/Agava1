@@ -7,6 +7,7 @@ public class SceneOpener : MonoBehaviour
 
     public void OpenScene()
     {
+        PlayerPrefs.Save();
         SceneManager.LoadScene(_levelNumber);
     }
 }

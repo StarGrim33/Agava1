@@ -3361,7 +3361,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.8113208, g: 0.16435921, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6804074, b: 0.5990566, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -5531,7 +5531,8 @@ MonoBehaviour:
     - {fileID: 1388634028}
     - {fileID: 518589912}
     - {fileID: 942232173}
-  _isRandomSpawn: 0
+  _falseGatePrefab: {fileID: 0}
+  _isFalseGateEnabled: 0
 --- !u!4 &1127713242
 Transform:
   m_ObjectHideFlags: 0
@@ -6415,7 +6416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.9
+      value: 28.82
       objectReference: {fileID: 0}
     - target: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6717,7 +6718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.61
+      value: 21.3
       objectReference: {fileID: 0}
     - target: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8414,7 +8415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.16
+      value: 27.55
       objectReference: {fileID: 0}
     - target: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9005,6 +9006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelRules: {fileID: 828316567}
+  _additionalRuleText: 
   _delay: 3
   _text: {fileID: 44409375}
   _score: {fileID: 1727699283}
@@ -10823,7 +10825,7 @@ PrefabInstance:
       objectReference: {fileID: 1903725559}
     - target: {fileID: 5152535753195841864, guid: 09fb5896368b919449dfe360f0203168, type: 3}
       propertyPath: _missProbability
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09fb5896368b919449dfe360f0203168, type: 3}

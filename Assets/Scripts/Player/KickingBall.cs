@@ -38,14 +38,13 @@ public abstract class KickingBall : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    protected IEnumerator ReloadHits()
+    protected virtual IEnumerator ReloadHits()
     {
         var waitForSeconds = new WaitForSeconds(_timeHitsReload);
 
         if (_hitsRemained <= 0)
         {
             yield return waitForSeconds;
-            _hitsRemained = 3;
         }
     }
 
