@@ -4,25 +4,16 @@ using UnityEngine;
 public class ScoreDisplayer : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
-    private int _score;
+    [SerializeField] private PlayerTotalScore _totalScore;
 
     private void Start()
     {
-        LoadCoinCount();
         UpdateCoinCountText();
     }
 
-    private void UpdateCoinCountText()
+    public void UpdateCoinCountText()
     {
-        _text.text = _score.ToString();
-    }
-
-    private void LoadCoinCount()
-    {
-        if (PlayerPrefs.HasKey(Score.TotalScoreKey))
-        {
-            _score = PlayerPrefs.GetInt(Score.TotalScoreKey);
-            _text.text = _score.ToString();
-        }
+        _text.text = _totalScore.TotalScore.ToString();
+        Debug.Log(_text.text);
     }
 }

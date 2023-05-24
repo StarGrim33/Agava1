@@ -3,10 +3,9 @@ using UnityEngine.Events;
 
 public class Score : MonoBehaviour
 {
-    public const string TotalScoreKey = "TotalScore";
-
     [SerializeField] private GateSpawner _gateSpawner;
     [SerializeField] private int _scoreForWin;
+    [SerializeField] private PlayerTotalScore _totalScore;
 
     public event UnityAction OnPlayerScoreChanged;
     public event UnityAction OnEnemyScoreChanged;
@@ -22,7 +21,7 @@ public class Score : MonoBehaviour
         get { return _playerScore; }
         private set { _playerScore = value; }
     }
-    
+
     public int EnemyScore
     {
         get { return _enemyScore; }
@@ -32,24 +31,26 @@ public class Score : MonoBehaviour
     private int _playerScore = 0;
     private int _enemyScore = 0;
     private int _scorePerGoal = 10;
-    private int _playerTotalScore = 0;
 
     private void OnEnable()
     {
         _gateSpawner.OnGoalGateSpawned += OnGoalGateSpawned;
-        LoadTotalScore();
+        _totalScore.LoadTotalScore();
     }
 
     private void OnDisable()
     {
         _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
-        SaveTotalScore();
+        _totalScore.SaveTotalScore(PlayerScore);
     }
 
     public void DoubleScoreForAD()
     {
-        _playerTotalScore *= 2;
-        Debug.Log(_playerTotalScore);
+        int doubleMultiply = 2;
+        PlayerScore *= doubleMultiply;
+        _totalScore.AddScore(PlayerScore);
+        _totalScore.SaveTotalScore(PlayerScore);
+        Debug.Log($"—чет за матч: { PlayerScore}");
     }
 
     private void OnGoalGateSpawned(Gate gate)
@@ -66,27 +67,15 @@ public class Score : MonoBehaviour
         }
         else
         {
+            if(_playerScore >= _scoreForWin)
+            {
+                _totalScore.SaveTotalScore(PlayerScore);
+            }
+
             PlayerScore += _scorePerGoal;
-            _playerTotalScore += _scorePerGoal;
-            SaveTotalScore();
             OnPlayerScoreChanged.Invoke();
         }
 
         gate.OnGoalScored -= OnGoalScored;
-    }
-
-    private void SaveTotalScore()
-    {
-        PlayerPrefs.SetInt(TotalScoreKey, _playerTotalScore);
-        Debug.Log($"—чет: {_playerTotalScore}");
-        PlayerPrefs.Save();
-    }
-
-    private void LoadTotalScore()
-    {
-        if (PlayerPrefs.HasKey(TotalScoreKey))
-        {
-            _playerTotalScore = PlayerPrefs.GetInt(TotalScoreKey);
-        }
     }
 }

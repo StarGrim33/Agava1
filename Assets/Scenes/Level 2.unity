@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.05
+  m_fontSize: 37.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4587,7 +4587,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.23749633, y: 0.7509746, z: -0.35334578, w: 0.5047568}
+  m_LocalRotation: {x: 0.23782665, y: 0.7505022, z: -0.35312352, w: 0.5054589}
   m_LocalPosition: {x: -6.4399996, y: 8.51, z: 3.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5018,7 +5018,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023220242}
-  m_LocalRotation: {x: 0.23749633, y: 0.7509746, z: -0.35334578, w: 0.5047568}
+  m_LocalRotation: {x: 0.23782665, y: 0.7505022, z: -0.35312352, w: 0.5054589}
   m_LocalPosition: {x: -6.4399996, y: 8.51, z: 3.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8751,6 +8751,7 @@ GameObject:
   - component: {fileID: 1727699290}
   - component: {fileID: 1727699292}
   - component: {fileID: 1727699288}
+  - component: {fileID: 1727699293}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -8772,6 +8773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gateSpawner: {fileID: 1127713241}
   _scoreForWin: 60
+  _totalScore: {fileID: 1727699293}
 --- !u!114 &1727699284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9026,6 +9028,18 @@ MonoBehaviour:
   _victoryScreen: {fileID: 2093391799}
   _score: {fileID: 1727699283}
   _textViewer: {fileID: 1727699289}
+--- !u!114 &1727699293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727699282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbc2f64780bdef4baa4fceaee8fe68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729963433
 GameObject:
   m_ObjectHideFlags: 0
@@ -10336,7 +10350,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.55
+  m_fontSize: 43.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
