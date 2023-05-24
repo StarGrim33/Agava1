@@ -10,9 +10,16 @@ public class Shop : MonoBehaviour
     [SerializeField] private Button[] _purchaseButtons;
     [SerializeField] private PlayerTotalScore _totalScore;
     [SerializeField] private ScoreDisplayer _scoreDisplayer;
+    //[SerializeField] private Player _player;
 
     private void Start()
     {
+        for (int i = 0; i < _items.Count; i++)
+        {
+            string key = PlayerBuyedItems.ItemKey + i.ToString();
+            PlayerPrefs.DeleteKey(key);
+        }
+
         LoadPanels();
         CheckPurchaseable();
     }
@@ -61,7 +68,7 @@ public class Shop : MonoBehaviour
             PlayerPrefs.SetInt(buttonIndex.ToString(), 1);
             PlayerPrefs.Save();
             _totalScore.SaveTotalScore();
-
+            //ActivateItem(buttonIndex);
             SetItemPurchased(buttonIndex);
         }
     }
@@ -78,4 +85,11 @@ public class Shop : MonoBehaviour
         PlayerPrefs.SetInt(key, 1);
         PlayerPrefs.Save();
     }
+
+    //private void ActivateItem(int ballIndex)
+    //{
+    //    GameObject ball = _player.transform.GetChild(ballIndex).gameObject;
+    //    BallChoser ballChoser = _player.GetComponentInChildren<BallChoser>();
+    //    ballChoser.SetActiveBall(ball, ballIndex);
+    //}
 }
