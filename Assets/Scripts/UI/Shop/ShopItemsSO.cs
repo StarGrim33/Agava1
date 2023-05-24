@@ -11,7 +11,6 @@ public class ShopItemsSO : ScriptableObject
     [SerializeField] private string _title;
     [SerializeField] private string _desription;
     [SerializeField] private int _baseCost;
-    [SerializeField] private bool _isBuyed;
 
     public Sprite Sprite => _image;
 
@@ -20,14 +19,4 @@ public class ShopItemsSO : ScriptableObject
     public string Desription => _desription;
 
     public int BaseCost => _baseCost;
-
-    public bool IsBuyed => _isBuyed;
-
-    public void SetBuyStatus()
-    {
-        if(_isBuyed != true)
-        {
-            _isBuyed = false;
-        }
-    }
 }

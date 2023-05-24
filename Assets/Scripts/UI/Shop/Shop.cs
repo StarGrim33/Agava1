@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    private const string _itemsKey = "_itemsUnlocked";
-
     [SerializeField] private List<ShopItemsSO> _items;
     [SerializeField] private List<GameObject> _shopPanelsSO;
     [SerializeField] private List<ShopTemplate> _templates;
@@ -42,7 +40,10 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < _items.Count; i++)
         {
             if (score >= _items[i].BaseCost)
-                _purchaseButtons[i].interactable = true;
+            {
+                bool isPurchased = PlayerPrefs.GetInt(i.ToString()) == 1;
+                _purchaseButtons[i].interactable = !isPurchased;
+            }
             else
                 _purchaseButtons[i].interactable = false;
         }
@@ -52,12 +53,29 @@ public class Shop : MonoBehaviour
     {
         int score = PlayerPrefs.GetInt(PlayerTotalScore.TotalScoreKey);
 
-        if (score >= _items[buttonIndex].BaseCost && _items[buttonIndex].IsBuyed != true)
+        if (score >= _items[buttonIndex].BaseCost && IsItemPurchased(buttonIndex) == false)
         {
-            _items[buttonIndex].SetBuyStatus();
             _totalScore.ReduceScore(_items[buttonIndex].BaseCost);
             _scoreDisplayer.UpdateCoinCountText();
             _purchaseButtons[buttonIndex].interactable = false;
+            PlayerPrefs.SetInt(buttonIndex.ToString(), 1);
+            PlayerPrefs.Save();
+            _totalScore.SaveTotalScore();
+
+            SetItemPurchased(buttonIndex);
         }
+    }
+
+    private bool IsItemPurchased(int itemIndex)
+    {
+        string key = PlayerBuyedItems.ItemKey + itemIndex.ToString();
+        return PlayerPrefs.GetInt(key, 0) == 1;
+    }
+
+    private void SetItemPurchased(int itemIndex)
+    {
+        string key = PlayerBuyedItems.ItemKey + itemIndex.ToString();
+        PlayerPrefs.SetInt(key, 1);
+        PlayerPrefs.Save();
     }
 }

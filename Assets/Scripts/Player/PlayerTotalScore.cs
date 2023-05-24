@@ -13,7 +13,7 @@ public class PlayerTotalScore : MonoBehaviour
         LoadTotalScore();
     }
 
-    public void SaveTotalScore(int value)
+    public void SaveTotalScore(int value = 0)
     {
         _playerTotalScore += value;
         PlayerPrefs.SetInt(TotalScoreKey, _playerTotalScore);
