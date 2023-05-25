@@ -15,18 +15,30 @@ public class BallChoser : MonoBehaviour
 
     public void SetActiveBall()
     {
-        _balls[_currentBallIndex].gameObject.SetActive(false); 
+        int nextBallIndex = (_currentBallIndex + 1) % _balls.Count; 
 
-        _currentBallIndex++; 
+        if (_balls[nextBallIndex].GetComponent<PlayerBall>().IsBuyed)
+        {
+            _balls[_currentBallIndex].gameObject.SetActive(false);
+            _balls[nextBallIndex].gameObject.SetActive(true);
 
-        if (_currentBallIndex >= _balls.Count)
-            _currentBallIndex = 0; 
+            _currentBallIndex = nextBallIndex; 
 
-        _balls[_currentBallIndex].gameObject.SetActive(true);
-        _playerMovement.SetBall(_balls[_currentBallIndex]);
-        _playerKickingBall.SetBall(_balls[_currentBallIndex]);
-        _balls[_currentBallIndex].StopMoving();
-        ChangeCameraTargetToNewBall();
+            _playerMovement.SetBall(_balls[_currentBallIndex]);
+            _playerKickingBall.SetBall(_balls[_currentBallIndex]);
+            _balls[_currentBallIndex].StopMoving();
+            ChangeCameraTargetToNewBall();
+        }
+        else
+        {
+            _balls[_currentBallIndex].gameObject.SetActive(false);
+            _currentBallIndex = 0;
+            _balls[_currentBallIndex].gameObject.SetActive(true);
+            _playerMovement.SetBall(_balls[_currentBallIndex]);
+            _playerKickingBall.SetBall(_balls[_currentBallIndex]);
+            _balls[_currentBallIndex].StopMoving();
+            ChangeCameraTargetToNewBall();
+        }
     }
 
     private void ChangeCameraTargetToNewBall()

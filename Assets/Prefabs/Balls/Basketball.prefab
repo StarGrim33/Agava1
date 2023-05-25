@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6901994993438401359}
   - component: {fileID: 7523004197829389546}
   - component: {fileID: 5729672999887722528}
-  - component: {fileID: 7887510986701254438}
   - component: {fileID: 1162904596181974935}
   - component: {fileID: 7688638430555070715}
+  - component: {fileID: 3869779282191734949}
   m_Layer: 0
   m_Name: Basketball
   m_TagString: Untagged
@@ -88,20 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7887510986701254438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6089745533685725685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc0df3d85d85954a912bfa41c203595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1162904596181974935}
-  _targetPosition: {fileID: 0}
 --- !u!54 &1162904596181974935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,6 +117,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.11993651
   m_Center: {x: 0, y: 0, z: 0.000000014901161}
+--- !u!114 &3869779282191734949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089745533685725685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d68ea1ea0c7b84e8d026f06262343d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1162904596181974935}
+  _targetPosition: {fileID: 0}
 --- !u!1001 &8022174551554949760
 PrefabInstance:
   m_ObjectHideFlags: 0
