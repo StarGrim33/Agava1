@@ -46,6 +46,12 @@ public class PlayerKickingBall : KickingBall
         }
     }
 
+    public void SetBall(PlayerBall newBall)
+    {
+        var ball = newBall as PlayerBall;
+        _ballRigidbody = ball.GetComponent<Rigidbody>();
+    }
+
     protected override void OnKickedAnimationFinished()
     {
         _particleSystem.Play();

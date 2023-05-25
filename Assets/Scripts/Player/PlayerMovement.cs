@@ -5,6 +5,11 @@ public class PlayerMovement : BasePlayer
 {
     [SerializeField] protected PlayerKickingBall _kickBall;
 
+    public void SetBall(PlayerBall newBall)
+    {
+        _ball = newBall;
+    }
+
     protected override IEnumerator Teleport()
     {
         var waitForSeconds = new WaitForSeconds(_delay);
