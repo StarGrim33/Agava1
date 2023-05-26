@@ -131,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1162904596181974935}
   _targetPosition: {fileID: 0}
+  _isBuyed: 0
+  _data: {fileID: 0}
 --- !u!1001 &8022174551554949760
 PrefabInstance:
   m_ObjectHideFlags: 0

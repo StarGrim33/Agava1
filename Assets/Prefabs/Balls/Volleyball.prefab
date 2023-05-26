@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8867148681468587579}
   - component: {fileID: 3388299474565411922}
   - component: {fileID: 4927096730102813453}
-  - component: {fileID: 9179345330862859886}
+  - component: {fileID: 8006038651207727134}
   m_Layer: 0
   m_Name: Volleyball
   m_TagString: Untagged
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9179345330862859886
+--- !u!114 &8006038651207727134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 4927096730102813453}
   _targetPosition: {fileID: 0}
   _isBuyed: 0
+  _data: {fileID: 0}
 --- !u!1001 &7288480391288096870
 PrefabInstance:
   m_ObjectHideFlags: 0

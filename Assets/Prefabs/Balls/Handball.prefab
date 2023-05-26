@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1129223454029305491}
   - component: {fileID: 1129223454029305484}
   - component: {fileID: 2934004232014201157}
+  - component: {fileID: 3407710046683064307}
   m_Layer: 0
   m_Name: Handball
   m_TagString: Untagged
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1129223454029305484}
   _targetPosition: {fileID: 0}
+  _isBuyed: 0
 --- !u!54 &1129223454029305484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,6 +133,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.095
   m_Center: {x: 0.000021386892, y: -0.000021386892, z: 0.000021386892}
+--- !u!114 &3407710046683064307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246193221698972633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150c9b7f0d3e91e4999be9111aa8d342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1129223454029305484}
+  _targetPosition: {fileID: 0}
+  _isBuyed: 0
+  _data: {fileID: 0}
 --- !u!1001 &1129223454204404358
 PrefabInstance:
   m_ObjectHideFlags: 0

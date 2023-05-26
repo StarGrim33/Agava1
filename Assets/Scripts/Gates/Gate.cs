@@ -17,7 +17,6 @@ public class Gate : MonoBehaviour
 
         if(other.TryGetComponent<EnemyBall>(out EnemyBall enemyBall))
         {
-            Debug.Log("Enemy Goal");
             ScoreGoal(true);
         }
     }
