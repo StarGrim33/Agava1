@@ -10,15 +10,10 @@ public class Shop : MonoBehaviour
     [SerializeField] private Button[] _purchaseButtons;
     [SerializeField] private PlayerTotalScore _totalScore;
     [SerializeField] private ScoreDisplayer _scoreDisplayer;
+    [SerializeField] private PlayerData _playerData;
 
     private void Start()
     {
-        for (int i = 0; i < _items.Count; i++)
-        {
-            string key = PlayerBuyedItems.ItemKey + i.ToString();
-            PlayerPrefs.DeleteKey(key);
-        }
-
         LoadPanels();
         CheckPurchaseable();
     }
@@ -36,6 +31,7 @@ public class Shop : MonoBehaviour
             _templates[i].Desription.text = _items[i].Desription;
             _templates[i].BaseCost.text = "Цена:" + _items[i].BaseCost.ToString();
             _templates[i].Image.sprite = _items[i].Sprite;
+            _templates[i].BallId = _items[i].BallId;
         }
     }
 
@@ -47,8 +43,14 @@ public class Shop : MonoBehaviour
         {
             if (score >= _items[i].BaseCost)
             {
-                bool isPurchased = PlayerPrefs.GetInt(i.ToString()) == 1;
-                _purchaseButtons[i].interactable = !isPurchased;
+                if (!_playerData.IsBallPurchased("_basketBall"))
+                    _purchaseButtons[i].interactable = true;
+                else if (!_playerData.IsBallPurchased("_iceBall"))
+                    _purchaseButtons[i].interactable = true;
+                else if (!_playerData.IsBallPurchased("_spiderBall"))
+                    _purchaseButtons[i].interactable = true;
+                else
+                    _purchaseButtons[i].interactable = false;
             }
             else
                 _purchaseButtons[i].interactable = false;
@@ -59,28 +61,44 @@ public class Shop : MonoBehaviour
     {
         int score = PlayerPrefs.GetInt(PlayerTotalScore.TotalScoreKey);
 
-        if (score >= _items[buttonIndex].BaseCost && IsItemPurchased(buttonIndex) == false)
+        if (score >= _items[buttonIndex].BaseCost)
         {
-            _totalScore.ReduceScore(_items[buttonIndex].BaseCost);
-            _scoreDisplayer.UpdateCoinCountText();
-            _purchaseButtons[buttonIndex].interactable = false;
-            PlayerPrefs.SetInt(buttonIndex.ToString(), 1);
-            PlayerPrefs.Save();
-            _totalScore.SaveTotalScore();
-            SetItemPurchased(buttonIndex);
+            if (buttonIndex == (int)Balls.BasketBall && _playerData.IsBallPurchased(PlayerData.BasketBall) == false)
+            {
+                _playerData.SetBallPurchased("_basketBall");
+                _totalScore.ReduceScore(_items[(int)Balls.BasketBall].BaseCost);
+                _scoreDisplayer.UpdateCoinCountText();
+                _purchaseButtons[(int)Balls.BasketBall].interactable = false;
+
+                PlayerPrefs.Save();
+            }
+            else if (buttonIndex == (int)Balls.IceBall && _playerData.IsBallPurchased(PlayerData.IceBall) == false)
+            {
+                _playerData.SetBallPurchased("_iceBall");
+                _totalScore.ReduceScore(_items[(int)Balls.IceBall].BaseCost);
+                _scoreDisplayer.UpdateCoinCountText();
+                _purchaseButtons[(int)Balls.IceBall].interactable = false;
+
+                PlayerPrefs.Save();
+            }
+            else if (buttonIndex == (int)Balls.SpiderBall && _playerData.IsBallPurchased(PlayerData.SpiderBall) == false)
+            {
+                _playerData.SetBallPurchased("_spiderBall");
+                _totalScore.ReduceScore(_items[(int)Balls.SpiderBall].BaseCost);
+                _scoreDisplayer.UpdateCoinCountText();
+                _purchaseButtons[(int)Balls.SpiderBall].interactable = false;
+
+                PlayerPrefs.Save();
+            }
+
+            return;
         }
     }
 
-    private bool IsItemPurchased(int itemIndex)
+    private enum Balls
     {
-        string key = PlayerBuyedItems.ItemKey + itemIndex.ToString();
-        return PlayerPrefs.GetInt(key, 0) == 1;
-    }
-
-    private void SetItemPurchased(int itemIndex)
-    {
-        string key = PlayerBuyedItems.ItemKey + itemIndex.ToString();
-        PlayerPrefs.SetInt(key, 1);
-        PlayerPrefs.Save();
+        BasketBall,
+        IceBall,
+        SpiderBall
     }
 }

@@ -8,6 +8,9 @@ public class ShopTemplate : MonoBehaviour
     [SerializeField] private TMP_Text _desription;
     [SerializeField] private TMP_Text _baseCost;
     [SerializeField] private Image _image;
+    [SerializeField] private int _ballId;
+
+    public int BallId { get { return _ballId; } set { _ballId = value; } }
 
     public Image Image => _image;
 

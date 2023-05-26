@@ -11,6 +11,9 @@ public class ShopItemsSO : ScriptableObject
     [SerializeField] private string _title;
     [SerializeField] private string _desription;
     [SerializeField] private int _baseCost;
+    [SerializeField] private int _ballId;
+
+    public int BallId => _ballId;
 
     public Sprite Sprite => _image;
 

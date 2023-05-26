@@ -1,24 +1,27 @@
 using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class BallChoser : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private List<PlayerBall> _balls;
+    [SerializeField] private PlayerBall[] _balls;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private PlayerKickingBall _playerKickingBall;
     [SerializeField] private CinemachineVirtualCamera _camera;
+    [SerializeField] private PlayerData _playerData;
+
+    public int GetBallCount => _balls.Length;
 
     private int _currentBallIndex = 0;
 
-    public void SetActiveBall()
+    public void ChangeBall()
     {
-        int nextBallIndex = (_currentBallIndex + 1) % _balls.Count; 
+        int nextBallIndex = (_currentBallIndex + 1) % _balls.Length;
 
-        if (_balls[nextBallIndex].GetComponent<PlayerBall>().IsBuyed)
+        if (_balls[nextBallIndex].IsBuyed)
         {
+            Debug.Log(0);
             _balls[_currentBallIndex].gameObject.SetActive(false);
             _balls[nextBallIndex].gameObject.SetActive(true);
 
@@ -31,6 +34,8 @@ public class BallChoser : MonoBehaviour
         }
         else
         {
+            Debug.Log(1);
+
             _balls[_currentBallIndex].gameObject.SetActive(false);
             _currentBallIndex = 0;
             _balls[_currentBallIndex].gameObject.SetActive(true);

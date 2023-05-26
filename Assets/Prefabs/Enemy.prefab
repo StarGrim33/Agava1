@@ -693,7 +693,7 @@ MonoBehaviour:
   _hitsRemained: 4
   _enemyAnimator: {fileID: 5152535753195841865}
   _gateSpawner: {fileID: 0}
-  _ball: {fileID: 1893360915657318764}
+  _ball: {fileID: 0}
   _missProbability: 0
   _hits: 4
 --- !u!114 &578782750
@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fdb62c41b8bff4c9dd9c9baaf74803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ball: {fileID: 1893360915657318764}
+  _ball: {fileID: 0}
   _enemy: {fileID: 1885468445520259471}
   _particleSystem: {fileID: 1939109781186502632}
   _kickingBall: {fileID: 5152535753195841864}
@@ -3254,6 +3254,10 @@ PrefabInstance:
       propertyPath: _targetPosition
       value: 
       objectReference: {fileID: 906746841100828378}
+    - target: {fileID: 1440100995185863345, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8115313460321450819, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
       propertyPath: m_Name
       value: SoccerBall_01 1
@@ -3302,19 +3306,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2787808803013916862, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
---- !u!114 &1893360915657318764 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2787808803013916862, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
-  m_PrefabInstance: {fileID: 4392937000374966738}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc0df3d85d85954a912bfa41c203595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &1939109781186502632 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2747128698931922490, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}

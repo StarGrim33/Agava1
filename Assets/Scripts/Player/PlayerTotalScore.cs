@@ -35,7 +35,8 @@ public class PlayerTotalScore : MonoBehaviour
         if (_playerTotalScore > 0)
         {
             _playerTotalScore -= value;
-        }
+            SaveTotalScore();
+        } 
     }
 
     public void AddScore(int value)
