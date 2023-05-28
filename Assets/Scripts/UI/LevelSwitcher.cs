@@ -11,11 +11,21 @@ public class LevelSwitcher : MonoBehaviour
     public void UnlockNextLevel()
     {
         int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextLevelIndex = currentLevelIndex;
 
-        currentLevelIndex += 1;
-        PlayerPrefs.SetInt(LevelsUnlocked, currentLevelIndex);
-        PlayerPrefs.Save();
-        SceneManager.LoadScene(1);
+        int maxLevelIndex = SceneManager.sceneCountInBuildSettings - 1; 
+
+        if (nextLevelIndex <= maxLevelIndex)
+        {
+            PlayerPrefs.SetInt(LevelsUnlocked, nextLevelIndex);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+            Debug.Log("Последний уровень достигнут");
+        }
     }
 
     public void UnlockNextLevelWithAD()

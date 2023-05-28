@@ -116,7 +116,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!114 &2787808803013916862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1440100995185863345}
   _targetPosition: {fileID: 0}
+  _isBuyed: 0
 --- !u!114 &682074410975522487
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3254,10 +3254,6 @@ PrefabInstance:
       propertyPath: _targetPosition
       value: 
       objectReference: {fileID: 906746841100828378}
-    - target: {fileID: 1440100995185863345, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8115313460321450819, guid: 52ea4718c9bc31243b6bd7624a7e813b, type: 3}
       propertyPath: m_Name
       value: SoccerBall_01 1

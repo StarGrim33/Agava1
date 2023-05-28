@@ -13,18 +13,13 @@ public class LevelUnlocker : MonoBehaviour
     
     private void Start()
     {
-        //StartCoroutine(Initialize());
+        StartCoroutine(Initialize());
 
         _levelsUnlocked = PlayerPrefs.GetInt(LevelsUnlocked, 1);
 
         for (int i = 0; i < _buttons.Length; i++)
         {
-            _buttons[i].interactable = false;
-        }
-
-        for (int i = 0; i < _levelsUnlocked; i++)
-        {
-            _buttons[i].interactable = true;
+            _buttons[i].interactable = (i < _levelsUnlocked);
         }
 
         PlayerPrefs.Save();

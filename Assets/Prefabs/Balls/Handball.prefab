@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 585881105396773219}
   - component: {fileID: 4579787363324444358}
   - component: {fileID: 1759318790792169996}
-  - component: {fileID: 1129223454029305491}
   - component: {fileID: 1129223454029305484}
   - component: {fileID: 2934004232014201157}
   - component: {fileID: 3407710046683064307}
@@ -89,21 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1129223454029305491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 246193221698972633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc0df3d85d85954a912bfa41c203595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1129223454029305484}
-  _targetPosition: {fileID: 0}
-  _isBuyed: 0
 --- !u!54 &1129223454029305484
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119,7 +103,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!135 &2934004232014201157
 SphereCollider:
   m_ObjectHideFlags: 0

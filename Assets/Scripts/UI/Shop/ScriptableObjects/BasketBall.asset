@@ -16,5 +16,5 @@ MonoBehaviour:
   _title: "\u0411\u0430\u0441\u043A\u0435\u0442\u0431\u043E\u043B\u044C\u043D\u044B\u0439
     \u043C\u044F\u0447"
   _desription: "\u041C\u044F\u0447 \u0434\u043B\u044F \u0431\u0430\u0441\u043A\u0435\u0442\u0431\u043E\u043B\u0430"
-  _baseCost: 1
-  _isBuyed: 0
+  _baseCost: 300
+  _ballId: 0

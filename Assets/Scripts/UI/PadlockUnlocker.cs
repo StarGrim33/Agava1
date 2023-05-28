@@ -9,15 +9,11 @@ public class PadlockUnlocker : MonoBehaviour
     {
         string levelsUnlocked = "_levelsUnlocked";
 
-        int levelUnlocked = PlayerPrefs.GetInt(levelsUnlocked, _level);
+        int levelUnlocked = PlayerPrefs.GetInt(levelsUnlocked, 1);
 
-        if(levelUnlocked >= _level)
+        if (levelUnlocked >= _level)
         {
-            int previousLevel = _level - 1;
-            bool previousLevelPassed = PlayerPrefs.GetInt(levelsUnlocked, 0) >= previousLevel;
-
-            if (previousLevelPassed)
-                _padlock.SetActive(false);
+            _padlock.SetActive(false);
         }
     }
 }
