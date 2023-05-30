@@ -20,7 +20,6 @@ public class LeaderboardOpener : MonoBehaviour
     {
         if (PlayerAccount.IsAuthorized)
         {
-            PlayerAccount.Authorize();
             OnGetLeaderboardEntriesButtonClick();
             _leaderboardPanel.SetActive(true);
         }
