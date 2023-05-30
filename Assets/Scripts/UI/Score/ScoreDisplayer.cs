@@ -1,4 +1,3 @@
-using Agava.YandexGames;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +5,21 @@ public class ScoreDisplayer : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private PlayerTotalScore _totalScore;
+
+    private void OnEnable()
+    {
+        _totalScore.ScoreChanged += OnScoreChanged;
+    }
+
+    private void OnDisable()
+    {
+        _totalScore.ScoreChanged -= OnScoreChanged;
+    }
+
+    private void OnScoreChanged()
+    {
+        UpdateCoinCountText();
+    }
 
     private void Start()
     {
@@ -15,6 +29,5 @@ public class ScoreDisplayer : MonoBehaviour
     public void UpdateCoinCountText()
     {
         _text.text = _totalScore.TotalScore.ToString();
-        Debug.Log(_text.text);
     }
 }

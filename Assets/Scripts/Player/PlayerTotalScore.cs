@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerTotalScore : MonoBehaviour
 {
     public const string TotalScoreKey = "TotalScore";
+
+    public event UnityAction ScoreChanged;
 
     public int TotalScore => _playerTotalScore;
 
@@ -35,6 +38,7 @@ public class PlayerTotalScore : MonoBehaviour
         if (_playerTotalScore > 0)
         {
             _playerTotalScore -= value;
+            ScoreChanged?.Invoke();
             SaveTotalScore();
         } 
     }
