@@ -13,8 +13,6 @@ public class LevelUnlocker : MonoBehaviour
     
     private void Start()
     {
-        StartCoroutine(Initialize());
-
         _levelsUnlocked = PlayerPrefs.GetInt(LevelsUnlocked, 1);
 
         for (int i = 0; i < _buttons.Length; i++)
@@ -23,10 +21,5 @@ public class LevelUnlocker : MonoBehaviour
         }
 
         PlayerPrefs.Save();
-    }
-
-    private IEnumerator Initialize()
-    {
-        yield return YandexGamesSdk.Initialize();
     }
 }

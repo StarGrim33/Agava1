@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Lean.Localization;
 
 public class Shop : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private ScoreDisplayer _scoreDisplayer;
     [SerializeField] private PlayerData _playerData;
 
-    private readonly Dictionary<int, string> _ballNames = new ()
+    private readonly Dictionary<int, string> _ballNames = new()
     {
         {(int)Balls.BasketBall, "_basketBall"},
         {(int)Balls.IceBall, "_iceBall"},
@@ -46,8 +47,6 @@ public class Shop : MonoBehaviour
 
     private void LoadPanels()
     {
-        string priceName = "Цена:";
-
         foreach (GameObject panel in _shopPanelsSO)
         {
             panel.SetActive(true);
@@ -57,7 +56,7 @@ public class Shop : MonoBehaviour
         {
             _templates[i].Title.text = _items[i].Title;
             _templates[i].Desription.text = _items[i].Desription;
-            _templates[i].BaseCost.text = priceName + _items[i].BaseCost.ToString();
+            _templates[i].BaseCost.text = _items[i].BaseCost.ToString();
             _templates[i].Image.sprite = _items[i].Sprite;
             _templates[i].BallId = _items[i].BallId;
         }

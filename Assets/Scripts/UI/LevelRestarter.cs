@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelRestarter : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
+
     public void Restart()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -13,6 +15,7 @@ public class LevelRestarter : MonoBehaviour
 
     public void RestartWithAD()
     {
+        _audioSource.Stop();
         VideoAd.Show();
         Restart();
     }

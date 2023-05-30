@@ -1,5 +1,7 @@
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.Events;
+
 
 public class Score : MonoBehaviour
 {
@@ -41,7 +43,6 @@ public class Score : MonoBehaviour
     private void OnDisable()
     {
         _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
-        _totalScore.SaveTotalScore(PlayerScore);
     }
 
     public void DoubleScoreForAD()
@@ -49,8 +50,7 @@ public class Score : MonoBehaviour
         int doubleMultiply = 2;
         PlayerScore *= doubleMultiply;
         _totalScore.AddScore(PlayerScore);
-        _totalScore.SaveTotalScore(PlayerScore);
-        Debug.Log($"Счет за матч: { PlayerScore}");
+        _totalScore.SaveTotalScore();
     }
 
     private void OnGoalGateSpawned(Gate gate)
@@ -65,17 +65,41 @@ public class Score : MonoBehaviour
             EnemyScore += _scorePerGoal;
             OnEnemyScoreChanged?.Invoke();
         }
-        else
+        else if(isEnemyGoal == false)
         {
-            if(_playerScore >= _scoreForWin)
-            {
-                _totalScore.SaveTotalScore(PlayerScore);
-            }
-
             PlayerScore += _scorePerGoal;
             OnPlayerScoreChanged.Invoke();
+
+            if(PlayerScore >= _scoreForWin)
+            {
+                GetLeaderboardPlayerEntryButtonClick();
+                _totalScore.SaveTotalScore(PlayerScore);
+                Debug.Log($"Успешно сохранен счет в лидерборд - {_totalScore.TotalScore}");
+            }
         }
 
         gate.OnGoalScored -= OnGoalScored;
+    }
+
+    public void GetLeaderboardPlayerEntryButtonClick()
+    {
+        Leaderboard.GetPlayerEntry("1", (result) =>
+        {
+            if (result == null)
+            {
+                Debug.Log("Player is not present in the leaderboard.");
+                Leaderboard.SetScore("1", _totalScore.TotalScore);
+            }
+            else
+            {
+                Debug.Log($"My rank = {result.rank}, score = {result.score}");
+
+                if (result.score < _totalScore.TotalScore)
+                {
+                    Leaderboard.SetScore("1", _totalScore.TotalScore);
+                    Debug.Log($"PlayerScore is overrided {_totalScore.TotalScore}");
+                }
+            }
+        });
     }
 }
