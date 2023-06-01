@@ -1,8 +1,8 @@
-using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelSwitcher : MonoBehaviour
+public class LevelSwitcher : MonoBehaviour, IAdShow
 {
     private const string LevelsUnlocked = "_levelsUnlocked";
 
@@ -14,13 +14,14 @@ public class LevelSwitcher : MonoBehaviour
         int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
         int nextLevelIndex = currentLevelIndex;
 
-        int maxLevelIndex = SceneManager.sceneCountInBuildSettings - 1; 
+        int maxLevelIndex = SceneManager.sceneCountInBuildSettings - 1;
 
         if (nextLevelIndex <= maxLevelIndex)
         {
             PlayerPrefs.SetInt(LevelsUnlocked, nextLevelIndex);
             PlayerPrefs.Save();
             SceneManager.LoadScene(1);
+            VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
         }
         else
         {
@@ -31,9 +32,39 @@ public class LevelSwitcher : MonoBehaviour
 
     public void UnlockNextLevelWithAD()
     {
-        VideoAd.Show();
-        _audioSource.Stop();
+        VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
         _score.DoubleScoreForAD();
         UnlockNextLevel();
+    }
+
+    private void OnCloseCallback()
+    {
+        ContinueGame();
+    }
+
+    private void ContinueGame()
+    {
+        Time.timeScale = 1f;
+
+        if (_audioSource.clip != null)
+            _audioSource.Play();
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+
+        if (_audioSource.clip != null)
+            _audioSource.Play();
+    }
+
+    private void OnOpenCallback()
+    {
+        PauseGame();
+    }
+
+    private void OnErrorCallback(string errorMessage)
+    {
+        ContinueGame();
     }
 }

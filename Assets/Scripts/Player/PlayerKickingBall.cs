@@ -14,6 +14,7 @@ public class PlayerKickingBall : KickingBall
     public int HitsRemained => _hitsRemained;
 
     private bool _isMouseDown = false;
+    private bool _canControlBall = true;
 
     private void OnEnable()
     {
@@ -56,6 +57,7 @@ public class PlayerKickingBall : KickingBall
     {
         _particleSystem.Play();
         _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
+        _canControlBall = false;
 
         if (_hitsRemained > 0)
         {
@@ -70,12 +72,17 @@ public class PlayerKickingBall : KickingBall
 
     protected override IEnumerator Kicking()
     {
+        _canControlBall = true;
+
         while (_isMouseDown && _hitsRemained > 0)
         {
-            float mouseX = Input.GetAxis(AxisName);
-            _fooballPlayer.transform.Rotate(0, mouseX * _angleRotation, 0);
-            Quaternion rotation = Quaternion.Euler(0, mouseX * _angleRotation, 0);
-            _hitDirection = rotation * _hitDirection;
+            if(_canControlBall)
+            {
+                float mouseX = Input.GetAxis(AxisName);
+                _fooballPlayer.transform.Rotate(0, mouseX * _angleRotation, 0);
+                Quaternion rotation = Quaternion.Euler(0, mouseX * _angleRotation, 0);
+                _hitDirection = rotation * _hitDirection;
+            }
 
             yield return null;
         }

@@ -27,10 +27,10 @@ public class EnemyKickingBall : KickingBall
         _enemyAnimator.OnKickedEnemyAnimation -= OnKickedAnimationFinished;
     }
 
-    protected override void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
+    //protected override void Start()
+    //{
+    //    _animator = GetComponent<Animator>();
+    //}
 
     private void Update()
     {
@@ -67,6 +67,7 @@ public class EnemyKickingBall : KickingBall
     protected override void OnKickedAnimationFinished()
     {
         _particleSystem.Play();
+        _ballRigidbody.velocity = Vector3.zero;
         _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
 
         
@@ -80,6 +81,7 @@ public class EnemyKickingBall : KickingBall
 
         _isKicking = false;
     }
+
     protected override IEnumerator ReloadHits()
     {
         var waitForSeconds = new WaitForSeconds(_timeHitsReload);

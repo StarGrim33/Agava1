@@ -15,7 +15,6 @@ public class LeaderboardOpener : MonoBehaviour
     [SerializeField] private Button _declineAuthorizeButton;
     [SerializeField] private TMP_Text[] _texts;
 
-
     public void OnOpenLeaderBoard()
     {
         if (PlayerAccount.IsAuthorized)
@@ -46,7 +45,7 @@ public class LeaderboardOpener : MonoBehaviour
                 if (string.IsNullOrEmpty(name))
                     name = AnonymousName;
 
-                _texts[i].text = $"{result.entries.Rank} - {name} - {result.entries[i].score}";
+                _texts[i].text = $"{rank} - {name} - {score}";
             }
         });
     }

@@ -12,5 +12,8 @@ public class SDKInitialization : MonoBehaviour
     private IEnumerator Start()
     {
         yield return YandexGamesSdk.Initialize();
+
+        if (YandexGamesSdk.IsInitialized)
+            InterstitialAd.Show();
     }
 }

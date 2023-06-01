@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Lean.Localization;
+using Agava.YandexGames;
 
 public class Shop : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class Shop : MonoBehaviour
                 _totalScore.ReduceScore(_items[buttonIndex].BaseCost);
                 _scoreDisplayer.UpdateCoinCountText();
                 _purchaseButtons[buttonIndex].interactable = false;
+                InterstitialAd.Show();
                 PlayerPrefs.Save();
             }
 

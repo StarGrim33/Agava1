@@ -19,10 +19,11 @@ public class RulesViewer : MonoBehaviour
     {
         var waitForSeconds = new WaitForSeconds(_delay);
 
+        yield return waitForSeconds;
+
         SetScoreRule();
         _levelRules.SetActive(true);
 
-        yield return waitForSeconds;
 
         _levelRules.SetActive(false);
     }
