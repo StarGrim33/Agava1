@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlayerKickingBall : KickingBall
 {
@@ -15,6 +16,7 @@ public class PlayerKickingBall : KickingBall
 
     private bool _isMouseDown = false;
     private bool _canControlBall = true;
+    private bool _canAttack = true;
 
     private void OnEnable()
     {
@@ -28,9 +30,9 @@ public class PlayerKickingBall : KickingBall
 
     private void Update()
     {
-        if (_hitsRemained > 0)
+        if (_hitsRemained > 0 && _canAttack)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonDown(0) )
             {
                 _isMouseDown = true;
                 Time.timeScale = 0.3f;
@@ -51,6 +53,11 @@ public class PlayerKickingBall : KickingBall
     {
         var ball = newBall as PlayerBall;
         _ballRigidbody = ball.GetComponent<Rigidbody>();
+    }
+
+    public void SetAttackAllowed(bool allowed)
+    {
+        _canAttack = allowed;
     }
 
     protected override void OnKickedAnimationFinished()

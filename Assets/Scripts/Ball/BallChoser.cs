@@ -1,5 +1,4 @@
 using Cinemachine;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallChoser : MonoBehaviour
@@ -25,7 +24,7 @@ public class BallChoser : MonoBehaviour
             _balls[_currentBallIndex].gameObject.SetActive(false);
             _balls[nextBallIndex].gameObject.SetActive(true);
 
-            _currentBallIndex = nextBallIndex; 
+            _currentBallIndex = nextBallIndex;
 
             _playerMovement.SetBall(_balls[_currentBallIndex]);
             _playerKickingBall.SetBall(_balls[_currentBallIndex]);
