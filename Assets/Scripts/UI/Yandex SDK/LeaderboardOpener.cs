@@ -13,7 +13,8 @@ public class LeaderboardOpener : MonoBehaviour
     [SerializeField] private Button _openLeaderboardButton;
     [SerializeField] private Button _authorizeButton;
     [SerializeField] private Button _declineAuthorizeButton;
-    [SerializeField] private TMP_Text[] _texts;
+    [SerializeField] private TMP_Text[] _playersName;
+    [SerializeField] private TMP_Text[] _playersScore;
 
     public void OnOpenLeaderBoard()
     {
@@ -45,14 +46,20 @@ public class LeaderboardOpener : MonoBehaviour
                 if (string.IsNullOrEmpty(name))
                     name = AnonymousName;
 
-                _texts[i].text = $"{rank} - {name} - {score}";
+                _playersName[i].text = $"{name}";
+                _playersScore[i].text = $"{score}";
             }
         });
     }
 
     private void ClearLeaderboardPanel()
     {
-        foreach (var text in _texts)
+        foreach (var text in _playersName)
+        {
+            text.text = string.Empty;
+        }
+
+        foreach (var text in _playersScore)
         {
             text.text = string.Empty;
         }
