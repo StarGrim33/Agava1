@@ -37,7 +37,7 @@ public class MusicBreaker : MonoBehaviour
     {
         if(_isPlaying)
         {
-            _audioSource.Stop();
+            _audioSource.Pause();
             _startImage.sprite = _turnedOffMusicImage;
             _isPlaying = false;
         }

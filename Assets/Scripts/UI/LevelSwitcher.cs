@@ -20,19 +20,16 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
         {
             PlayerPrefs.SetInt(LevelsUnlocked, nextLevelIndex);
             PlayerPrefs.Save();
-            SceneManager.LoadScene(1);
             VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
         }
         else
         {
             SceneManager.LoadScene(1);
-            Debug.Log("Последний уровень достигнут");
         }
     }
 
     public void UnlockNextLevelWithAD()
     {
-        VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
         _score.DoubleScoreForAD();
         UnlockNextLevel();
     }
@@ -45,6 +42,7 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
     private void ContinueGame()
     {
         Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
 
         if (_audioSource.clip != null)
             _audioSource.Play();
@@ -55,7 +53,7 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
         Time.timeScale = 0;
 
         if (_audioSource.clip != null)
-            _audioSource.Play();
+            _audioSource.Pause();
     }
 
     private void OnOpenCallback()

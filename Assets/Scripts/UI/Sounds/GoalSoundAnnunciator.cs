@@ -6,6 +6,7 @@ public class GoalSoundAnnunciator : MonoBehaviour
     [SerializeField] private Score _score;
     [SerializeField] private AudioClip _goalForPlayer;
     [SerializeField] private AudioClip _goalForEnemy;
+    [SerializeField] private AudioSource _mainSound;
 
     private void OnEnable()
     {
@@ -21,11 +22,13 @@ public class GoalSoundAnnunciator : MonoBehaviour
 
     private void OnPlayerScoreChanged()
     {
-        _audioSource.PlayOneShot(_goalForPlayer);
+        if (_mainSound.isPlaying)
+            _audioSource.PlayOneShot(_goalForPlayer);
     }
 
     private void OnEnemyScoreChanged()
     {
-        _audioSource.PlayOneShot(_goalForEnemy);
+        if (_mainSound.isPlaying)
+            _audioSource.PlayOneShot(_goalForEnemy);
     }
 }

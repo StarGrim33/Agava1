@@ -1025,6 +1025,7 @@ GameObject:
   - component: {fileID: 8873404480619348594}
   - component: {fileID: 7249799320457132394}
   - component: {fileID: 4311710990305408234}
+  - component: {fileID: 7229673894202691983}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -1039,18 +1040,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4418280068907487286}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.010039, y: 0.010039, z: 0.010039}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4628690497526090395}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38485247, y: 0.20300001}
   m_AnchorMax: {x: 1, y: 0.8562522}
-  m_AnchoredPosition: {x: -0.42490447, y: -0.002281427}
-  m_SizeDelta: {x: 381.4996, y: 52.145878}
+  m_AnchoredPosition: {x: -0.3664, y: -0.02880001}
+  m_SizeDelta: {x: 220.7764, y: 57.4272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7249799320457132394
 CanvasRenderer:
@@ -1080,7 +1081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 26ca2da53eb1bd84d88174d12895a3d4, type: 3}
+  m_Sprite: {fileID: 1054807440, guid: 38ebbbdaf10f82f429749993414a9187, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1090,6 +1091,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7229673894202691983
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418280068907487286}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32ccd74009e08fa4f9eff1dbad51cf85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4494459096233842164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,6 +1249,7 @@ MonoBehaviour:
   _particleSystem: {fileID: 3730035666627544808}
   _kickingBall: {fileID: 550176537}
   _kickBall: {fileID: 550176537}
+  _sphereCollider: {fileID: 0}
 --- !u!114 &550176537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,6 +1270,7 @@ MonoBehaviour:
   _hitsRemained: 4
   _playerAnimator: {fileID: 3730035667075658389}
   _hits: 4
+  _arrowImage: {fileID: 0}
 --- !u!1 &4637116446196783110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,7 +2002,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7259178874638143059}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 1.0313}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1992,7 +2015,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.0525, y: 0.09}
-  m_SizeDelta: {x: 4.857, y: 0.8531}
+  m_SizeDelta: {x: 4.9085, y: 0.8531}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1981425014919365274
 Canvas:

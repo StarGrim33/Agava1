@@ -1,0 +1,423 @@
+fileFormatVersion: 2
+guid: 38ebbbdaf10f82f429749993414a9187
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: 65
+    textureCompression: 1
+    compressionQuality: 30
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_0
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 791
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541e51f9bb6852341ba865d0af01a687
+      internalID: -21022051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_1
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 638
+        width: 298
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15fb4e817b98f9418474fba776a08ec
+      internalID: -729603719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_2
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 788
+        width: 45
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 999d3091b25d8a948bda0aeb041188a2
+      internalID: 1294712342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_3
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 790
+        width: 81
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29ade71ae09e05741bd7ebee004a7597
+      internalID: 1039069409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_4
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 627
+        width: 242
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142784f9d0c97f44d8f8ead0fed8ed13
+      internalID: 1912311430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_5
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 538
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6912703c27017e0439179366c61a5d18
+      internalID: 311320143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 433
+        width: 248
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44237eb8b85def54ba1fdf380439900a
+      internalID: -1452890696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_7
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 446
+        width: 285
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b4afecabfcb7704d88bde1846db2048
+      internalID: -590852035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_8
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 234
+        width: 257
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a858d352d17b0f940a739383a866ffe7
+      internalID: -1528121827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_9
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 246
+        width: 303
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fc40a61277f6c641896f1a1cab1adeb
+      internalID: -468287294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_10
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 40
+        width: 268
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abb0b4438848e9d40849c45ca1e27ea3
+      internalID: 1054807440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_11
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 35
+        width: 288
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bea6f94b0e6ae9448241c8a131f226b
+      internalID: -443288114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 143b588b0b34df643b8ff31c1e3600f7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_10: 1054807440
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_7: -590852035
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_2: 1294712342
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_3: 1039069409
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_9: -468287294
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_6: -1452890696
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_11: -443288114
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_1: -729603719
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_8: -1528121827
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_0: -21022051
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_4: 1912311430
+      87b61dc95959bdbd4d11122ecd558d70--game-logo-game-ui-PhotoRoom.png-PhotoRoom_5: 311320143
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
