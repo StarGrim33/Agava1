@@ -14,13 +14,14 @@ public class PlayerMovement : BasePlayer
     protected override IEnumerator Teleport()
     {
         var waitForSeconds = new WaitForSeconds(_delay);
+        float distanceToBall = 0.5f;
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > 0.5f && _kickBall.IsAiming)
+            if (transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > distanceToBall && _kickBall.IsAiming)
             {
                 Vector3 direction = _ball.transform.position - transform.position;
-                float distance = 2f;
+                float distance = 1f;
 
                 RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, distance);
 
@@ -28,9 +29,11 @@ public class PlayerMovement : BasePlayer
 
                 foreach (RaycastHit hit in hits)
                 {
-                    if (hit.collider != null /*&& hit.collider != _sphereCollider*/)
+                    if (hit.collider != null && hit.collider != _sphereCollider)
                     {
                         hasCollidersInPath = true;
+                        _ball.StopMoving();
+
                         break;
                     }
                 }
@@ -45,26 +48,5 @@ public class PlayerMovement : BasePlayer
         }
 
         yield return waitForSeconds;
-    }
-
-    private bool CheckObstacles()
-    {
-        Vector3 direction = _ball.transform.position - transform.position;
-        float distance = direction.magnitude;
-
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, distance);
-
-        bool hasCollidersInPath = false;
-
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.collider != null && hit.collider != _sphereCollider)
-            {
-                hasCollidersInPath = true;
-                break;
-            }
-        }
-
-        return hasCollidersInPath;
     }
 }

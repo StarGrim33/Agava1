@@ -33,7 +33,7 @@ public class MusicBreaker : MonoBehaviour
         }
     }
 
-    public void TurnOffOrOnMusic()
+    public void TurnMusic()
     {
         if(_isPlaying)
         {

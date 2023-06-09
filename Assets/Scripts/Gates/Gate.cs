@@ -5,7 +5,7 @@ public class Gate : MonoBehaviour
 {
     public event UnityAction<Gate, bool> OnGoalScored;
 
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem[] _particleSystem;
     [SerializeField] private Transform _middleTarget;
 
     private void OnTriggerEnter(Collider other)
@@ -21,16 +21,23 @@ public class Gate : MonoBehaviour
         }
     }
 
-    private void ScoreGoal(bool isEnemyGoal)
-    {
-        _particleSystem.Play();
-        OnGoalScored?.Invoke(this, isEnemyGoal);
-        Destroy(gameObject, 1f);
-    }
-
     public Vector3 MiddleTarget()
     {
         Vector3 target = _middleTarget.position;
         return target;
+    }
+
+    private void ScoreGoal(bool isEnemyGoal)
+    {
+        ParticleSystem particle = GetRandomParticle();
+        particle.Play();
+        OnGoalScored?.Invoke(this, isEnemyGoal);
+        Destroy(gameObject, 1f);
+    }
+
+    private ParticleSystem GetRandomParticle()
+    {
+        int randomNumber = Random.Range(0, _particleSystem.Length);
+        return _particleSystem[randomNumber];
     }
 }

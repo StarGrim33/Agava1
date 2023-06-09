@@ -27,15 +27,18 @@ public class EnemyKickingBall : KickingBall
         _enemyAnimator.OnKickedEnemyAnimation -= OnKickedAnimationFinished;
     }
 
-    //protected override void Start()
-    //{
-    //    _animator = GetComponent<Animator>();
-    //}
-
     private void Update()
     {
         if (_hitsRemained > 0 && !_isKickingCoroutineRunning)
             StartCoroutine(Kicking());
+    }
+
+    public void ChangeMissProbability(float value)
+    {
+        if(value > 0 && value < 1)
+        {
+            _missProbability = value;
+        }
     }
 
     protected override IEnumerator Kicking()

@@ -32,9 +32,4 @@ public abstract class Ball : MonoBehaviour
         transform.position = _targetPosition.position;
         StopMoving();
     }
-
-    protected void CheckColliders()
-    {
-
-    }
 }

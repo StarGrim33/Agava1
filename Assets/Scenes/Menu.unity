@@ -8890,7 +8890,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1233356639}
         m_TargetAssemblyTypeName: MusicBreaker, Assembly-CSharp
-        m_MethodName: TurnOffOrOnMusic
+        m_MethodName: TurnMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
