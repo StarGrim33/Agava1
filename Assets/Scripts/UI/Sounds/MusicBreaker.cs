@@ -7,10 +7,9 @@ public class MusicBreaker : MonoBehaviour
     [SerializeField] private Button _button;
     [SerializeField] private Sprite _turnedOffMusicImage;
     [SerializeField] private Sprite _turnedOnMusicImage;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioYB _audioYB;
 
     private Image _startImage;
-    private bool _isPlaying;
 
     private void OnEnable()
     {
@@ -26,26 +25,23 @@ public class MusicBreaker : MonoBehaviour
     {
         _startImage = GetComponent<Image>();
 
-        if(_audioSource != null && _audioSource.isPlaying)
+        if (_audioYB.isPlaying)
         {
             _startImage.sprite = _turnedOnMusicImage;
-            _isPlaying = true;
         }
     }
 
     public void TurnMusic()
     {
-        if(_isPlaying)
+        if(_audioYB.isPlaying)
         {
-            _audioSource.Pause();
+            _audioYB.Pause();
             _startImage.sprite = _turnedOffMusicImage;
-            _isPlaying = false;
         }
         else
         {
-            _audioSource.Play();
+            _audioYB.UnPause();
             _startImage.sprite = _turnedOnMusicImage;
-            _isPlaying = true;
         }
     }
 

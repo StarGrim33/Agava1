@@ -7,7 +7,7 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
     private const string LevelsUnlocked = "_levelsUnlocked";
 
     [SerializeField] private Score _score;
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioYB _audioSource;
 
     public void UnlockNextLevel()
     {

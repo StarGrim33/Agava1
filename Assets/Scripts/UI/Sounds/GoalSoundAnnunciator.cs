@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GoalSoundAnnunciator : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioYB _audioSource;
     [SerializeField] private Score _score;
-    [SerializeField] private AudioClip _goalForPlayer;
-    [SerializeField] private AudioClip _goalForEnemy;
+    [SerializeField] private string _goalForPlayer;
+    [SerializeField] private string _goalForEnemy;
     [SerializeField] private AudioSource _mainSound;
 
     private void OnEnable()
