@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : BasePlayer
 {
@@ -18,7 +19,7 @@ public class PlayerMovement : BasePlayer
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > distanceToBall && _kickBall.IsAiming)
+            if (EventSystem.current.currentSelectedGameObject == null && transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > distanceToBall && _kickBall.IsAiming)
             {
                 Vector3 direction = _ball.transform.position - transform.position;
                 float distance = 1f;

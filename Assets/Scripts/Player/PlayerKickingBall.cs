@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class PlayerKickingBall : KickingBall
@@ -17,7 +16,6 @@ public class PlayerKickingBall : KickingBall
 
     private bool _isMouseDown = false;
     private bool _canControlBall = true;
-    private bool _canAttack = true;
 
     private void OnEnable()
     {
@@ -31,22 +29,23 @@ public class PlayerKickingBall : KickingBall
 
     private void Update()
     {
-        if (_hitsRemained > 0 && _canAttack)
+        if (_hitsRemained > 0)
         {
             if (EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonDown(0))
             {
-                _arrowImage.SetActive(true);
                 _isMouseDown = true;
-                Time.timeScale = 0.3f;
+                _arrowImage.SetActive(true);
+                Time.timeScale = 0.2f;
                 StartCoroutine(Kicking());
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, true);
                 _animator.Play(AnimatorPlayer.States.Strike, 0, 0f);
+
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
             {
+                _isMouseDown = false;
                 _arrowImage.SetActive(false);
                 Time.timeScale = 1f;
-                _isMouseDown = false;
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
             }
         }
@@ -58,11 +57,6 @@ public class PlayerKickingBall : KickingBall
         _ballRigidbody = ball.GetComponent<Rigidbody>();
     }
 
-    public void SetAttackAllowed(bool allowed)
-    {
-        _canAttack = allowed;
-    }
-
     protected override void OnKickedAnimationFinished()
     {
         _particleSystem.Play();
@@ -70,9 +64,7 @@ public class PlayerKickingBall : KickingBall
         _canControlBall = false;
 
         if (_hitsRemained > 0)
-        {
             _hitsRemained--;
-        }
 
         if (_hitsRemained <= 0)
             StartCoroutine(ReloadHits());
@@ -86,7 +78,7 @@ public class PlayerKickingBall : KickingBall
 
         while (_isMouseDown && _hitsRemained > 0)
         {
-            if(_canControlBall)
+            if (_canControlBall)
             {
                 float mouseX = Input.GetAxis(AxisName);
                 _fooballPlayer.transform.Rotate(0, mouseX * _angleRotation, 0);
@@ -97,7 +89,7 @@ public class PlayerKickingBall : KickingBall
             yield return null;
         }
 
-        if (_hitsRemained <= 0)
+        if (_hitsRemained == 0)
         {
             _isMouseDown = false;
             _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
