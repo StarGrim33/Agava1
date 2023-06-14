@@ -16,6 +16,8 @@ public class PlayerKickingBall : KickingBall
 
     private bool _isMouseDown = false;
     private bool _canControlBall = true;
+    private float _currentHoldTime = 0f;
+    private float _maxHoldTime = 1f;
 
     private void OnEnable()
     {
@@ -31,22 +33,33 @@ public class PlayerKickingBall : KickingBall
     {
         if (_hitsRemained > 0)
         {
-            if (EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonDown(0))
+            if (!_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonDown(0))
             {
+                _currentHoldTime = 0f;
                 _isMouseDown = true;
                 _arrowImage.SetActive(true);
                 Time.timeScale = 0.2f;
                 StartCoroutine(Kicking());
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, true);
                 _animator.Play(AnimatorPlayer.States.Strike, 0, 0f);
-
             }
-            else if (EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
+            else if (_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
             {
                 _isMouseDown = false;
                 _arrowImage.SetActive(false);
                 Time.timeScale = 1f;
                 _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
+            }
+            
+        }
+
+        if (_isMouseDown)
+        {
+            _currentHoldTime += Time.deltaTime;
+
+            if (_currentHoldTime >= _maxHoldTime)
+            {
+                PerformKick();
             }
         }
     }
@@ -104,6 +117,19 @@ public class PlayerKickingBall : KickingBall
         {
             yield return waitForSeconds;
             _hitsRemained = _hits;
+        }
+    }
+
+    private void PerformKick()
+    {
+        if (_isMouseDown && _hitsRemained > 0)
+        {
+            _isMouseDown = false;
+            _arrowImage.SetActive(false);
+            Time.timeScale = 1f;
+            _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
+
+            ReloadHits();
         }
     }
 }

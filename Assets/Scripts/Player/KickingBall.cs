@@ -14,7 +14,7 @@ public abstract class KickingBall : MonoBehaviour
 
     protected Animator _animator;
     protected Vector3 _hitDirection = Vector3.forward;
-    protected float _angleRotation = 5.0f;
+    protected float _angleRotation = 7.0f;
     protected float _timeHitsReload = 3f;
 
     protected virtual void Start()
