@@ -12,18 +12,13 @@ public class WebUtilityBagFix : MonoBehaviour
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
         string language = YandexGamesSdk.Environment.i18n.lang;
 
-        switch(language)
+        _localization.CurrentLanguage = language switch
         {
-            case "tr":
-                _localization.CurrentLanguage = "Turkey";
-                break;
-            case "ru":
-                _localization.CurrentLanguage = "Russian";
-                break;
-            case "en":
-                _localization.CurrentLanguage = "English";
-                break;
-        }
+            "tr" => "Turkey",
+            "ru" => "Russian",
+            "en" => "English",
+            _ => "Russian",
+        };
     }
 
     private void OnDisable()
