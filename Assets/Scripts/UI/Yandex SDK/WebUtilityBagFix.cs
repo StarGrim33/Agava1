@@ -1,6 +1,7 @@
 using Agava.WebUtility;
 using Agava.YandexGames;
 using Lean.Localization;
+using System.Collections;
 using UnityEngine;
 
 public class WebUtilityBagFix : MonoBehaviour
@@ -11,10 +12,10 @@ public class WebUtilityBagFix : MonoBehaviour
 
     [SerializeField] private LeanLocalization _localization;
 
-    private void Awake()
+    private void Start()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            ChangeLanguage();
+            StartCoroutine(InitializeAndChangeLanguage());
 #endif
     }
 
@@ -32,6 +33,16 @@ public class WebUtilityBagFix : MonoBehaviour
     {
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? 0f : 1f;
+    }
+
+    private IEnumerator InitializeAndChangeLanguage()
+    {
+        while(!YandexGamesSdk.IsInitialized)
+        {
+            yield return null;
+        }
+
+        ChangeLanguage();
     }
 
     private void ChangeLanguage()

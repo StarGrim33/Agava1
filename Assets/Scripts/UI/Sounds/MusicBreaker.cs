@@ -9,7 +9,7 @@ public class MusicBreaker : MonoBehaviour
     [SerializeField] private Sprite _turnedOnMusicImage;
     [SerializeField] private AudioYB _audioYB;
 
-    private Image _startImage;
+    [SerializeField] private Image _startImage;
 
     private void OnEnable()
     {
@@ -23,12 +23,8 @@ public class MusicBreaker : MonoBehaviour
 
     private void Start()
     {
-        _startImage = GetComponent<Image>();
-
         if (_audioYB.isPlaying)
-        {
             _startImage.sprite = _turnedOnMusicImage;
-        }
     }
 
     public void TurnMusic()
