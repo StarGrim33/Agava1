@@ -2,6 +2,7 @@ using Agava.YandexGames;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class LeaderboardOpener : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class LeaderboardOpener : MonoBehaviour
     [SerializeField] private Button _declineAuthorizeButton;
     [SerializeField] private TMP_Text[] _playersName;
     [SerializeField] private TMP_Text[] _playersScore;
+    [SerializeField] private int _maxLength;
 
     public void OnOpenLeaderBoard()
     {
@@ -46,7 +48,7 @@ public class LeaderboardOpener : MonoBehaviour
                 if (string.IsNullOrEmpty(name))
                     name = AnonymousName;
 
-                _playersName[i].text = $"{name}";
+                _playersName[i].text = TextOprimizer(name);
                 _playersScore[i].text = $"{score}";
             }
         });
@@ -63,5 +65,15 @@ public class LeaderboardOpener : MonoBehaviour
         {
             text.text = string.Empty;
         }
+    }
+
+    private string TextOprimizer(string name)
+    {
+        string nameToLower = name.ToLower();
+
+        if (nameToLower.Length > _maxLength)
+            return nameToLower.Substring(0, _maxLength);
+        else
+            return nameToLower;
     }
 }

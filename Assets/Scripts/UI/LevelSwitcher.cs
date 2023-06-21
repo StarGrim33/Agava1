@@ -20,7 +20,7 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
         {
             PlayerPrefs.SetInt(LevelsUnlocked, nextLevelIndex);
             PlayerPrefs.Save();
-            VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
+            SceneManager.LoadScene(1);
         }
         else
         {
@@ -31,6 +31,7 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
     public void UnlockNextLevelWithAD()
     {
         _score.DoubleScoreForAD();
+        VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
         UnlockNextLevel();
     }
 
