@@ -7,13 +7,9 @@ public class PadlockUnlocker : MonoBehaviour
 
     private void Start()
     {
-        string levelsUnlocked = "_levelsUnlocked";
-
-        int levelUnlocked = PlayerPrefs.GetInt(levelsUnlocked, 1);
+        int levelUnlocked = PlayerPrefs.GetInt(Constants.LevelsUnlocked, 1);
 
         if (levelUnlocked >= _level)
-        {
             _padlock.SetActive(false);
-        }
     }
 }
