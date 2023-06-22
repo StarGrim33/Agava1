@@ -1,7 +1,4 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Goal : MonoBehaviour
-{
-
-}
+public class Goal : MonoBehaviour { }

@@ -61,13 +61,9 @@ public class GateSpawner : MonoBehaviour
     private Quaternion DefineRotation(Transform spawnPoint)
     {
         if (_spawnPointParts.GetLeftSideSpawnPoints().Contains(spawnPoint))
-        {
             return Quaternion.Euler(-90f, -90f, -90f);
-        }
         else if (_spawnPointParts.GetRightSideSpawnPoints().Contains(spawnPoint))
-        {
             return Quaternion.Euler(-90f, 0f, 0f);
-        }
 
         return Quaternion.identity;
     }
@@ -96,9 +92,7 @@ public class GateSpawner : MonoBehaviour
         float chance = 0.3f;
 
         if (randomValue < chance && _isFalseGateEnabled)
-        {
             return true;
-        }
 
         return false;
     }

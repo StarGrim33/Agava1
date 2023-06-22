@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class DifficultChecker : MonoBehaviour
 {
-    private const string LevelsUnlocked = "_levelsUnlocked";
-
     [SerializeField] private EnemyKickingBall _enemy;
+    private int _lastLevel = 12;
 
     private void Start()
     {
@@ -20,7 +19,7 @@ public class DifficultChecker : MonoBehaviour
 
     private bool CheckLastLevelReached()
     {
-        int unlockedLevels = PlayerPrefs.GetInt(LevelsUnlocked, 0);
-        return unlockedLevels >= 12;
+        int unlockedLevels = PlayerPrefs.GetInt(Constants.LevelsUnlocked, 0);
+        return unlockedLevels >= _lastLevel;
     }
 }

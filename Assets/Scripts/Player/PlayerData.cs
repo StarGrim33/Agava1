@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public const string BasketBall = "_basketBall";
-    public const string IceBall = "_iceBall";
-    public const string SpiderBall = "_spiderBall";
-
     public bool IsBallPurchased(string ballName)
     {
         string key = GetBallPurchaseKey(ballName);
@@ -26,14 +22,14 @@ public class PlayerData : MonoBehaviour
 
         switch (ballName)
         {
-            case BasketBall:
-                key = BasketBall;
+            case Constants.BasketBall:
+                key = Constants.BasketBall;
                 break;
-            case IceBall:
-                key = IceBall;
+            case Constants.IceBall:
+                key = Constants.IceBall;
                 break;
-            case SpiderBall:
-                key = SpiderBall;
+            case Constants.SpiderBall:
+                key = Constants.SpiderBall;
                 break;
         }
 

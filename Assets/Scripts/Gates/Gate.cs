@@ -11,14 +11,10 @@ public class Gate : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlayerBall>(out PlayerBall playerBall))
-        {
             ScoreGoal(false);
-        }
 
-        if(other.TryGetComponent<EnemyBall>(out EnemyBall enemyBall))
-        {
+        if (other.TryGetComponent<EnemyBall>(out EnemyBall enemyBall))
             ScoreGoal(true);
-        }
     }
 
     public Vector3 MiddleTarget()

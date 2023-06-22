@@ -23,9 +23,7 @@ public class MatchEndScreenViewer : MonoBehaviour
     private void OnEnemyScoreChanged()
     {
         if (_score.EnemyScore >= _score.ScoreForWin)
-        {
             ShowPanel(_loseScreen);
-        }
     }
 
     private void OnPlayerScoreChanged()

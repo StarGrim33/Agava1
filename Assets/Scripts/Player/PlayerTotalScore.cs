@@ -3,8 +3,6 @@ using UnityEngine.Events;
 
 public class PlayerTotalScore : MonoBehaviour
 {
-    public const string TotalScoreKey = "TotalScore";
-
     public event UnityAction ScoreChanged;
 
     public int TotalScore => _playerTotalScore;
@@ -19,16 +17,16 @@ public class PlayerTotalScore : MonoBehaviour
     public void SaveTotalScore(int value = 0)
     {
         _playerTotalScore += value;
-        PlayerPrefs.SetInt(TotalScoreKey, _playerTotalScore);
+        PlayerPrefs.SetInt(Constants.TotalScoreKey, _playerTotalScore);
         Debug.Log($"—чет: {_playerTotalScore}");
         PlayerPrefs.Save();
     }
 
     public void LoadTotalScore()
     {
-        if (PlayerPrefs.HasKey(TotalScoreKey))
+        if (PlayerPrefs.HasKey(Constants.TotalScoreKey))
         {
-            _playerTotalScore = PlayerPrefs.GetInt(TotalScoreKey);
+            _playerTotalScore = PlayerPrefs.GetInt(Constants.TotalScoreKey);
             Debug.Log($"—чет: {_playerTotalScore}");
         }
     }

@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelSwitcher : MonoBehaviour, IAdShow
 {
-    private const string LevelsUnlocked = "_levelsUnlocked";
-
     [SerializeField] private Score _score;
     [SerializeField] private AudioYB _audioSource;
 
@@ -18,7 +16,7 @@ public class LevelSwitcher : MonoBehaviour, IAdShow
 
         if (nextLevelIndex <= maxLevelIndex)
         {
-            PlayerPrefs.SetInt(LevelsUnlocked, nextLevelIndex);
+            PlayerPrefs.SetInt(Constants.LevelsUnlocked, nextLevelIndex);
             PlayerPrefs.Save();
             SceneManager.LoadScene(1);
         }
