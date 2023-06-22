@@ -29,7 +29,7 @@ public class Shop : MonoBehaviour
 
     public void PurchaseItem(int buttonIndex)
     {
-        int score = PlayerPrefs.GetInt(PlayerTotalScore.TotalScoreKey);
+        int score = PlayerPrefs.GetInt(Constants.TotalScoreKey);
 
         if (score >= _items[buttonIndex].BaseCost)
         {
@@ -66,7 +66,7 @@ public class Shop : MonoBehaviour
 
     private void CheckPurchaseable()
     {
-        int score = PlayerPrefs.GetInt(PlayerTotalScore.TotalScoreKey);
+        int score = PlayerPrefs.GetInt(Constants.TotalScoreKey);
 
         for (int i = 0; i < _items.Count; i++)
         {

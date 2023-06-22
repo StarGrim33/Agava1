@@ -8,4 +8,6 @@ public static class Constants
     public const string LevelsUnlocked = "_levelsUnlocked";
     public const string TurorialShowed = "_tutorialShowed";
     public const string TotalScoreKey = "TotalScore";
+    public const string AxisName = "Mouse X";
+    public const string IsAiming = ("isAiming");
 }

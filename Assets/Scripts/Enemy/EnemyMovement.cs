@@ -8,11 +8,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private EnemyKickingBall _kickingBall;
 
-    private float _delay = 1f;
+    private float _maxDistance = 1f;
 
     private void Update()
     {
-        if (_kickingBall.IsKicking && Vector3.Distance(_enemy.transform.position, _ball.transform.position) > 1f)
+        if (_kickingBall.IsKicking && Vector3.Distance(_enemy.transform.position, _ball.transform.position) > _maxDistance)
            Teleport();
     }
 

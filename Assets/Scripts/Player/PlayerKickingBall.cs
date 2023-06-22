@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerKickingBall : KickingBall
 {
-    private const string AxisName = "Mouse X";
-
     [SerializeField] private AnimatorPlayer _playerAnimator;
     [SerializeField] private int _hits;
     [SerializeField] private GameObject _arrowImage;
@@ -40,7 +38,7 @@ public class PlayerKickingBall : KickingBall
                 _arrowImage.SetActive(true);
                 Time.timeScale = 0.2f;
                 StartCoroutine(Kicking());
-                _animator.SetBool(AnimatorPlayer.Params.IsAiming, true);
+                _animator.SetBool(Constants.IsAiming, true);
                 _animator.Play(AnimatorPlayer.States.Strike, 0, 0f);
             }
             else if (_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
@@ -48,7 +46,7 @@ public class PlayerKickingBall : KickingBall
                 _isMouseDown = false;
                 _arrowImage.SetActive(false);
                 Time.timeScale = 1f;
-                _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
+                _animator.SetBool(Constants.IsAiming, false);
             }
             
         }
@@ -58,9 +56,7 @@ public class PlayerKickingBall : KickingBall
             _currentHoldTime += Time.deltaTime;
 
             if (_currentHoldTime >= _maxHoldTime)
-            {
                 PerformKick();
-            }
         }
     }
 
@@ -93,7 +89,7 @@ public class PlayerKickingBall : KickingBall
         {
             if (_canControlBall)
             {
-                float mouseX = Input.GetAxis(AxisName);
+                float mouseX = Input.GetAxis(Constants.AxisName);
                 _fooballPlayer.transform.Rotate(0, mouseX * _angleRotation, 0);
                 Quaternion rotation = Quaternion.Euler(0, mouseX * _angleRotation, 0);
                 _hitDirection = rotation * _hitDirection;
@@ -105,7 +101,7 @@ public class PlayerKickingBall : KickingBall
         if (_hitsRemained == 0)
         {
             _isMouseDown = false;
-            _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
+            _animator.SetBool(Constants.IsAiming, false);
         }
     }
 
@@ -127,7 +123,7 @@ public class PlayerKickingBall : KickingBall
             _isMouseDown = false;
             _arrowImage.SetActive(false);
             Time.timeScale = 1f;
-            _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
+            _animator.SetBool(Constants.IsAiming, false);
 
             ReloadHits();
         }

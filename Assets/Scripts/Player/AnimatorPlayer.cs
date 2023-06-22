@@ -10,11 +10,6 @@ public class AnimatorPlayer : MonoBehaviour
         OnKickedAnimationFinished.Invoke();
     }
 
-    public static class Params
-    {
-        public const string IsAiming = ("isAiming");
-    }
-
     public static class States
     {
         public const string Idle = nameof(Idle);

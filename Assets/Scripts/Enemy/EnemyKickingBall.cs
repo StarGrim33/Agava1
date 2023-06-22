@@ -36,9 +36,7 @@ public class EnemyKickingBall : KickingBall
     public void ChangeMissProbability(float value)
     {
         if(value > 0 && value < 1)
-        {
             _missProbability = value;
-        }
     }
 
     protected override IEnumerator Kicking()
@@ -52,7 +50,7 @@ public class EnemyKickingBall : KickingBall
             if (!_isKicking)
             {
                 _hitDirection = CalculateEnemyHitDirection();                
-                _animator.SetBool(AnimatorEnemyPlayer.Params.IsAiming, true);
+                _animator.SetBool(Constants.IsAiming, true);
                 _animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0f);
                 _isKicking = true;
 
@@ -63,7 +61,7 @@ public class EnemyKickingBall : KickingBall
             yield return null;
         }
 
-        _animator.SetBool(AnimatorEnemyPlayer.Params.IsAiming, false);
+        _animator.SetBool(Constants.IsAiming, false);
         _isKickingCoroutineRunning = false;
     }
 
@@ -75,9 +73,7 @@ public class EnemyKickingBall : KickingBall
 
         
         if (_hitsRemained > 0)
-        {
             _hitsRemained--;
-        }
 
         if (_hitsRemained <= 0)
             StartCoroutine(ReloadHits());

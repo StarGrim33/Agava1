@@ -28,9 +28,7 @@ public abstract class KickingBall : MonoBehaviour
         _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
 
         if (_hitsRemained > 0)
-        {
             _hitsRemained--;
-        }
 
         if (_hitsRemained <= 0)
             StartCoroutine(ReloadHits());
@@ -43,21 +41,15 @@ public abstract class KickingBall : MonoBehaviour
         var waitForSeconds = new WaitForSeconds(_timeHitsReload);
 
         if (_hitsRemained <= 0)
-        {
             yield return waitForSeconds;
-        }
     }
 
     protected virtual IEnumerator Kicking()
     {
         while (_hitsRemained > 0)
-        {
             yield return null;
-        }
 
         if (_hitsRemained <= 0)
-        {
-            _animator.SetBool(AnimatorPlayer.Params.IsAiming, false);
-        }
+            _animator.SetBool(Constants.IsAiming, false);
     }
 }
