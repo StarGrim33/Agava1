@@ -10,4 +10,7 @@ public static class Constants
     public const string TotalScoreKey = "TotalScore";
     public const string AxisName = "Mouse X";
     public const string IsAiming = ("isAiming");
+    public const string EnglishCode = "en";
+    public const string RussianCode = "ru";
+    public const string TurkishCode = "tr";
 }
