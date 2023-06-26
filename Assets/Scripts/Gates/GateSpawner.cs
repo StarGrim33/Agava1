@@ -15,6 +15,8 @@ public class GateSpawner : MonoBehaviour
 
     private Gate _currentGate;
     private FalseGate _currentFalseGate;
+    private float _spawnDelay = 2f;
+    private float _spawnDelayAfterFalseGate = 5f;
 
     private void Start()
     {
@@ -35,7 +37,7 @@ public class GateSpawner : MonoBehaviour
 
     private IEnumerator Spawner()
     {
-        var waitForSeconds = new WaitForSeconds(2f);
+        var waitForSeconds = new WaitForSeconds(_spawnDelay);
         yield return waitForSeconds;
         var randomPosition = GetRandomPosition();
 
@@ -43,7 +45,7 @@ public class GateSpawner : MonoBehaviour
         {
             _currentFalseGate = Instantiate(_falseGatePrefab, randomPosition.position, Quaternion.identity);
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(_spawnDelayAfterFalseGate);
 
             StartCoroutine(Spawner());
         }
@@ -60,10 +62,12 @@ public class GateSpawner : MonoBehaviour
 
     private Quaternion DefineRotation(Transform spawnPoint)
     {
+        float angle = -90f;
+
         if (_spawnPointParts.GetLeftSideSpawnPoints().Contains(spawnPoint))
-            return Quaternion.Euler(-90f, -90f, -90f);
+            return Quaternion.Euler(angle, angle, angle);
         else if (_spawnPointParts.GetRightSideSpawnPoints().Contains(spawnPoint))
-            return Quaternion.Euler(-90f, 0f, 0f);
+            return Quaternion.Euler(angle, 0f, 0f);
 
         return Quaternion.identity;
     }
@@ -71,8 +75,9 @@ public class GateSpawner : MonoBehaviour
     private Transform GetRandomPosition()
     {
         float randomValue = UnityEngine.Random.value;
+        float chance = 0.5f;
 
-        if (randomValue < 0.5f)
+        if (randomValue < chance)
         {
             int randomLeftSidePosition = UnityEngine.Random.Range(0, _spawnPointParts.LeftSideCount);
             Transform spawnPoint = _spawnPointParts.GetRandomSpawnPoint(randomLeftSidePosition);

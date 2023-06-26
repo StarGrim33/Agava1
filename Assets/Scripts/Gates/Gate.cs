@@ -43,8 +43,9 @@ public class Gate : MonoBehaviour
 
     private void Goal()
     {
+        float destroyDelay = 1f;
         ParticleSystem particle = GetRandomParticle();
         particle.Play();
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, destroyDelay);
     }
 }
