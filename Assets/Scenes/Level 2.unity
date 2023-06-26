@@ -417,6 +417,11 @@ MonoBehaviour:
   translationName: "\u041F\u0435\u0440\u0432\u043E\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u043E"
   FallbackText: "\u041D\u0430\u0431\u0435\u0440\u0438 \u0431\u043E\u043B\u044C\u0448\u0435
     \u043E\u0447\u043A\u043E\u0432"
+--- !u!4 &59579557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 24036461421767026, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+  m_PrefabInstance: {fileID: 3730035666840882557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &64435884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -902,6 +907,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6825a3fe8a1605f42a0d0589e582ac40, type: 3}
+--- !u!83 &123398342
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Free Game Music Song 1
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &125308020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1039,34 +1072,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162905699}
   m_CullTransparentMesh: 1
---- !u!83 &163198776
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: crowd-cheer-sound-effect-By-tuna.voicemod.net
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!1001 &168536016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1424,6 +1429,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13a5ca0b890fe694997f87114e23dfd2, type: 3}
+--- !u!83 &214165617
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Free Game Music Song 2
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &237589799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2035,6 +2068,34 @@ Transform:
   m_Father: {fileID: 1127713242}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!83 &353276786
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 196461_paulw2k_football-crowd-goal
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &369675010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,34 +2440,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470196101}
   m_CullTransparentMesh: 1
---- !u!83 &475176899
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Free Game Music Song 2
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!4 &479938588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4857008648702526, guid: 110af0d3eee946d4d9ee0ca4e522611a, type: 3}
@@ -2786,34 +2819,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4949955557972128, guid: c7821bc923171f24094e69062402d005, type: 3}
   m_PrefabInstance: {fileID: 581781921}
   m_PrefabAsset: {fileID: 0}
---- !u!83 &589034414
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Free Game Music Song 4
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!1001 &594737148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2875,6 +2880,34 @@ PrefabInstance:
       objectReference: {fileID: 2041682204}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ced1bd51d387294dadde8f33f3b8b43, type: 3}
+--- !u!83 &595110298
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Free Game Music Song 3
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1001 &609913916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2941,34 +2974,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 64868549691657868, guid: ef140beec582a5a46a6362fcfc31784d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef140beec582a5a46a6362fcfc31784d, type: 3}
---- !u!83 &613956547
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 196461_paulw2k_football-crowd-goal
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!1001 &645817862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4547,7 +4552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.18968841, y: 0.77740353, z: -0.2773204, w: 0.5317475}
+  m_LocalRotation: {x: 0.19208623, y: 0.77276295, z: -0.275665, w: 0.53846925}
   m_LocalPosition: {x: -9.416914, y: 8.377148, z: 4.847698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4932,7 +4937,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023220242}
-  m_LocalRotation: {x: 0.18968841, y: 0.77740353, z: -0.2773204, w: 0.5317475}
+  m_LocalRotation: {x: 0.19208623, y: 0.77276295, z: -0.275665, w: 0.53846925}
   m_LocalPosition: {x: -9.416914, y: 8.377148, z: 4.847698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5175,6 +5180,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6825a3fe8a1605f42a0d0589e582ac40, type: 3}
+--- !u!83 &1105638045
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Free Game Music Song 4
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &1127713240
 GameObject:
   m_ObjectHideFlags: 0
@@ -5499,6 +5532,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4984302113942590, guid: 7df26aa64e4b3fc48933a809e1a48078, type: 3}
   m_PrefabInstance: {fileID: 1174408582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1178319728 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2991346937003721061, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+  m_PrefabInstance: {fileID: 3730035666840882557}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1180127772 stripped
 Transform:
@@ -6635,6 +6673,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4949955557972128, guid: c7821bc923171f24094e69062402d005, type: 3}
   m_PrefabInstance: {fileID: 1340428595}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &1342923564
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Free Game Music Song 5
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!4 &1342927161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4759262865471542, guid: 6825a3fe8a1605f42a0d0589e582ac40, type: 3}
@@ -7288,34 +7354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f456ad837fa8ad44aa65dd1a348f5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!83 &1550234559
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Free Game Music Song 5
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!4 &1558058824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4759262865471542, guid: 6825a3fe8a1605f42a0d0589e582ac40, type: 3}
@@ -7834,34 +7872,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4345878849055200, guid: fa6105287f77b1240a0017f7d23434c2, type: 3}
   m_PrefabInstance: {fileID: 1638472244}
   m_PrefabAsset: {fileID: 0}
---- !u!83 &1645863646
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Free Game Music Song 3
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!1001 &1649093044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7975,6 +7985,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4525431197815690, guid: d2201b576d0da384fb8f681e57559ea8, type: 3}
   m_PrefabInstance: {fileID: 1769878745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1679043782 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3389694108036002659, guid: 09fb5896368b919449dfe360f0203168, type: 3}
+  m_PrefabInstance: {fileID: 2041682202}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1683493988 stripped
 Transform:
@@ -8782,6 +8797,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150c9b7f0d3e91e4999be9111aa8d342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1775527789 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7021915139390758472, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+  m_PrefabInstance: {fileID: 3730035666840882557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1782159874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9056,6 +9076,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4949955557972128, guid: c7821bc923171f24094e69062402d005, type: 3}
   m_PrefabInstance: {fileID: 695494534}
   m_PrefabAsset: {fileID: 0}
+--- !u!83 &1943847146
+AudioClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: crowd-cheer-sound-effect-By-tuna.voicemod.net
+  m_LoadType: 0
+  m_Channels: 0
+  m_Frequency: 0
+  m_BitsPerSample: 0
+  m_Length: 0
+  m_IsTrackerFormat: 0
+  m_Ambisonic: 0
+  m_SubsoundIndex: 0
+  m_PreloadAudioData: 1
+  m_LoadInBackground: 0
+  m_Legacy3D: 0
+  m_Resource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_CompressionFormat: 0
+  m_EditorResource:
+    m_Source: 
+    m_Offset: 0
+    m_Size: 0
+  m_EditorCompressionFormat: 0
 --- !u!1 &1965812568
 GameObject:
   m_ObjectHideFlags: 0
@@ -9191,34 +9239,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965812568}
   m_CullTransparentMesh: 1
---- !u!83 &1967140029
-AudioClip:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Free Game Music Song 1
-  m_LoadType: 0
-  m_Channels: 0
-  m_Frequency: 0
-  m_BitsPerSample: 0
-  m_Length: 0
-  m_IsTrackerFormat: 0
-  m_Ambisonic: 0
-  m_SubsoundIndex: 0
-  m_PreloadAudioData: 1
-  m_LoadInBackground: 0
-  m_Legacy3D: 0
-  m_Resource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_CompressionFormat: 0
-  m_EditorResource:
-    m_Source: 
-    m_Offset: 0
-    m_Size: 0
-  m_EditorCompressionFormat: 0
 --- !u!1 &1979117440
 GameObject:
   m_ObjectHideFlags: 0
@@ -9556,6 +9576,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3855626627867309925, guid: 09fb5896368b919449dfe360f0203168, type: 3}
+      propertyPath: Rigidbody
+      value: 
+      objectReference: {fileID: 1679043782}
+    - target: {fileID: 3855626627867309925, guid: 09fb5896368b919449dfe360f0203168, type: 3}
+      propertyPath: TargetPosition
+      value: 
+      objectReference: {fileID: 2041682203}
     - target: {fileID: 5125776808923543595, guid: 09fb5896368b919449dfe360f0203168, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.05
@@ -9748,6 +9776,11 @@ Transform:
   m_Father: {fileID: 104557117}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2064429432 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3526644988049123651, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+  m_PrefabInstance: {fileID: 3730035666840882557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2091981071
 GameObject:
   m_ObjectHideFlags: 0
@@ -10160,6 +10193,14 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 1727699294}
+    - target: {fileID: 870362821968488023, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: Rigidbody
+      value: 
+      objectReference: {fileID: 1178319728}
+    - target: {fileID: 870362821968488023, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: TargetPosition
+      value: 
+      objectReference: {fileID: 59579557}
     - target: {fileID: 1485964123555345824, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -10172,10 +10213,26 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 1727699294}
+    - target: {fileID: 1984558074137444944, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: Rigidbody
+      value: 
+      objectReference: {fileID: 2064429432}
+    - target: {fileID: 1984558074137444944, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: TargetPosition
+      value: 
+      objectReference: {fileID: 59579557}
     - target: {fileID: 3036460668652817907, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
       propertyPath: _data
       value: 
       objectReference: {fileID: 1727699294}
+    - target: {fileID: 3427933973341049664, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: Rigidbody
+      value: 
+      objectReference: {fileID: 3730035666840882565}
+    - target: {fileID: 3427933973341049664, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: TargetPosition
+      value: 
+      objectReference: {fileID: 59579557}
     - target: {fileID: 3730035666627544808, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
       propertyPath: looping
       value: 0
@@ -10244,6 +10301,14 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 1727699294}
+    - target: {fileID: 4725272277127851831, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: Rigidbody
+      value: 
+      objectReference: {fileID: 1775527789}
+    - target: {fileID: 4725272277127851831, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+      propertyPath: TargetPosition
+      value: 
+      objectReference: {fileID: 59579557}
     - target: {fileID: 7864145786811762439, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -10274,6 +10339,11 @@ MonoBehaviour:
 --- !u!135 &3730035666840882562 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 167871886651054961, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
+  m_PrefabInstance: {fileID: 3730035666840882557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &3730035666840882565 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1936119739803238735, guid: 64138d7b07ced1f4cbd6e58b807a9265, type: 3}
   m_PrefabInstance: {fileID: 3730035666840882557}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4545310244583617953

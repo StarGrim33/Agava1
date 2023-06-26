@@ -104,7 +104,6 @@ public class EnemyKickingBall : KickingBall
         {
             Vector2 randomPoint = Random.insideUnitCircle.normalized;
             Vector3 kickDirection = new Vector3(randomPoint.x, 0f, randomPoint.y);
-            Debug.Log("Missed");
             return kickDirection.normalized;
         }
 

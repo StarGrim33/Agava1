@@ -17,17 +17,15 @@ public class SpiderBall : PlayerBall
         {
             if (_data.IsBallPurchased(_ballName))
             {
-                _isBuyed = true;
+                IsBuyеd = true;
                 gameObject.SetActive(false);
-                Debug.Log("Успешно");
             }
 
         }
         else
         {
-            _isBuyed = false;
+            IsBuyеd = false;
             gameObject.SetActive(false);
-            Debug.Log("Не успешно");
         }
     }
 }

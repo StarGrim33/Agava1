@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PlayerBall : Ball
 {
-    [SerializeField] protected bool _isBuyed;
+    [SerializeField] protected bool IsBuyåd;
 
-    public bool IsBuyed => _isBuyed;
+    public bool IsBuyed => IsBuyåd;
 
     public override void StopMoving()
     {
-        _rigidbody.velocity = Vector3.zero;
-        transform.position = _targetPosition.position;
+        Rigidbody.velocity = Vector3.zero;
+        transform.position = TargetPosition.position;
     }
 }

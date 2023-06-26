@@ -2,12 +2,12 @@ using UnityEngine;
 
 public abstract class Ball : MonoBehaviour
 {
-    [SerializeField] protected Rigidbody _rigidbody;
-    [SerializeField] protected Transform _targetPosition;
-    protected float _maxXBorder = 9.4f;
-    protected float _minXBorder = -19.23f;
-    protected float _maxZBorder = 16.81f;
-    protected float _minZBorder = -4.83f;
+    [SerializeField] protected Rigidbody Rigidbody;
+    [SerializeField] protected Transform TargetPosition;
+    protected float MaxXBorder = 9.4f;
+    protected float MinXBorder = -19.23f;
+    protected float MaxZBorder = 16.81f;
+    protected float MinZBorder = -4.83f;
 
     protected virtual void Update()
     {
@@ -16,20 +16,19 @@ public abstract class Ball : MonoBehaviour
 
     public virtual void StopMoving()
     {
-        _rigidbody.velocity = Vector3.zero;
+        Rigidbody.velocity = Vector3.zero;
     }
 
     protected void CheckOutOfBounds()
     {
-        if (transform.position.x > _maxXBorder || transform.position.x < _minXBorder ||
-            transform.position.z > _maxZBorder || transform.position.z < _minZBorder)
+        if (transform.position.x > MaxXBorder || transform.position.x < MinXBorder ||
+            transform.position.z > MaxZBorder || transform.position.z < MinZBorder)
             HandleOutOfBounds();
     }
 
     protected virtual void HandleOutOfBounds()
     {
-        Debug.Log("Worked");
-        transform.position = _targetPosition.position;
+        transform.position = TargetPosition.position;
         StopMoving();
     }
 }

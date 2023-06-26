@@ -11,10 +11,10 @@ public class Gate : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlayerBall>(out PlayerBall playerBall))
-            ScoreGoal(false);
+            PlayerGoal();
 
         if (other.TryGetComponent<EnemyBall>(out EnemyBall enemyBall))
-            ScoreGoal(true);
+            EnemyGoal();
     }
 
     public Vector3 MiddleTarget()
@@ -23,17 +23,28 @@ public class Gate : MonoBehaviour
         return target;
     }
 
-    private void ScoreGoal(bool isEnemyGoal)
+    private void PlayerGoal()
     {
-        ParticleSystem particle = GetRandomParticle();
-        particle.Play();
-        OnGoalScored?.Invoke(this, isEnemyGoal);
-        Destroy(gameObject, 1f);
+        Goal();
+        OnGoalScored?.Invoke(this, false);
+    }
+
+    private void EnemyGoal()
+    {
+        Goal();
+        OnGoalScored?.Invoke(this, true);
     }
 
     private ParticleSystem GetRandomParticle()
     {
         int randomNumber = Random.Range(0, _particleSystem.Length);
         return _particleSystem[randomNumber];
+    }
+
+    private void Goal()
+    {
+        ParticleSystem particle = GetRandomParticle();
+        particle.Play();
+        Destroy(gameObject, 1f);
     }
 }

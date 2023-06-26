@@ -50,17 +50,13 @@ public class Score : MonoBehaviour
         {
             if (result == null)
             {
-                Debug.Log("Player is not present in the leaderboard.");
                 Leaderboard.SetScore("1", _totalScore.TotalScore);
             }
             else
             {
-                Debug.Log($"My rank = {result.rank}, score = {result.score}");
-
                 if (result.score < _totalScore.TotalScore)
                 {
                     Leaderboard.SetScore("1", _totalScore.TotalScore);
-                    Debug.Log($"PlayerScore is overrided {_totalScore.TotalScore}");
                 }
             }
         });
@@ -95,7 +91,6 @@ public class Score : MonoBehaviour
             {
                 GetLeaderboardPlayerEntryButtonClick();
                 _totalScore.SaveTotalScore(PlayerScore);
-                Debug.Log($"Успешно сохранен счет в лидерборд - {_totalScore.TotalScore}");
             }
         }
 
