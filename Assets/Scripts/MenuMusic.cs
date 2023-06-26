@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuMusic : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class MenuMusic : MonoBehaviour
 
     private void Start()
     {
-        _audio.Play(_audioClip);
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if(Time.timeScale == 0 &&  currentScene.buildIndex != 2 && currentScene.buildIndex != 1)
+            Time.timeScale = 1;
+
+        if (_audio.isPlaying == false)
+            _audio.Play(_audioClip);
     }
 }
