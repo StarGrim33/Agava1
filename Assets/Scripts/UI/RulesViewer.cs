@@ -31,8 +31,5 @@ public class RulesViewer : MonoBehaviour
     private void SetScoreRule()
     {
         _levelRules.SetActive(true);
-        var score = _score.ScoreForWin;
-        var rule = $"Набери первым {score} очков {_additionalRuleText}";
-        _text.text = rule.ToString();
     }
 }
