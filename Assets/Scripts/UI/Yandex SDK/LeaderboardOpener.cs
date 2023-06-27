@@ -1,4 +1,5 @@
 using Agava.YandexGames;
+using Lean.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +47,16 @@ public class LeaderboardOpener : MonoBehaviour
                 int rank = result.entries[i].rank;
 
                 if (string.IsNullOrEmpty(name))
-                    name = AnonymousName;
+                {
+                    if (LeanLocalization.GetFirstCurrentLanguage() == Constants.RussianCode)
+                        name = "Аноним";
+                    else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.EnglishCode)
+                        name = AnonymousName;
+                    else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.TurkishCode)
+                        name = "Anonim";
+                    else
+                        name = "Аноним";
+                }
 
                 _playersName[i].text = TextOprimizer(name);
                 _playersScore[i].text = $"{score}";
