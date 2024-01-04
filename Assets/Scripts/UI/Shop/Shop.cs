@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Lean.Localization;
 using Agava.YandexGames;
 
 public class Shop : MonoBehaviour
@@ -14,11 +13,11 @@ public class Shop : MonoBehaviour
     [SerializeField] private ScoreDisplayer _scoreDisplayer;
     [SerializeField] private PlayerData _playerData;
 
-    private readonly Dictionary<int, string> _ballNames = new()
+    private Dictionary<int, string> _ballNames = new()
     {
-        {(int)Balls.BasketBall, "_basketBall"},
-        {(int)Balls.IceBall, "_iceBall"},
-        {(int)Balls.SpiderBall, "_spiderBall"}
+        {(int)Balls.BasketBall, Constants.BasketBall},
+        {(int)Balls.IceBall, Constants.IceBall},
+        {(int)Balls.SpiderBall, Constants.SpiderBall}
     };
 
     private void Start()

@@ -1,6 +1,3 @@
-using Agava.YandexGames;
-using UnityEngine;
-
 public interface IAdShow
 {
     private void OnCloseCallback() { }

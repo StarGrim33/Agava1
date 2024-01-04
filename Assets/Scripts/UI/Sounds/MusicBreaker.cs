@@ -8,7 +8,6 @@ public class MusicBreaker : MonoBehaviour
     [SerializeField] private Sprite _turnedOffMusicImage;
     [SerializeField] private Sprite _turnedOnMusicImage;
     [SerializeField] private AudioYB _audioYB;
-
     [SerializeField] private Image _startImage;
 
     private void OnEnable()

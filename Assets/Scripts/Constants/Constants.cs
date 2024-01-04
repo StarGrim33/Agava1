@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class Constants
 {
@@ -13,4 +13,10 @@ public static class Constants
     public const string EnglishCode = "en";
     public const string RussianCode = "ru";
     public const string TurkishCode = "tr";
+    public const string EnglishLanguage = "English";
+    public const string RussianLanguage = "Russian";
+    public const string TurkishLanguage = "Turkish";
+    public const string LeaderboardName = "1";
+    public const string EnglishAnonimName = "Anonim";
+    public const string RussianAnonimName = "Аноним";
 }

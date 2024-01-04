@@ -1,7 +1,4 @@
 using Agava.WebUtility;
-using Agava.YandexGames;
-using Lean.Localization;
-using System.Collections;
 using UnityEngine;
 
 public class WebUtilityBagFix : MonoBehaviour

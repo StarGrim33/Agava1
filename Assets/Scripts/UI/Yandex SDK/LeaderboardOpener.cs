@@ -3,13 +3,9 @@ using Lean.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 public class LeaderboardOpener : MonoBehaviour
 {
-    private const string AnonymousName = "Anonymous";
-    private const string LeaderboardName = "1";
-
     [SerializeField] private GameObject _leaderboardPanel;
     [SerializeField] private GameObject _notAuthorizedPanel;
     [SerializeField] private Button _openLeaderboardButton;
@@ -35,9 +31,8 @@ public class LeaderboardOpener : MonoBehaviour
 
     public void OnGetLeaderboardEntriesButtonClick()
     {
-        Agava.YandexGames.Leaderboard.GetEntries(LeaderboardName, (result) =>
+        Leaderboard.GetEntries(Constants.LeaderboardName, (result) =>
         {
-            Debug.Log($"My rank = {result.userRank}");
             ClearLeaderboardPanel();
 
             for (int i = 0; i < result.entries.Length; i++)
@@ -49,13 +44,13 @@ public class LeaderboardOpener : MonoBehaviour
                 if (string.IsNullOrEmpty(name))
                 {
                     if (LeanLocalization.GetFirstCurrentLanguage() == Constants.RussianCode)
-                        name = "Аноним";
+                        name = Constants.RussianAnonimName;
                     else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.EnglishCode)
-                        name = AnonymousName;
+                        name = Constants.EnglishAnonimName;
                     else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.TurkishCode)
-                        name = "Anonim";
+                        name = Constants.EnglishAnonimName;
                     else
-                        name = "Аноним";
+                        name = Constants.RussianAnonimName;
                 }
 
                 _playersName[i].text = TextOprimizer(name);

@@ -1,13 +1,13 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerTotalScore : MonoBehaviour
 {
-    public event UnityAction ScoreChanged;
+    private int _playerTotalScore;
+
+    public event Action ScoreChanged;
 
     public int TotalScore => _playerTotalScore;
-
-    private int _playerTotalScore;
 
     private void Awake()
     {
@@ -18,7 +18,6 @@ public class PlayerTotalScore : MonoBehaviour
     {
         _playerTotalScore += value;
         PlayerPrefs.SetInt(Constants.TotalScoreKey, _playerTotalScore);
-        Debug.Log($"—чет: {_playerTotalScore}");
         PlayerPrefs.Save();
     }
 
@@ -27,7 +26,6 @@ public class PlayerTotalScore : MonoBehaviour
         if (PlayerPrefs.HasKey(Constants.TotalScoreKey))
         {
             _playerTotalScore = PlayerPrefs.GetInt(Constants.TotalScoreKey);
-            Debug.Log($"—чет: {_playerTotalScore}");
         }
     }
 

@@ -4,24 +4,24 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : BasePlayer
 {
-    [SerializeField] protected PlayerKickingBall _kickBall;
+    [SerializeField] protected PlayerKickingBall KickBall;
     [SerializeField] private SphereCollider _sphereCollider;
 
     public void SetBall(PlayerBall newBall)
     {
-        _ball = newBall;
+        Ball = newBall;
     }
 
     protected override IEnumerator Teleport()
     {
-        var waitForSeconds = new WaitForSeconds(_delay);
+        var waitForSeconds = new WaitForSeconds(Delay);
         float distanceToBall = 0.5f;
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.currentSelectedGameObject == null && transform.position != _ball.transform.position && Vector3.Distance(transform.position, _ball.transform.position) > distanceToBall && _kickBall.IsAiming)
+            if (EventSystem.current.currentSelectedGameObject == null && transform.position != Ball.transform.position && Vector3.Distance(transform.position, Ball.transform.position) > distanceToBall && KickBall.IsAiming)
             {
-                Vector3 direction = _ball.transform.position - transform.position;
+                Vector3 direction = Ball.transform.position - transform.position;
                 float distance = 1f;
 
                 RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, distance);
@@ -33,7 +33,7 @@ public class PlayerMovement : BasePlayer
                     if (hit.collider != null && hit.collider != _sphereCollider)
                     {
                         hasCollidersInPath = true;
-                        _ball.StopMoving();
+                        Ball.StopMoving();
 
                         break;
                     }
@@ -41,9 +41,9 @@ public class PlayerMovement : BasePlayer
 
                 if (!hasCollidersInPath)
                 {
-                    transform.position = _ball.transform.position;
-                    _particleSystem.Play();
-                    _ball.StopMoving();
+                    transform.position = Ball.transform.position;
+                    ParticleSystem.Play();
+                    Ball.StopMoving();
                 }
             }
         }

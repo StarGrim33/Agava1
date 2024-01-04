@@ -3,7 +3,6 @@ using UnityEngine;
 public class DifficultChecker : MonoBehaviour
 {
     [SerializeField] private EnemyKickingBall _enemy;
-
     private int _lastLevel = 12;
 
     private void Start()

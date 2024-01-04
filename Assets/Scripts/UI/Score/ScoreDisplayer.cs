@@ -16,6 +16,11 @@ public class ScoreDisplayer : MonoBehaviour
         _totalScore.ScoreChanged -= OnScoreChanged;
     }
 
+    public void UpdateCoinCountText()
+    {
+        _text.text = _totalScore.TotalScore.ToString();
+    }
+
     private void OnScoreChanged()
     {
         UpdateCoinCountText();
@@ -24,10 +29,5 @@ public class ScoreDisplayer : MonoBehaviour
     private void Start()
     {
         UpdateCoinCountText();
-    }
-
-    public void UpdateCoinCountText()
-    {
-        _text.text = _totalScore.TotalScore.ToString();
     }
 }

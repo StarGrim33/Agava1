@@ -8,9 +8,11 @@ public class MenuMusic : MonoBehaviour
 
     private void Start()
     {
+        int firstLevelIndex = 2;
+        int menuSceneIndex = 1;
         Scene currentScene = SceneManager.GetActiveScene();
 
-        if(Time.timeScale == 0 &&  currentScene.buildIndex != 2 && currentScene.buildIndex != 1)
+        if(Time.timeScale == 0 && currentScene.buildIndex != firstLevelIndex && currentScene.buildIndex != menuSceneIndex)
             Time.timeScale = 1;
 
         if (_audio.isPlaying == false)

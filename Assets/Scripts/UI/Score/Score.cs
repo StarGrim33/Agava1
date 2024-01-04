@@ -1,15 +1,18 @@
 using Agava.YandexGames;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Score : MonoBehaviour
 {
     [SerializeField] private GateSpawner _gateSpawner;
     [SerializeField] private PlayerTotalScore _totalScore;
     [SerializeField] private int _scoreForWin;
+    private int _playerScore = 0;
+    private int _enemyScore = 0;
+    private int _scorePerGoal = 10;
 
-    public event UnityAction OnPlayerScoreChanged;
-    public event UnityAction OnEnemyScoreChanged;
+    public event Action OnPlayerScoreChanged;
+    public event Action OnEnemyScoreChanged;
 
     public int ScoreForWin
     {
@@ -29,10 +32,6 @@ public class Score : MonoBehaviour
         private set { _enemyScore = value; }
     }
 
-    private int _playerScore = 0;
-    private int _enemyScore = 0;
-    private int _scorePerGoal = 10;
-
     private void OnEnable()
     {
         _gateSpawner.OnGoalGateSpawned += OnGoalGateSpawned;
@@ -46,17 +45,17 @@ public class Score : MonoBehaviour
 
     public void GetLeaderboardPlayerEntryButtonClick()
     {
-        Leaderboard.GetPlayerEntry("1", (result) =>
+        Leaderboard.GetPlayerEntry(Constants.LeaderboardName, (result) =>
         {
             if (result == null)
             {
-                Leaderboard.SetScore("1", _totalScore.TotalScore);
+                Leaderboard.SetScore(Constants.LeaderboardName, _totalScore.TotalScore);
             }
             else
             {
                 if (result.score < _totalScore.TotalScore)
                 {
-                    Leaderboard.SetScore("1", _totalScore.TotalScore);
+                    Leaderboard.SetScore(Constants.LeaderboardName, _totalScore.TotalScore);
                 }
             }
         });

@@ -4,8 +4,6 @@ public class SpiderBall : PlayerBall
 {
     [SerializeField] private PlayerData _data;
 
-    private string _ballName = "_spiderBall";
-
     private void Awake()
     {
         Initializing();
@@ -13,9 +11,9 @@ public class SpiderBall : PlayerBall
 
     private void Initializing()
     {
-        if (PlayerPrefs.HasKey(_ballName))
+        if (PlayerPrefs.HasKey(Constants.SpiderBall))
         {
-            if (_data.IsBallPurchased(_ballName))
+            if (_data.IsBallPurchased(Constants.SpiderBall))
             {
                 IsBuyåd = true;
                 gameObject.SetActive(false);

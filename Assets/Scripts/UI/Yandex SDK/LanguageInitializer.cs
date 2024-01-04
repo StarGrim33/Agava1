@@ -27,10 +27,10 @@ public class LanguageInitializer : MonoBehaviour
 
         string language = languageCode switch
         {
-            Constants.EnglishCode => "English",
-            Constants.RussianCode => "Russian",
-            Constants.TurkishCode => "Turkey",
-            _ => "Russian"
+            Constants.EnglishCode => Constants.EnglishLanguage,
+            Constants.RussianCode => Constants.RussianLanguage,
+            Constants.TurkishCode => Constants.TurkishLanguage,
+            _ => Constants.RussianLanguage
         };
 
         LeanLocalization.SetCurrentLanguageAll(language);

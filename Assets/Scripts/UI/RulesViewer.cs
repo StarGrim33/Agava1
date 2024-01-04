@@ -19,7 +19,7 @@ public class RulesViewer : MonoBehaviour
     {
         var waitForSeconds = new WaitForSeconds(_delay);
 
-        Invoke("SetScoreRule", 1f);
+        Invoke(nameof(SetScoreRule), 1f);
 
         yield return waitForSeconds;
 

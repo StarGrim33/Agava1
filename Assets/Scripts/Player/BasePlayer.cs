@@ -3,12 +3,11 @@ using UnityEngine;
 
 public abstract class BasePlayer : MonoBehaviour
 {
-    [SerializeField] protected Ball _ball;
-    [SerializeField] protected ParticleSystem _particleSystem;
-    [SerializeField] protected KickingBall _kickingBall;
-
-    protected float _delay = 1f;
-    protected bool _canTeleport = false;
+    [SerializeField] protected Ball Ball;
+    [SerializeField] protected ParticleSystem ParticleSystem;
+    [SerializeField] protected KickingBall KickingBall;
+    protected float Delay = 1f;
+    protected bool CanTeleport = false;
 
     protected void Update()
     {
@@ -17,15 +16,15 @@ public abstract class BasePlayer : MonoBehaviour
 
     protected virtual IEnumerator Teleport()
     {
-        var waitForSeconds = new WaitForSeconds(_delay);
+        var waitForSeconds = new WaitForSeconds(Delay);
 
-        if (transform.position != _ball.transform.position)
+        if (transform.position != Ball.transform.position)
         {
-            Vector3 newPosition = _ball.transform.position;
+            Vector3 newPosition = Ball.transform.position;
             newPosition.y = 0f;
             transform.position = newPosition;
-            _particleSystem.Play();
-            _ball.StopMoving();
+            ParticleSystem.Play();
+            Ball.StopMoving();
         }
 
         yield return waitForSeconds;
