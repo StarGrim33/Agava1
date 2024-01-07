@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GateSpawner : MonoBehaviour
 {
@@ -9,14 +9,13 @@ public class GateSpawner : MonoBehaviour
     [SerializeField] private SpawnPointParts _spawnPointParts;
     [SerializeField] private FalseGate _falseGatePrefab;
     [SerializeField] private bool _isFalseGateEnabled;
-
-    public event UnityAction<Gate> OnGoalGateSpawned;
-    public event UnityAction<Vector3> OnGateSpawned;
-
     private Gate _currentGate;
     private FalseGate _currentFalseGate;
     private float _spawnDelay = 2f;
     private float _spawnDelayAfterFalseGate = 5f;
+
+    public event Action<Gate> OnGoalGateSpawned;
+    public event Action<Vector3> OnGateSpawned;
 
     private void Start()
     {

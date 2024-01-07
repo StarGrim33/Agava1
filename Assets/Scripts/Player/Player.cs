@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float _maxXBorder = 9.4f;
-    private float _minXBorder = -19.23f;
-    private float _maxZBorder = 16.81f;
-    private float _minZBorder = -4.83f;
+    private readonly float _maxXBorder = 9.4f;
+    private readonly float _minXBorder = -19.23f;
+    private readonly float _maxZBorder = 16.81f;
+    private readonly float _minZBorder = -4.83f;
 
     private void Update()
     {

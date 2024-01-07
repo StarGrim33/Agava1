@@ -1,19 +1,19 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Gate : MonoBehaviour
 {
-    public event UnityAction<Gate, bool> OnGoalScored;
-
     [SerializeField] private ParticleSystem[] _particleSystem;
     [SerializeField] private Transform _middleTarget;
 
+    public event Action<Gate, bool> OnGoalScored;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerBall>(out PlayerBall playerBall))
+        if (other.TryGetComponent<PlayerBall>(out _))
             PlayerGoal();
 
-        if (other.TryGetComponent<EnemyBall>(out EnemyBall enemyBall))
+        if (other.TryGetComponent<EnemyBall>(out _))
             EnemyGoal();
     }
 
@@ -37,7 +37,7 @@ public class Gate : MonoBehaviour
 
     private ParticleSystem GetRandomParticle()
     {
-        int randomNumber = Random.Range(0, _particleSystem.Length);
+        int randomNumber = UnityEngine.Random.Range(0, _particleSystem.Length);
         return _particleSystem[randomNumber];
     }
 

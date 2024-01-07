@@ -1,9 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Ball _ball;
+    [SerializeField] private BaseBall _ball;
     [SerializeField] private GameObject _enemy;
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private EnemyKickingBall _kickingBall;

@@ -4,8 +4,6 @@ public class IceBall : PlayerBall
 {
     [SerializeField] private PlayerData _data;
 
-    private string _ballName = "_iceBall";
-
     private void Awake()
     {
         Initializing();
@@ -13,9 +11,9 @@ public class IceBall : PlayerBall
 
     private void Initializing()
     {
-        if (PlayerPrefs.HasKey(_ballName))
+        if (PlayerPrefs.HasKey(Constants.IceBall))
         {
-            if (_data.IsBallPurchased(_ballName))
+            if (_data.IsBallPurchased(Constants.IceBall))
             {
                 IsBuyåd = true;
                 gameObject.SetActive(false);

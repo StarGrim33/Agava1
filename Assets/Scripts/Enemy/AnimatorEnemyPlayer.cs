@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AnimatorEnemyPlayer : MonoBehaviour
 {
-    public event UnityAction OnKickedEnemyAnimation;
+    public event Action OnKickedEnemyAnimation;
 
     public void AnimationEvent()
     {

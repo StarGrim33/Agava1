@@ -1,36 +1,35 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public abstract class KickingBall : MonoBehaviour
 {
-    [SerializeField] protected Rigidbody _ballRigidbody;
-    [SerializeField] protected Transform _ballSpawnPoint;
-    [SerializeField] protected float _hifForce = 10.0f;
-    [SerializeField] protected GameObject _fooballPlayer;
-    [SerializeField] protected ParticleSystem _particleSystem;
-    [SerializeField] protected int _hitsRemained;
+    [SerializeField] protected Rigidbody BallRigidbody;
+    [SerializeField] protected Transform BallSpawnPoint;
+    [SerializeField] protected float HifForce = 10.0f;
+    [SerializeField] protected GameObject FooballPlayer;
+    [SerializeField] protected ParticleSystem ParticleSystem;
+    [SerializeField] protected int HitsRemained;
 
-    protected Animator _animator;
-    protected Vector3 _hitDirection = Vector3.forward;
-    protected float _angleRotation = 7.0f;
-    protected float _timeHitsReload = 3f;
+    protected Animator Animator;
+    protected Vector3 HitDirection = Vector3.forward;
+    protected float AngleRotation = 7.0f;
+    protected float TimeHitsReload = 3f;
 
     protected virtual void Start()
     {
-        _animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
     }
 
     protected virtual void OnKickedAnimationFinished()
     {
-        _particleSystem.Play();
-        _ballRigidbody.AddForce(_hitDirection * _hifForce, ForceMode.Impulse);
+        ParticleSystem.Play();
+        BallRigidbody.AddForce(HitDirection * HifForce, ForceMode.Impulse);
 
-        if (_hitsRemained > 0)
-            _hitsRemained--;
+        if (HitsRemained > 0)
+            HitsRemained--;
 
-        if (_hitsRemained <= 0)
+        if (HitsRemained <= 0)
             StartCoroutine(ReloadHits());
 
         Time.timeScale = 1f;
@@ -38,18 +37,18 @@ public abstract class KickingBall : MonoBehaviour
 
     protected virtual IEnumerator ReloadHits()
     {
-        var waitForSeconds = new WaitForSeconds(_timeHitsReload);
+        var waitForSeconds = new WaitForSeconds(TimeHitsReload);
 
-        if (_hitsRemained <= 0)
+        if (HitsRemained <= 0)
             yield return waitForSeconds;
     }
 
     protected virtual IEnumerator Kicking()
     {
-        while (_hitsRemained > 0)
+        while (HitsRemained > 0)
             yield return null;
 
-        if (_hitsRemained <= 0)
-            _animator.SetBool(Constants.IsAiming, false);
+        if (HitsRemained <= 0)
+            Animator.SetBool(Constants.IsAiming, false);
     }
 }

@@ -10,8 +10,6 @@ public class BallChoser : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _camera;
     [SerializeField] private PlayerData _playerData;
 
-    public int GetBallCount => _balls.Length;
-
     private int _currentBallIndex = 0;
 
     public void ChangeBall()

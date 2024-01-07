@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AnimatorPlayer : MonoBehaviour
 {    
-    public event UnityAction OnKickedAnimationFinished;
+    public event Action OnKickedAnimationFinished;
 
     public void AnimationEvent()
     {
