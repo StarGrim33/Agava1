@@ -5,7 +5,6 @@ public abstract class BasePlayer : MonoBehaviour
 {
     [SerializeField] protected BaseBall Ball;
     [SerializeField] protected ParticleSystem ParticleSystem;
-    [SerializeField] protected KickingBall KickingBall;
     protected float Delay = 1f;
     protected bool CanTeleport = false;
 
