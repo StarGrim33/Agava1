@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerBall : Ball
+public class PlayerBall : BaseBall
 {
     [SerializeField] protected bool IsBuyåd;
 

@@ -15,7 +15,7 @@ public class PlayerKickingBall : KickingBall
 
     public bool IsAiming => base.HitsRemained > 0;
 
-    public int HitsRemained => base.HitsRemained;
+    public new int HitsRemained => base.HitsRemained;
 
     private void OnEnable()
     {

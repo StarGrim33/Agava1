@@ -5,7 +5,7 @@ public class EnemyKickingBall : KickingBall
 {
     [SerializeField] private AnimatorEnemyPlayer _enemyAnimator;
     [SerializeField] private GateSpawner _gateSpawner;
-    [SerializeField] private Ball _ball;
+    [SerializeField] private BaseBall _ball;
     [SerializeField] private float _missProbability;
     [SerializeField] private int _hits;
     private Vector3 _goalPosition;

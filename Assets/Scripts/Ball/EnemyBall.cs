@@ -1,1 +1,1 @@
-public class EnemyBall : Ball { }
+public class EnemyBall : BaseBall { }

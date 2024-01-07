@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class BasePlayer : MonoBehaviour
 {
-    [SerializeField] protected Ball Ball;
+    [SerializeField] protected BaseBall Ball;
     [SerializeField] protected ParticleSystem ParticleSystem;
     [SerializeField] protected KickingBall KickingBall;
     protected float Delay = 1f;
