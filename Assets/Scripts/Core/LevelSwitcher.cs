@@ -50,9 +50,18 @@ public class LevelSwitcher : MonoBehaviour, IAdShow, IGameStatesHandler
             _audioSource.Pause();
     }
 
-    private void OnCloseCallback() => ContinueGame();
+    public void OnCloseCallback()
+    {
+        ContinueGame();
+    }
 
-    private void OnOpenCallback() => PauseGame();
+    public void OnOpenCallback()
+    {
+        PauseGame();
+    }
 
-    private void OnErrorCallback(string errorMessage) => ContinueGame();
+    public void OnErrorCallback(string errorMessage)
+    {
+        ContinueGame();
+    }
 }

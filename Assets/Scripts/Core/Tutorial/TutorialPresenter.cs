@@ -10,10 +10,12 @@ public class TutorialPresenter
         _model = new TutorialModel();
         _view = view;
 
-       _model.ShowTutorial = PlayerPrefs.GetInt(Constants.TurorialShowed) == 0;
+        _model.ShowTutorial = PlayerPrefs.GetInt(Constants.TurorialShowed) == 0;
 
         if (_model.ShowTutorial)
+        {
             ShowTutorial();
+        }
     }
 
     public void OnTutorialClick()

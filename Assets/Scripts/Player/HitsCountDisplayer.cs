@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,14 +6,18 @@ public class HitsCountDisplayer : MonoBehaviour
     [SerializeField] private TMP_Text _text;
     [SerializeField] private PlayerKickingBall _kickingBall;
 
-    private void Update()
+    private void OnEnable()
     {
-        StartCoroutine(HitsDisplaying());
+        _kickingBall.OnHitsRemainedChanged += UpdateHitsDisplaying;
     }
 
-    private IEnumerator HitsDisplaying()
+    private void OnDisable()
     {
-        _text.text = _kickingBall.HitsRemained.ToString();
-        yield return null;
+        _kickingBall.OnHitsRemainedChanged -= UpdateHitsDisplaying;
+    }
+
+    private void UpdateHitsDisplaying(int hitsRemained)
+    {
+        _text.text = hitsRemained.ToString();
     }
 }

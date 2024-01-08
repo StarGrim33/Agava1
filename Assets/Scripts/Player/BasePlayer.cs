@@ -1,3 +1,4 @@
+﻿using Ball;
 using System.Collections;
 using UnityEngine;
 
@@ -6,15 +7,19 @@ public abstract class BasePlayer : MonoBehaviour
     [SerializeField] protected BaseBall Ball;
     [SerializeField] protected ParticleSystem ParticleSystem;
     protected float Delay = 1f;
-    protected bool CanTeleport = false;
+    protected bool IsTeleporting = false;
 
     protected void Update()
     {
-        StartCoroutine(Teleport());
+        if (!IsTeleporting)
+        {
+            StartCoroutine(TeleportCoroutine());
+        }
     }
 
-    protected virtual IEnumerator Teleport()
+    protected virtual IEnumerator TeleportCoroutine()
     {
+        IsTeleporting = true;
         var waitForSeconds = new WaitForSeconds(Delay);
 
         if (transform.position != Ball.transform.position)
@@ -27,5 +32,7 @@ public abstract class BasePlayer : MonoBehaviour
         }
 
         yield return waitForSeconds;
+
+        IsTeleporting = false;
     }
 }

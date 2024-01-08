@@ -1,12 +1,12 @@
 public interface IAdShow
 {
-    private void OnCloseCallback() { }
+    void OnCloseCallback();
 
-    private void ContinueGame() { }
+    void ContinueGame();
 
-    private void PauseGame() { }
+    void PauseGame();
 
-    private void OnOpenCallback() { }
+    void OnOpenCallback();
 
-    private void OnErrorCallback(string errorMessage) { }
+    void OnErrorCallback(string errorMessage);
 }

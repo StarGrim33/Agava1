@@ -26,7 +26,10 @@ public class Score : MonoBehaviour
         _totalScore.LoadTotalScore();
     }
 
-    private void OnDisable() => _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
+    private void OnDisable()
+    {
+        _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
+    }
 
     public void UpdateLeaderboardScore()
     {
@@ -54,27 +57,27 @@ public class Score : MonoBehaviour
         _totalScore.SaveTotalScore();
     }
 
-    private void OnGoalGateSpawned(Gate gate) => gate.OnGoalScored += OnGoalScored;
-
-    private void OnGoalScored(Gate gate, bool isEnemyGoal)
+    private void OnGoalGateSpawned(Gate gate)
     {
-        if (isEnemyGoal)
-        {
-            EnemyScore += _scorePerGoal;
-            OnEnemyScoreChanged?.Invoke();
-        }
-        else if (isEnemyGoal == false)
-        {
-            PlayerScore += _scorePerGoal;
-            OnPlayerScoreChanged.Invoke();
+        gate.OnPlayerGoalScored += OnPlayerGoalScored;
+        gate.OnEnemyGoalScored += OnEnemyGoalScored;
+    }
 
-            if (PlayerScore >= _scoreForWin)
-            {
-                UpdateLeaderboardScore();
-                _totalScore.SaveTotalScore(PlayerScore);
-            }
-        }
+    private void OnPlayerGoalScored(Gate gate)
+    {
+        PlayerScore += _scorePerGoal;
+        OnPlayerScoreChanged?.Invoke();
 
-        gate.OnGoalScored -= OnGoalScored;
+        if (PlayerScore >= _scoreForWin)
+        {
+            UpdateLeaderboardScore();
+            _totalScore.SaveTotalScore(PlayerScore);
+        }
+    }
+
+    private void OnEnemyGoalScored(Gate gate)
+    {
+        EnemyScore += _scorePerGoal;
+        OnEnemyScoreChanged?.Invoke();
     }
 }

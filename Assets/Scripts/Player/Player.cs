@@ -10,15 +10,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(CheckBorders());
+        CheckBorders();
     }
 
-    private IEnumerator CheckBorders()
+    private void CheckBorders()
     {
-        if (transform.position.x > _maxXBorder || transform.position.x < _minXBorder ||
-                    transform.position.z > _maxZBorder || transform.position.z < _minZBorder)
+        if (transform.position.x > _maxXBorder || transform.position.x < _minXBorder
+                    || transform.position.z > _maxZBorder || transform.position.z < _minZBorder)
+        {
             transform.position = new Vector3(0, 0, 0);
-
-        yield return null;
+        }
     }
 }

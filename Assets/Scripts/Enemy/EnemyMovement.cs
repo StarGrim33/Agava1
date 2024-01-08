@@ -1,3 +1,4 @@
+using Ball;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -11,8 +12,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_kickingBall.IsKicking && Vector3.Distance(_enemy.transform.position, _ball.transform.position) > _maxDistance)
-           Teleport();
+        if (_kickingBall.IsKicking && Vector3.Distance(_enemy.transform.position,
+            _ball.transform.position) > _maxDistance)
+            Teleport();
     }
 
     private void Teleport()
@@ -22,7 +24,6 @@ public class EnemyMovement : MonoBehaviour
         ballLastPosition.y = 0f;
         Vector3 newPosition = transform.position;
         newPosition.y = 0f;
-
         _ball.transform.position = newPosition;
         _particleSystem.Play();
         transform.position = ballLastPosition;

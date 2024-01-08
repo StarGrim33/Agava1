@@ -25,12 +25,12 @@ public class MusicBreaker : MonoBehaviour, IMusicHandler
         if (_audioYB.isPlaying)
         {
             _startImage.sprite = _turnedOnMusicImage;
-        }    
+        }
     }
 
     public void TurnMusic()
     {
-        if(_audioYB.isPlaying)
+        if (_audioYB.isPlaying)
         {
             _audioYB.Pause();
             _startImage.sprite = _turnedOffMusicImage;

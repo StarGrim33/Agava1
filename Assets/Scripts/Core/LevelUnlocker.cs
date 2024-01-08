@@ -13,7 +13,7 @@ public class LevelUnlocker : MonoBehaviour
 
         for (int i = 0; i < _buttons.Length; i++)
         {
-            _buttons[i].interactable = (i < _levelsUnlocked);
+            _buttons[i].interactable = i < _levelsUnlocked;
         }
 
         PlayerPrefs.Save();

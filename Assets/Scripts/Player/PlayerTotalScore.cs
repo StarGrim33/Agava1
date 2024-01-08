@@ -36,7 +36,7 @@ public class PlayerTotalScore : MonoBehaviour
             _playerTotalScore -= value;
             ScoreChanged?.Invoke();
             SaveTotalScore();
-        } 
+        }
     }
 
     public void AddScore(int value)

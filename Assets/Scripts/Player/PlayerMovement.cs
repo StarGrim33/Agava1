@@ -1,6 +1,8 @@
+using Ball;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 
 public class PlayerMovement : BasePlayer
 {
@@ -12,15 +14,15 @@ public class PlayerMovement : BasePlayer
         Ball = newBall;
     }
 
-    protected override IEnumerator Teleport()
+    protected override IEnumerator TeleportCoroutine()
     {
         var waitForSeconds = new WaitForSeconds(Delay);
         float distanceToBall = 0.5f;
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.currentSelectedGameObject == null 
-                && transform.position != Ball.transform.position && 
+            if (EventSystem.current.currentSelectedGameObject == null
+                && transform.position != Ball.transform.position &&
                 Vector3.Distance(transform.position, Ball.transform.position) > distanceToBall && KickBall.IsAiming)
             {
                 Vector3 direction = Ball.transform.position - transform.position;

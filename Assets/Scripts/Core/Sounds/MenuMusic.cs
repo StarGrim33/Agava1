@@ -12,7 +12,7 @@ public class MenuMusic : MonoBehaviour
         int menuSceneIndex = 1;
         Scene currentScene = SceneManager.GetActiveScene();
 
-        if(Time.timeScale == 0 && currentScene.buildIndex != firstLevelIndex && currentScene.buildIndex != menuSceneIndex)
+        if (Time.timeScale == 0 && currentScene.buildIndex != firstLevelIndex && currentScene.buildIndex != menuSceneIndex)
             Time.timeScale = 1;
 
         if (_audio.isPlaying == false)

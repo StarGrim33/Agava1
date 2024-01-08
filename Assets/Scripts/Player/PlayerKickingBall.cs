@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Ball;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +15,8 @@ public class PlayerKickingBall : KickingBall
     private float _maxHoldTime = 1f;
     private float _timeDelayForAiming = 0.2f;
 
+    public event Action<int> OnHitsRemainedChanged;
+
     public bool IsAiming => base.HitsRemained > 0;
 
     public new int HitsRemained => base.HitsRemained;
@@ -20,6 +24,7 @@ public class PlayerKickingBall : KickingBall
     private void OnEnable()
     {
         _playerAnimator.OnKickedAnimationFinished += OnKickedAnimationFinished;
+        OnHitsRemainedChanged?.Invoke(HitsRemained);
     }
 
     private void OnDisable()
@@ -48,7 +53,6 @@ public class PlayerKickingBall : KickingBall
                 Time.timeScale = 1f;
                 Animator.SetBool(Constants.IsAiming, false);
             }
-
         }
 
         if (_isMouseDown)
@@ -81,6 +85,7 @@ public class PlayerKickingBall : KickingBall
             StartCoroutine(ReloadHits());
 
         Time.timeScale = 1f;
+        OnHitsRemainedChanged?.Invoke(HitsRemained);
     }
 
     protected override IEnumerator Kicking()
@@ -95,6 +100,7 @@ public class PlayerKickingBall : KickingBall
                 FooballPlayer.transform.Rotate(0, mouseX * AngleRotation, 0);
                 Quaternion rotation = Quaternion.Euler(0, mouseX * AngleRotation, 0);
                 HitDirection = rotation * HitDirection;
+                OnHitsRemainedChanged?.Invoke(HitsRemained);
             }
 
             yield return null;
@@ -104,6 +110,7 @@ public class PlayerKickingBall : KickingBall
         {
             _isMouseDown = false;
             Animator.SetBool(Constants.IsAiming, false);
+            OnHitsRemainedChanged?.Invoke(HitsRemained);
         }
     }
 
@@ -115,6 +122,7 @@ public class PlayerKickingBall : KickingBall
         {
             yield return waitForSeconds;
             base.HitsRemained = _hits;
+            OnHitsRemainedChanged?.Invoke(HitsRemained);
         }
     }
 
@@ -126,6 +134,7 @@ public class PlayerKickingBall : KickingBall
             _arrowImage.SetActive(false);
             Time.timeScale = 1f;
             Animator.SetBool(Constants.IsAiming, false);
+            OnHitsRemainedChanged?.Invoke(HitsRemained);
             StartCoroutine(ReloadHits());
         }
     }

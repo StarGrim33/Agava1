@@ -8,9 +8,10 @@ public class LanguageInitializer : MonoBehaviour
     private void Start()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            StartCoroutine(InitializeAndChangeLanguage());
+        StartCoroutine(InitializeAndChangeLanguage());
 #endif
     }
+
     private IEnumerator InitializeAndChangeLanguage()
     {
         while (!YandexGamesSdk.IsInitialized)

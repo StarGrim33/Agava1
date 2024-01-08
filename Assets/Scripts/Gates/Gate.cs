@@ -1,4 +1,5 @@
 using System;
+using Ball;
 using UnityEngine;
 
 public class Gate : MonoBehaviour
@@ -6,15 +7,19 @@ public class Gate : MonoBehaviour
     [SerializeField] private ParticleSystem[] _particleSystem;
     [SerializeField] private Transform _middleTarget;
 
-    public event Action<Gate, bool> OnGoalScored;
+    public event Action<Gate> OnPlayerGoalScored;
+    public event Action<Gate> OnEnemyGoalScored;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlayerBall>(out _))
+        {
             PlayerGoal();
-
-        if (other.TryGetComponent<EnemyBall>(out _))
+        }
+        else if (other.TryGetComponent<EnemyBall>(out _))
+        {
             EnemyGoal();
+        }
     }
 
     public Vector3 DetermineMiddlePosition()
@@ -26,13 +31,13 @@ public class Gate : MonoBehaviour
     private void PlayerGoal()
     {
         Goal();
-        OnGoalScored?.Invoke(this, false);
+        OnPlayerGoalScored?.Invoke(this);
     }
 
     private void EnemyGoal()
     {
         Goal();
-        OnGoalScored?.Invoke(this, true);
+        OnEnemyGoalScored?.Invoke(this);
     }
 
     private ParticleSystem GetRandomParticle()

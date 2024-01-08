@@ -1,5 +1,6 @@
 using Agava.YandexGames;
 using Lean.Localization;
+using TextOptimizerr;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

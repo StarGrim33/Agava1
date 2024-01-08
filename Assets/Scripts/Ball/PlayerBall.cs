@@ -1,37 +1,40 @@
 using UnityEngine;
 
-public class PlayerBall : BaseBall
+namespace Ball
 {
-    [SerializeField] protected bool IsBuyåd;
-    [SerializeField] protected PlayerData Data;
-
-    public bool IsBallByed {  get; protected set; }
-
-    protected virtual void Awake()
+    public class PlayerBall : BaseBall
     {
-        InitializeBall(Constants.BasketBall);
-    }
+        [SerializeField] protected bool IsBuyåd;
+        [SerializeField] protected PlayerData Data;
 
-    protected virtual void InitializeBall(string ballType)
-    {
-        if (PlayerPrefs.HasKey(ballType))
+        public bool IsBallByed { get; protected set; }
+
+        protected virtual void Awake()
         {
-            if (Data.IsBallPurchased(ballType))
+            InitializeBall(Constants.BasketBall);
+        }
+
+        public override void StopMoving()
+        {
+            Rigidbody.velocity = Vector3.zero;
+            transform.position = TargetPosition.position;
+        }
+
+        protected virtual void InitializeBall(string ballType)
+        {
+            if (PlayerPrefs.HasKey(ballType))
             {
-                IsBallByed = true;
+                if (Data.IsBallPurchased(ballType))
+                {
+                    IsBallByed = true;
+                    gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                IsBallByed = false;
                 gameObject.SetActive(false);
             }
         }
-        else
-        {
-            IsBallByed = false;
-            gameObject.SetActive(false);
-        }
-    }
-
-    public override void StopMoving()
-    {
-        Rigidbody.velocity = Vector3.zero;
-        transform.position = TargetPosition.position;
     }
 }

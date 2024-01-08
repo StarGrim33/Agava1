@@ -24,9 +24,11 @@ public class PlayerData : MonoBehaviour
             case Constants.BasketBall:
                 key = Constants.BasketBall;
                 break;
+
             case Constants.IceBall:
                 key = Constants.IceBall;
                 break;
+
             case Constants.SpiderBall:
                 key = Constants.SpiderBall;
                 break;

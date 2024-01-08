@@ -9,7 +9,6 @@ public class ScoreTextViewer : MonoBehaviour
     [SerializeField] private GameObject _textContainer;
     [SerializeField] private TMP_Text _goalText;
     [SerializeField] private TMP_Text _totalScore;
-    [SerializeField] private GateSpawner _spawner;
     [SerializeField] private Score _score;
 
     private void OnEnable()
@@ -22,9 +21,15 @@ public class ScoreTextViewer : MonoBehaviour
         Finalization();
     }
 
-    public void ShowTotalPlayerScore() => _totalScore.text = _score.PlayerScore.ToString();
+    public void ShowTotalPlayerScore()
+    {
+        _totalScore.text = _score.PlayerScore.ToString();
+    }
 
-    private void OnEnemyScoreChanged() => _enemyScoreText.text = $"{_score.EnemyScore}/{_score.ScoreForWin}";
+    private void OnEnemyScoreChanged()
+    {
+        _enemyScoreText.text = $"{_score.EnemyScore}/{_score.ScoreForWin}";
+    }
 
     private void OnPlayerScoreChanged()
     {
@@ -73,7 +78,7 @@ public class ScoreTextViewer : MonoBehaviour
 
     private string GetScoreText(FootballPlayers player)
     {
-        if(player == FootballPlayers.Enemy)
+        if (player == FootballPlayers.Enemy)
         {
             return $"{_score.EnemyScore}/{_score.ScoreForWin}";
         }

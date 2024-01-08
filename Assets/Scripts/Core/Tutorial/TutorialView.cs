@@ -23,7 +23,7 @@ public class TutorialView : MonoBehaviour
 
     public void HideTutorial(TutorialModel tutorialModel)
     {
-        if(tutorialModel.CurrentTutorialIndex < TutorialsCount)
+        if (tutorialModel.CurrentTutorialIndex < TutorialsCount)
         {
             _tutorials[tutorialModel.CurrentTutorialIndex].gameObject.SetActive(false);
         }
@@ -31,7 +31,7 @@ public class TutorialView : MonoBehaviour
 
     public void ShowTutorial(TutorialModel tutorialModel)
     {
-        if(tutorialModel.ShowTutorial && tutorialModel.CurrentTutorialIndex < TutorialsCount)
+        if (tutorialModel.ShowTutorial && tutorialModel.CurrentTutorialIndex < TutorialsCount)
         {
             _tutorials[tutorialModel.CurrentTutorialIndex].gameObject.SetActive(true);
             Time.timeScale = 0f;

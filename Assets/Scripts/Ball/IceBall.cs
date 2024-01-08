@@ -1,12 +1,15 @@
-public class IceBall : PlayerBall
+namespace Ball
 {
-    protected override void Awake()
+    public class IceBall : PlayerBall
     {
-        base.Awake();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    protected override void InitializeBall(string ballType)
-    {
-        base.InitializeBall(Constants.IceBall);
+        protected override void InitializeBall(string ballType)
+        {
+            base.InitializeBall(Constants.IceBall);
+        }
     }
 }

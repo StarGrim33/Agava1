@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.UI;
-using Agava.YandexGames;
 
 public class Shop : MonoBehaviour
 {
@@ -15,9 +15,9 @@ public class Shop : MonoBehaviour
 
     private Dictionary<int, string> _ballNames = new()
     {
-        {(int)Balls.BasketBall, Constants.BasketBall},
-        {(int)Balls.IceBall, Constants.IceBall},
-        {(int)Balls.SpiderBall, Constants.SpiderBall}
+        { (int)Balls.BasketBall, Constants.BasketBall },
+        { (int)Balls.IceBall, Constants.IceBall },
+        { (int)Balls.SpiderBall, Constants.SpiderBall },
     };
 
     private void Start()

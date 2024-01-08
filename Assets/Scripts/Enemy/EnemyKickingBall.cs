@@ -1,4 +1,5 @@
 using System.Collections;
+using Ball;
 using UnityEngine;
 
 public class EnemyKickingBall : KickingBall
@@ -35,7 +36,7 @@ public class EnemyKickingBall : KickingBall
 
     public void ChangeMissProbability(float value)
     {
-        if(value > 0 && value < 1)
+        if (value > 0 && value < 1)
             _missProbability = value;
     }
 
@@ -48,7 +49,7 @@ public class EnemyKickingBall : KickingBall
         {
             if (!_isKicking)
             {
-                HitDirection = DetermineEnemyKickDirection();                
+                HitDirection = DetermineEnemyKickDirection();
                 Animator.SetBool(Constants.IsAiming, true);
                 Animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0);
                 _isKicking = true;
@@ -71,7 +72,7 @@ public class EnemyKickingBall : KickingBall
         BallRigidbody.velocity = Vector3.zero;
         BallRigidbody.AddForce(HitDirection * HifForce, ForceMode.Impulse);
 
-        
+
         if (HitsRemained > 0)
             HitsRemained--;
 
@@ -94,13 +95,13 @@ public class EnemyKickingBall : KickingBall
 
     private Vector3 DetermineEnemyKickDirection()
     {
-        if(IsKickMissed() == false)
+        if (IsKickMissed() == false)
         {
             Vector3 kickDirection = _goalPosition - _ball.transform.position;
             kickDirection.y = 0f;
             return kickDirection.normalized;
         }
-        else if(IsKickMissed()) 
+        else if (IsKickMissed())
         {
             Vector2 randomPoint = Random.insideUnitCircle.normalized;
             Vector3 kickDirection = new(randomPoint.x, 0f, randomPoint.y);
@@ -117,9 +118,6 @@ public class EnemyKickingBall : KickingBall
 
     private bool IsKickMissed()
     {
-        if(Random.value < _missProbability) 
-            return true;
-
-        return false;
+        return Random.value < _missProbability;
     }
 }

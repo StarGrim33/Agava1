@@ -10,8 +10,6 @@ public class ShopTemplate : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private int _ballId;
 
-    public int BallId { get; private set; }
-
     public Image Image { get; private set; }
 
     public TMP_Text Title => _title;
@@ -22,7 +20,7 @@ public class ShopTemplate : MonoBehaviour
 
     public void SetBallId(int value)
     {
-        if(value > 0)
+        if (value > 0)
         {
             _ballId = value;
         }
