@@ -1,6 +1,7 @@
 using Agava.YandexGames;
 using System;
 using UnityEngine;
+using Utils;
 
 public class Score : MonoBehaviour
 {

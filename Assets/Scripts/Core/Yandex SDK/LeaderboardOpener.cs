@@ -4,6 +4,7 @@ using TextOptimizerr;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class LeaderboardOpener : MonoBehaviour
 {

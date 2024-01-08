@@ -1,6 +1,7 @@
 using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class LevelSwitcher : MonoBehaviour, IAdShow, IGameStatesHandler
 {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class Shop : MonoBehaviour
 {

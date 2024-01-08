@@ -2,6 +2,7 @@ using Agava.YandexGames;
 using Lean.Localization;
 using System.Collections;
 using UnityEngine;
+using Utils;
 
 public class LanguageInitializer : MonoBehaviour
 {
