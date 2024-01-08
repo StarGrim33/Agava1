@@ -1,29 +1,12 @@
-using UnityEngine;
-
 public class IceBall : PlayerBall
 {
-    [SerializeField] private PlayerData _data;
-
-    private void Awake()
+    protected override void Awake()
     {
-        Initializing();
+        base.Awake();
     }
 
-    private void Initializing()
+    protected override void InitializeBall(string ballType)
     {
-        if (PlayerPrefs.HasKey(Constants.IceBall))
-        {
-            if (_data.IsBallPurchased(Constants.IceBall))
-            {
-                IsBuyåd = true;
-                gameObject.SetActive(false);
-            }
-
-        }
-        else
-        {
-            IsBuyåd = false;
-            gameObject.SetActive(false);
-        }
+        base.InitializeBall(Constants.IceBall);
     }
 }

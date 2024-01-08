@@ -11,6 +11,7 @@ public class EnemyKickingBall : KickingBall
     private Vector3 _goalPosition;
     private bool _isKicking = false;
     private bool _isKickingCoroutineRunning = false;
+    private float _delayBeforeHit = 4f;
 
     public bool IsKicking => _isKicking;
 
@@ -41,16 +42,13 @@ public class EnemyKickingBall : KickingBall
     protected override IEnumerator Kicking()
     {
         _isKickingCoroutineRunning = true;
-        var waitForThreeSeconds = new WaitForSeconds(3f);
-        var waitForFourthSeconds = new WaitForSeconds(4f);
-
-        yield return waitForThreeSeconds;
+        var waitForFourthSeconds = new WaitForSeconds(_delayBeforeHit);
 
         while (HitsRemained > 0 && _goalPosition != null)
         {
             if (!_isKicking)
             {
-                HitDirection = CalculateEnemyHitDirection();                
+                HitDirection = DetermineEnemyKickDirection();                
                 Animator.SetBool(Constants.IsAiming, true);
                 Animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0);
                 _isKicking = true;
@@ -94,7 +92,7 @@ public class EnemyKickingBall : KickingBall
         }
     }
 
-    private Vector3 CalculateEnemyHitDirection()
+    private Vector3 DetermineEnemyKickDirection()
     {
         if(IsKickMissed() == false)
         {

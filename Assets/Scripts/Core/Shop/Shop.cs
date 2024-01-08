@@ -59,7 +59,7 @@ public class Shop : MonoBehaviour
             _templates[i].Desription.text = _items[i].Desription;
             _templates[i].BaseCost.text = _items[i].BaseCost.ToString();
             _templates[i].Image.sprite = _items[i].Sprite;
-            _templates[i].BallId = _items[i].BallId;
+            _templates[i].SetBallId(_items[i].BallId);
         }
     }
 

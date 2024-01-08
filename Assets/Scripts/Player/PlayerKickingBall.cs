@@ -39,7 +39,7 @@ public class PlayerKickingBall : KickingBall
                 Time.timeScale = _timeDelayForAiming;
                 StartCoroutine(Kicking());
                 Animator.SetBool(Constants.IsAiming, true);
-                Animator.Play(AnimatorPlayer.States.Strike, 0, 0f);
+                Animator.Play(AnimatorStates.Strike, 0, 0f);
             }
             else if (_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
             {

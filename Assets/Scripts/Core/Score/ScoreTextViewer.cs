@@ -14,16 +14,12 @@ public class ScoreTextViewer : MonoBehaviour
 
     private void OnEnable()
     {
-        _score.OnPlayerScoreChanged += OnPlayerScoreChanged;
-        _score.OnEnemyScoreChanged += OnEnemyScoreChanged;
-        _enemyScoreText.text = $"{_score.EnemyScore}/{_score.ScoreForWin}";
-        _playerScoreText.text = $"{_score.PlayerScore}/{_score.ScoreForWin}";
+        Init();
     }
 
     private void OnDisable()
     {
-        _score.OnPlayerScoreChanged -= OnPlayerScoreChanged;
-        _score.OnEnemyScoreChanged -= OnEnemyScoreChanged;
+        Finalization();
     }
 
     public void ShowTotalPlayerScore() => _totalScore.text = _score.PlayerScore.ToString();
@@ -34,7 +30,6 @@ public class ScoreTextViewer : MonoBehaviour
     {
         _playerScoreText.text = $"{_score.PlayerScore}/{_score.ScoreForWin}";
         _textContainer.SetActive(true);
-
         StartCoroutine(TextFading());
     }
 
@@ -60,5 +55,31 @@ public class ScoreTextViewer : MonoBehaviour
         _goalText.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
 
         yield return null;
+    }
+
+    private void Init()
+    {
+        _score.OnPlayerScoreChanged += OnPlayerScoreChanged;
+        _score.OnEnemyScoreChanged += OnEnemyScoreChanged;
+        _enemyScoreText.text = GetScoreText(FootballPlayers.Enemy);
+        _playerScoreText.text = GetScoreText(FootballPlayers.Gamer);
+    }
+
+    private void Finalization()
+    {
+        _score.OnPlayerScoreChanged -= OnPlayerScoreChanged;
+        _score.OnEnemyScoreChanged -= OnEnemyScoreChanged;
+    }
+
+    private string GetScoreText(FootballPlayers player)
+    {
+        if(player == FootballPlayers.Enemy)
+        {
+            return $"{_score.EnemyScore}/{_score.ScoreForWin}";
+        }
+        else
+        {
+            return $"{_score.PlayerScore}/{_score.ScoreForWin}";
+        }
     }
 }

@@ -19,7 +19,9 @@ public class PlayerMovement : BasePlayer
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.currentSelectedGameObject == null && transform.position != Ball.transform.position && Vector3.Distance(transform.position, Ball.transform.position) > distanceToBall && KickBall.IsAiming)
+            if (EventSystem.current.currentSelectedGameObject == null 
+                && transform.position != Ball.transform.position && 
+                Vector3.Distance(transform.position, Ball.transform.position) > distanceToBall && KickBall.IsAiming)
             {
                 Vector3 direction = Ball.transform.position - transform.position;
                 float distance = 1f;

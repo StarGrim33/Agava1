@@ -17,7 +17,7 @@ public class Gate : MonoBehaviour
             EnemyGoal();
     }
 
-    public Vector3 MiddleTarget()
+    public Vector3 DetermineMiddlePosition()
     {
         Vector3 target = _middleTarget.position;
         return target;

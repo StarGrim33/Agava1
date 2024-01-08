@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class FalseGate : MonoBehaviour
+public class DeceptiveGoal : MonoBehaviour
 {
     [SerializeField] private float _lifeTime;
 

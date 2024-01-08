@@ -9,10 +9,4 @@ public class AnimatorPlayer : MonoBehaviour
     {
         OnKickedAnimationFinished.Invoke();
     }
-
-    public static class States
-    {
-        public const string Idle = nameof(Idle);
-        public const string Strike = nameof(Strike);
-    }
 }

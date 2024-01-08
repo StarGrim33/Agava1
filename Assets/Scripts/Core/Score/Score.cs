@@ -14,23 +14,11 @@ public class Score : MonoBehaviour
     public event Action OnPlayerScoreChanged;
     public event Action OnEnemyScoreChanged;
 
-    public int ScoreForWin
-    {
-        get { return _scoreForWin; }
-        private set { _scoreForWin = value; }
-    }
+    public int ScoreForWin => _scoreForWin;
 
-    public int PlayerScore
-    {
-        get { return _playerScore; }
-        private set { _playerScore = value; }
-    }
+    public int PlayerScore { get; private set; } = 0;
 
-    public int EnemyScore
-    {
-        get { return _enemyScore; }
-        private set { _enemyScore = value; }
-    }
+    public int EnemyScore { get; private set; } = 0;
 
     private void OnEnable()
     {
@@ -40,7 +28,7 @@ public class Score : MonoBehaviour
 
     private void OnDisable() => _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
 
-    public void GetLeaderboardPlayerEntryButtonClick()
+    public void UpdateLeaderboardScore()
     {
         Leaderboard.GetPlayerEntry(Constants.LeaderboardName, (result) =>
         {
@@ -82,7 +70,7 @@ public class Score : MonoBehaviour
 
             if (PlayerScore >= _scoreForWin)
             {
-                GetLeaderboardPlayerEntryButtonClick();
+                UpdateLeaderboardScore();
                 _totalScore.SaveTotalScore(PlayerScore);
             }
         }

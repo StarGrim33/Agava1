@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GateSpawner : MonoBehaviour
 {
     [SerializeField] private Gate _gatePrefab;
     [SerializeField] private SpawnPointParts _spawnPointParts;
-    [SerializeField] private FalseGate _falseGatePrefab;
+    [SerializeField] private DeceptiveGoal _falseGatePrefab;
     [SerializeField] private bool _isFalseGateEnabled;
     private Gate _currentGate;
-    private FalseGate _currentFalseGate;
+    private DeceptiveGoal _currentFalseGate;
     private float _spawnDelay = 2f;
     private float _spawnDelayAfterFalseGate = 5f;
 
@@ -42,30 +41,44 @@ public class GateSpawner : MonoBehaviour
 
         if (IsGateFalse())
         {
-            _currentFalseGate = Instantiate(_falseGatePrefab, randomPosition.position, Quaternion.identity);
-
-            yield return new WaitForSeconds(_spawnDelayAfterFalseGate);
-
-            StartCoroutine(Spawner());
+            yield return SpawnFalseGate(randomPosition);
         }
         else
         {
-            _currentGate = Instantiate(_gatePrefab, randomPosition.position, Quaternion.identity);
-            _currentGate.transform.rotation = DefineRotation(randomPosition);
-            _currentGate.OnGoalScored += OnGoalScored;
-            OnGoalGateSpawned?.Invoke(_currentGate);
-            Vector3 gatePosition = _currentGate.MiddleTarget();
-            OnGateSpawned?.Invoke(gatePosition);
+            yield return SpawnTrueGate(randomPosition);
         }
     }
 
-    private Quaternion DefineRotation(Transform spawnPoint)
+    private IEnumerator SpawnFalseGate(Transform spawnPosition)
+    {
+        var waitForSeconds = new WaitForSeconds(_spawnDelayAfterFalseGate);
+        _currentFalseGate = Instantiate(_falseGatePrefab, spawnPosition.position, Quaternion.identity);
+
+        yield return waitForSeconds;
+
+        StartCoroutine(Spawner());
+    }
+
+    private IEnumerator SpawnTrueGate(Transform spawnPosition)
+    {
+        var waitForSeconds = new WaitForSeconds(_spawnDelay);
+        yield return waitForSeconds;
+
+        _currentGate = Instantiate(_gatePrefab, spawnPosition.position, Quaternion.identity);
+        _currentGate.transform.rotation = SetGateRotationBySpawnPosition(spawnPosition);
+        _currentGate.OnGoalScored += OnGoalScored;
+        OnGoalGateSpawned?.Invoke(_currentGate);
+        Vector3 gatePosition = _currentGate.DetermineMiddlePosition();
+        OnGateSpawned?.Invoke(gatePosition);
+    }
+
+    private Quaternion SetGateRotationBySpawnPosition(Transform spawnPoint)
     {
         float angle = -90f;
 
-        if (_spawnPointParts.GetLeftSideSpawnPoints().Contains(spawnPoint))
+        if (_spawnPointParts.LeftSideSpawnPoints.Contains(spawnPoint))
             return Quaternion.Euler(angle, angle, angle);
-        else if (_spawnPointParts.GetRightSideSpawnPoints().Contains(spawnPoint))
+        else if (_spawnPointParts.RightSideSpawnPoints.Contains(spawnPoint))
             return Quaternion.Euler(angle, 0f, 0f);
 
         return Quaternion.identity;
@@ -77,6 +90,18 @@ public class GateSpawner : MonoBehaviour
         float chance = 0.5f;
 
         if (randomValue < chance)
+        {
+            return GetSpawnPoint(GateSides.Left);
+        }
+        else
+        {
+            return GetSpawnPoint(GateSides.Right);
+        }
+    }
+
+    private Transform GetSpawnPoint(GateSides side)
+    {
+        if(side == GateSides.Left)
         {
             int randomLeftSidePosition = UnityEngine.Random.Range(0, _spawnPointParts.LeftSideCount);
             Transform spawnPoint = _spawnPointParts.GetRandomSpawnPoint(randomLeftSidePosition);
@@ -99,38 +124,5 @@ public class GateSpawner : MonoBehaviour
             return true;
 
         return false;
-    }
-
-    [System.Serializable]
-    public class SpawnPointParts
-    {
-        [SerializeField] private List<Transform> _leftSide;
-        [SerializeField] private List<Transform> _rightSide;
-
-        public int LeftSideCount => _leftSide.Count;
-        public int RightSideCount => _rightSide.Count;
-
-        public Transform GetRandomSpawnPoint(int index)
-        {
-            if (index < _leftSide.Count)
-            {
-                return _leftSide[index];
-            }
-            else
-            {
-                index -= _leftSide.Count;
-                return _rightSide[index];
-            }
-        }
-
-        public List<Transform> GetLeftSideSpawnPoints()
-        {
-            return _leftSide;
-        }
-
-        public List<Transform> GetRightSideSpawnPoints()
-        {
-            return _rightSide;
-        }
     }
 }

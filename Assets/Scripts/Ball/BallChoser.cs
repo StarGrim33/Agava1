@@ -16,7 +16,7 @@ public class BallChoser : MonoBehaviour
     {
         int nextBallIndex = (_currentBallIndex + 1) % _balls.Length;
 
-        if (_balls[nextBallIndex].IsBuyed)
+        if (_balls[nextBallIndex].IsBallByed)
             ChangeToBall(nextBallIndex);
         else
             ChangeToBall(0);

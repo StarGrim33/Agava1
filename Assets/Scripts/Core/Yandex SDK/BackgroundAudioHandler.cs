@@ -1,7 +1,7 @@
 using Agava.WebUtility;
 using UnityEngine;
 
-public class WebUtilityBagFix : MonoBehaviour
+public class BackgroundAudioHandler : MonoBehaviour
 {
     private void OnEnable()
     {
