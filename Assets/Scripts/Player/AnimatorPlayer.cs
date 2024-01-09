@@ -1,18 +1,15 @@
 using System;
 using UnityEngine;
 
-public class AnimatorPlayer : MonoBehaviour
-{    
-    public event Action OnKickedAnimationFinished;
-
-    public void AnimationEvent()
+namespace Player
+{
+    public class AnimatorPlayer : MonoBehaviour
     {
-        OnKickedAnimationFinished.Invoke();
-    }
+        public event Action OnKickedAnimationFinished;
 
-    public static class States
-    {
-        public const string Idle = nameof(Idle);
-        public const string Strike = nameof(Strike);
+        public void AnimationEvent()
+        {
+            OnKickedAnimationFinished?.Invoke();
+        }
     }
 }

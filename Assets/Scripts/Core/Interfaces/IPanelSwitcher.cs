@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public interface IPanelSwitcher
+namespace Interfaces
 {
-    void OpenPanel(GameObject panel);
+    public interface IPanelSwitcher
+    {
+        void OpenPanel(GameObject panel);
 
-    void ClosePanel(GameObject panel);
+        void ClosePanel(GameObject panel);
+    }
 }

@@ -1,40 +1,43 @@
 using UnityEngine;
 
-public class MatchEndScreenViewer : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private GameObject _loseScreen;
-    [SerializeField] private GameObject _victoryScreen;
-    [SerializeField] private Score _score;
-    [SerializeField] private ScoreTextViewer _textViewer;
-
-    private void OnEnable()
+    public class MatchEndScreenViewer : MonoBehaviour
     {
-        _score.OnPlayerScoreChanged += OnPlayerScoreChanged;
-        _score.OnEnemyScoreChanged += OnEnemyScoreChanged;
-    }
+        [SerializeField] private GameObject _loseScreen;
+        [SerializeField] private GameObject _victoryScreen;
+        [SerializeField] private Score _score;
+        [SerializeField] private ScoreTextViewer _textViewer;
 
-    private void OnDisable()
-    {
-        _score.OnPlayerScoreChanged -= OnPlayerScoreChanged;
-        _score.OnEnemyScoreChanged -= OnEnemyScoreChanged;
-    }
+        private void OnEnable()
+        {
+            _score.OnPlayerScoreChanged += OnPlayerScoreChanged;
+            _score.OnEnemyScoreChanged += OnEnemyScoreChanged;
+        }
 
-    private void OnEnemyScoreChanged()
-    {
-        if (_score.EnemyScore >= _score.ScoreForWin)
-            ShowPanel(_loseScreen);
-    }
+        private void OnDisable()
+        {
+            _score.OnPlayerScoreChanged -= OnPlayerScoreChanged;
+            _score.OnEnemyScoreChanged -= OnEnemyScoreChanged;
+        }
 
-    private void OnPlayerScoreChanged()
-    {
-        if (_score.PlayerScore >= _score.ScoreForWin)
-            ShowPanel(_victoryScreen);
-    }
+        private void OnEnemyScoreChanged()
+        {
+            if (_score.EnemyScore >= _score.ScoreForWin)
+                ShowPanel(_loseScreen);
+        }
 
-    private void ShowPanel(GameObject screen)
-    {
-        Time.timeScale = 0f;
-        screen.gameObject.SetActive(true);
-        _textViewer.ShowTotalPlayerScore();
+        private void OnPlayerScoreChanged()
+        {
+            if (_score.PlayerScore >= _score.ScoreForWin)
+                ShowPanel(_victoryScreen);
+        }
+
+        private void ShowPanel(GameObject screen)
+        {
+            Time.timeScale = 0f;
+            screen.gameObject.SetActive(true);
+            _textViewer.ShowTotalPlayerScore();
+        }
     }
 }

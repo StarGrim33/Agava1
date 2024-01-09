@@ -1,49 +1,53 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialView : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private List<Button> _tutorials;
-    [SerializeField] private GameObject _player;
-
-    private TutorialPresenter _presenter;
-
-    public int TutorialsCount => _tutorials.Count;
-
-    private void Awake()
+    public class TutorialView : MonoBehaviour
     {
-        _presenter = new TutorialPresenter(this);
-    }
+        [SerializeField] private List<Button> _tutorials;
+        [SerializeField] private GameObject _player;
 
-    public void OnTutorialClick()
-    {
-        _presenter.OnTutorialClick();
-    }
+        private TutorialPresenter _presenter;
 
-    public void HideTutorial(TutorialModel tutorialModel)
-    {
-        if(tutorialModel.CurrentTutorialIndex < TutorialsCount)
+        public int TutorialsCount => _tutorials.Count;
+
+        private void Awake()
         {
-            _tutorials[tutorialModel.CurrentTutorialIndex].gameObject.SetActive(false);
+            _presenter = new TutorialPresenter(this);
         }
-    }
 
-    public void ShowTutorial(TutorialModel tutorialModel)
-    {
-        if(tutorialModel.ShowTutorial && tutorialModel.CurrentTutorialIndex < TutorialsCount)
+        public void OnTutorialClick()
         {
-            _tutorials[tutorialModel.CurrentTutorialIndex].gameObject.SetActive(true);
-            Time.timeScale = 0f;
-            _player.GetComponent<PlayerKickingBall>().enabled = false;
-            _player.GetComponent<PlayerMovement>().enabled = false;
+            _presenter.OnTutorialClick();
         }
-    }
 
-    public void EnablePlayerControls()
-    {
-        Time.timeScale = 1f;
-        _player.GetComponent<PlayerKickingBall>().enabled = true;
-        _player.GetComponent<PlayerMovement>().enabled = true;
+        public void HideTutorial(TutorialModel tutorialModel)
+        {
+            if (tutorialModel.CurrentTutorialIndex < TutorialsCount)
+            {
+                _tutorials[tutorialModel.CurrentTutorialIndex].gameObject.SetActive(false);
+            }
+        }
+
+        public void ShowTutorial(TutorialModel tutorialModel)
+        {
+            if (tutorialModel.ShowTutorial && tutorialModel.CurrentTutorialIndex < TutorialsCount)
+            {
+                _tutorials[tutorialModel.CurrentTutorialIndex].gameObject.SetActive(true);
+                Time.timeScale = 0f;
+                _player.GetComponent<PlayerKickingBall>().enabled = false;
+                _player.GetComponent<PlayerMovement>().enabled = false;
+            }
+        }
+
+        public void EnablePlayerControls()
+        {
+            Time.timeScale = 1f;
+            _player.GetComponent<PlayerKickingBall>().enabled = true;
+            _player.GetComponent<PlayerMovement>().enabled = true;
+        }
     }
 }

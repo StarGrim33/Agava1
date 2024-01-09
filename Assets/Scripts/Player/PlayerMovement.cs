@@ -1,31 +1,38 @@
 using System.Collections;
+using Ball;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerMovement : BasePlayer
+namespace Player
 {
-    [SerializeField] protected PlayerKickingBall KickBall;
-    [SerializeField] private SphereCollider _sphereCollider;
-
-    public void SetBall(PlayerBall newBall)
+    public class PlayerMovement : PlayerBoundaryChecker
     {
-        Ball = newBall;
-    }
+        [SerializeField] protected PlayerKickingBall KickBall;
+        [SerializeField] private SphereCollider _sphereCollider;
+        private WaitForSeconds _waitForSeconds;
+        private float _distanceToBall = 0.5f;
 
-    protected override IEnumerator Teleport()
-    {
-        var waitForSeconds = new WaitForSeconds(Delay);
-        float distanceToBall = 0.5f;
-
-        if (Input.GetMouseButtonDown(0))
+        protected override void Start()
         {
-            if (EventSystem.current.currentSelectedGameObject == null && transform.position != Ball.transform.position && Vector3.Distance(transform.position, Ball.transform.position) > distanceToBall && KickBall.IsAiming)
+            _waitForSeconds = new WaitForSeconds(Delay);
+            base.Start();
+        }
+
+        public void SetBall(PlayerBall newBall)
+        {
+            Ball = newBall;
+        }
+
+        protected override IEnumerator TeleportCoroutine()
+        {
+            if (Input.GetMouseButtonDown(0) && EventSystem.current.currentSelectedGameObject == null
+                    && transform.position != Ball.transform.position &&
+                    Vector3.Distance(transform.position, Ball.transform.position) > _distanceToBall && KickBall.IsAiming)
             {
                 Vector3 direction = Ball.transform.position - transform.position;
                 float distance = 1f;
 
                 RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, distance);
-
                 bool hasCollidersInPath = false;
 
                 foreach (RaycastHit hit in hits)
@@ -34,7 +41,6 @@ public class PlayerMovement : BasePlayer
                     {
                         hasCollidersInPath = true;
                         Ball.StopMoving();
-
                         break;
                     }
                 }
@@ -46,8 +52,8 @@ public class PlayerMovement : BasePlayer
                     Ball.StopMoving();
                 }
             }
-        }
 
-        yield return waitForSeconds;
+            yield return _waitForSeconds;
+        }
     }
 }

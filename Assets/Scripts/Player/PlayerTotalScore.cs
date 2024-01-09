@@ -1,46 +1,50 @@
 using System;
 using UnityEngine;
+using Utils;
 
-public class PlayerTotalScore : MonoBehaviour
+namespace Player
 {
-    private int _playerTotalScore;
-
-    public event Action ScoreChanged;
-
-    public int TotalScore => _playerTotalScore;
-
-    private void Awake()
+    public class PlayerTotalScore : MonoBehaviour
     {
-        LoadTotalScore();
-    }
+        private int _playerTotalScore;
 
-    public void SaveTotalScore(int value = 0)
-    {
-        _playerTotalScore += value;
-        PlayerPrefs.SetInt(Constants.TotalScoreKey, _playerTotalScore);
-        PlayerPrefs.Save();
-    }
+        public event Action ScoreChanged;
 
-    public void LoadTotalScore()
-    {
-        if (PlayerPrefs.HasKey(Constants.TotalScoreKey))
+        public int TotalScore => _playerTotalScore;
+
+        private void Awake()
         {
-            _playerTotalScore = PlayerPrefs.GetInt(Constants.TotalScoreKey);
+            LoadTotalScore();
         }
-    }
 
-    public void ReduceScore(int value)
-    {
-        if (_playerTotalScore > 0)
+        public void SaveTotalScore(int value = 0)
         {
-            _playerTotalScore -= value;
-            ScoreChanged?.Invoke();
-            SaveTotalScore();
-        } 
-    }
+            _playerTotalScore += value;
+            PlayerPrefs.SetInt(Constants.TotalScoreKey, _playerTotalScore);
+            PlayerPrefs.Save();
+        }
 
-    public void AddScore(int value)
-    {
-        _playerTotalScore += value;
+        public void LoadTotalScore()
+        {
+            if (PlayerPrefs.HasKey(Constants.TotalScoreKey))
+            {
+                _playerTotalScore = PlayerPrefs.GetInt(Constants.TotalScoreKey);
+            }
+        }
+
+        public void ReduceScore(int value)
+        {
+            if (_playerTotalScore > 0)
+            {
+                _playerTotalScore -= value;
+                ScoreChanged?.Invoke();
+                SaveTotalScore();
+            }
+        }
+
+        public void AddScore(int value)
+        {
+            _playerTotalScore += value;
+        }
     }
 }

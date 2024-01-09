@@ -1,11 +1,15 @@
+using Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelRestarter : MonoBehaviour, ILevelRestart
+namespace Core
 {
-    public void Restart()
+    public class LevelRestarter : MonoBehaviour, ILevelRestart
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
+        public void Restart()
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentSceneIndex);
+        }
     }
 }

@@ -1,23 +1,24 @@
 using Agava.YandexGames;
+using Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class AuthorizationButton : MonoBehaviour, IAuthorize
+namespace Core
 {
-    [SerializeField] private Button _button;
-
-    public void OnAuthorizeButtonClick()
+    public class AuthorizationButton : MonoBehaviour, IAuthorize
     {
-        Authorize();
-    }
+        public void OnAuthorizeButtonClick()
+        {
+            Authorize();
+        }
 
-    public void OnDeclineAuthorizationButton(GameObject panel)
-    {
-        panel.gameObject.SetActive(false);
-    }
+        public void OnDeclineAuthorizationButton(GameObject panel)
+        {
+            panel.gameObject.SetActive(false);
+        }
 
-    public void Authorize()
-    {
-        PlayerAccount.Authorize();
+        public void Authorize()
+        {
+            PlayerAccount.Authorize();
+        }
     }
 }

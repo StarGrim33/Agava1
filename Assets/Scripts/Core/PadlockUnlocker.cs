@@ -1,16 +1,20 @@
 using UnityEngine;
+using Utils;
 
-public class PadlockUnlocker : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private GameObject _padlock;
-    [SerializeField] private int _level;
-
-    private void Start()
+    public class PadlockUnlocker : MonoBehaviour
     {
-        int defaultValue = 1;
-        int levelUnlocked = PlayerPrefs.GetInt(Constants.LevelsUnlocked, defaultValue);
+        [SerializeField] private GameObject _padlock;
+        [SerializeField] private int _level;
 
-        if (levelUnlocked >= _level)
-            _padlock.SetActive(false);
+        private void Start()
+        {
+            int defaultValue = 1;
+            int levelUnlocked = PlayerPrefs.GetInt(Constants.LevelsUnlocked, defaultValue);
+
+            if (levelUnlocked >= _level)
+                _padlock.SetActive(false);
+        }
     }
 }

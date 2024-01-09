@@ -1,6 +1,9 @@
-public interface IGameStatesHandler
+namespace Interfaces
 {
-    void ContinueGame();
+    public interface IGameStatesHandler
+    {
+        void ContinueGame();
 
-    void PauseGame();
+        void PauseGame();
+    }
 }

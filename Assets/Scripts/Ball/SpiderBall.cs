@@ -1,29 +1,17 @@
-using UnityEngine;
+using Utils;
 
-public class SpiderBall : PlayerBall
+namespace Ball
 {
-    [SerializeField] private PlayerData _data;
-
-    private void Awake()
+    public class SpiderBall : PlayerBall
     {
-        Initializing();
-    }
-
-    private void Initializing()
-    {
-        if (PlayerPrefs.HasKey(Constants.SpiderBall))
+        protected override void Awake()
         {
-            if (_data.IsBallPurchased(Constants.SpiderBall))
-            {
-                IsBuyåd = true;
-                gameObject.SetActive(false);
-            }
-
+            base.Awake();
         }
-        else
+
+        protected override void InitializeBall(string ballType)
         {
-            IsBuyåd = false;
-            gameObject.SetActive(false);
+            base.InitializeBall(Constants.SpiderBall);
         }
     }
 }

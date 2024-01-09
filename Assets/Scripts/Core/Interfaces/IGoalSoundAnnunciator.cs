@@ -1,4 +1,7 @@
-public interface IGoalSoundAnnunciator
+namespace Interfaces
 {
-    void Annunciate(string name);
+    public interface IGoalSoundAnnunciator
+    {
+        void Annunciate(string name);
+    }
 }

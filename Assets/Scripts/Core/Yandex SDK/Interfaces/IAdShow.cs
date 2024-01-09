@@ -1,12 +1,15 @@
-public interface IAdShow
+namespace Interfaces
 {
-    private void OnCloseCallback() { }
+    public interface IAdShow
+    {
+        void OnCloseCallback();
 
-    private void ContinueGame() { }
+        void ContinueGame();
 
-    private void PauseGame() { }
+        void PauseGame();
 
-    private void OnOpenCallback() { }
+        void OnOpenCallback();
 
-    private void OnErrorCallback(string errorMessage) { }
+        void OnErrorCallback(string errorMessage);
+    }
 }

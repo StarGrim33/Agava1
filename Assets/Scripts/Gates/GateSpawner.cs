@@ -1,136 +1,123 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GateSpawner : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private Gate _gatePrefab;
-    [SerializeField] private SpawnPointParts _spawnPointParts;
-    [SerializeField] private FalseGate _falseGatePrefab;
-    [SerializeField] private bool _isFalseGateEnabled;
-    private Gate _currentGate;
-    private FalseGate _currentFalseGate;
-    private float _spawnDelay = 2f;
-    private float _spawnDelayAfterFalseGate = 5f;
-
-    public event Action<Gate> OnGoalGateSpawned;
-    public event Action<Vector3> OnGateSpawned;
-
-    private void Start()
+    public class GateSpawner : MonoBehaviour
     {
-        SpawnGate();
-    }
+        [SerializeField] private Gate _gatePrefab;
+        [SerializeField] private SpawnPointParts _spawnPointParts;
+        [SerializeField] private DeceptiveGoal _falseGatePrefab;
+        [SerializeField] private bool _isFalseGateEnabled;
 
-    public void OnGoalScored(Gate gate, bool isEnemyGoal)
-    {
-        gate.OnGoalScored -= OnGoalScored;
-        _currentGate = null;
-        SpawnGate();
-    }
+        private Gate _currentGate;
+        private DeceptiveGoal _currentFalseGate;
+        private float _spawnDelay = 2f;
+        private float _spawnDelayAfterFalseGate = 5f;
 
-    private void SpawnGate()
-    {
-        StartCoroutine(Spawner());
-    }
+        private WaitForSeconds _waitForSpawnDelay;
+        private WaitForSeconds _waitForSpawnDelayAfterFalseGate;
 
-    private IEnumerator Spawner()
-    {
-        var waitForSeconds = new WaitForSeconds(_spawnDelay);
-        yield return waitForSeconds;
-        var randomPosition = GetRandomPosition();
+        public event Action<Gate> OnGoalGateSpawned;
+        public event Action<Vector3> OnGateSpawned;
 
-        if (IsGateFalse())
+        private void Start()
         {
-            _currentFalseGate = Instantiate(_falseGatePrefab, randomPosition.position, Quaternion.identity);
+            _waitForSpawnDelay = new WaitForSeconds(_spawnDelay);
+            _waitForSpawnDelayAfterFalseGate = new WaitForSeconds(_spawnDelayAfterFalseGate);
+            SpawnGate();
+        }
 
-            yield return new WaitForSeconds(_spawnDelayAfterFalseGate);
+        public void OnGoalScored(Gate gate)
+        {
+            gate.OnPlayerGoalScored -= OnGoalScored;
+            _currentGate = null;
+            SpawnGate();
+        }
 
+        private void SpawnGate()
+        {
             StartCoroutine(Spawner());
         }
-        else
+
+        private IEnumerator Spawner()
         {
-            _currentGate = Instantiate(_gatePrefab, randomPosition.position, Quaternion.identity);
-            _currentGate.transform.rotation = DefineRotation(randomPosition);
-            _currentGate.OnGoalScored += OnGoalScored;
-            OnGoalGateSpawned?.Invoke(_currentGate);
-            Vector3 gatePosition = _currentGate.MiddleTarget();
-            OnGateSpawned?.Invoke(gatePosition);
-        }
-    }
+            yield return _waitForSpawnDelay;
+            var randomPosition = GetRandomPosition();
 
-    private Quaternion DefineRotation(Transform spawnPoint)
-    {
-        float angle = -90f;
-
-        if (_spawnPointParts.GetLeftSideSpawnPoints().Contains(spawnPoint))
-            return Quaternion.Euler(angle, angle, angle);
-        else if (_spawnPointParts.GetRightSideSpawnPoints().Contains(spawnPoint))
-            return Quaternion.Euler(angle, 0f, 0f);
-
-        return Quaternion.identity;
-    }
-
-    private Transform GetRandomPosition()
-    {
-        float randomValue = UnityEngine.Random.value;
-        float chance = 0.5f;
-
-        if (randomValue < chance)
-        {
-            int randomLeftSidePosition = UnityEngine.Random.Range(0, _spawnPointParts.LeftSideCount);
-            Transform spawnPoint = _spawnPointParts.GetRandomSpawnPoint(randomLeftSidePosition);
-            return spawnPoint;
-        }
-        else
-        {
-            int randomRightSidePosition = UnityEngine.Random.Range(0, _spawnPointParts.RightSideCount);
-            Transform spawnPoint = _spawnPointParts.GetRandomSpawnPoint(randomRightSidePosition);
-            return spawnPoint;
-        }
-    }
-
-    private bool IsGateFalse()
-    {
-        float randomValue = UnityEngine.Random.value;
-        float chance = 0.3f;
-
-        if (randomValue < chance && _isFalseGateEnabled)
-            return true;
-
-        return false;
-    }
-
-    [System.Serializable]
-    public class SpawnPointParts
-    {
-        [SerializeField] private List<Transform> _leftSide;
-        [SerializeField] private List<Transform> _rightSide;
-
-        public int LeftSideCount => _leftSide.Count;
-        public int RightSideCount => _rightSide.Count;
-
-        public Transform GetRandomSpawnPoint(int index)
-        {
-            if (index < _leftSide.Count)
+            if (IsGateFalse())
             {
-                return _leftSide[index];
+                yield return SpawnFalseGate(randomPosition);
             }
             else
             {
-                index -= _leftSide.Count;
-                return _rightSide[index];
+                yield return SpawnTrueGate(randomPosition);
             }
         }
 
-        public List<Transform> GetLeftSideSpawnPoints()
+        private IEnumerator SpawnFalseGate(Transform spawnPosition)
         {
-            return _leftSide;
+            _currentFalseGate = Instantiate(_falseGatePrefab, spawnPosition.position, Quaternion.identity);
+            yield return _waitForSpawnDelayAfterFalseGate;
+            StartCoroutine(Spawner());
         }
 
-        public List<Transform> GetRightSideSpawnPoints()
+        private IEnumerator SpawnTrueGate(Transform spawnPosition)
         {
-            return _rightSide;
+            yield return _waitForSpawnDelay;
+            _currentGate = Instantiate(_gatePrefab, spawnPosition.position, Quaternion.identity);
+            _currentGate.transform.rotation = SetGateRotationBySpawnPosition(spawnPosition);
+            _currentGate.OnPlayerGoalScored += OnGoalScored;
+            OnGoalGateSpawned?.Invoke(_currentGate);
+            Vector3 gatePosition = _currentGate.DetermineMiddlePosition();
+            OnGateSpawned?.Invoke(gatePosition);
+        }
+
+        private Quaternion SetGateRotationBySpawnPosition(Transform spawnPoint)
+        {
+            float angle = -90f;
+
+            if (_spawnPointParts.LeftSideSpawnPoints.Contains(spawnPoint))
+            {
+                return Quaternion.Euler(angle, angle, angle);
+            }
+            else if (_spawnPointParts.RightSideSpawnPoints.Contains(spawnPoint))
+            {
+                return Quaternion.Euler(angle, 0f, 0f);
+            }
+
+            return Quaternion.identity;
+        }
+
+        private Transform GetSpawnPoint(GateSides side)
+        {
+            int randomPosition;
+
+            if (side == GateSides.Left)
+            {
+                randomPosition = UnityEngine.Random.Range(0, _spawnPointParts.LeftSideCount);
+                return _spawnPointParts.GetRandomSpawnPoint(randomPosition);
+            }
+            else
+            {
+                randomPosition = UnityEngine.Random.Range(0, _spawnPointParts.RightSideCount);
+                return _spawnPointParts.GetRandomSpawnPoint(randomPosition);
+            }
+        }
+
+        private Transform GetRandomPosition()
+        {
+            GateSides side = UnityEngine.Random.value < 0.5f ? GateSides.Left : GateSides.Right;
+            return GetSpawnPoint(side);
+        }
+
+        private bool IsGateFalse()
+        {
+            float randomValue = UnityEngine.Random.value;
+            float chance = 0.3f;
+
+            return randomValue < chance && _isFalseGateEnabled;
         }
     }
 }

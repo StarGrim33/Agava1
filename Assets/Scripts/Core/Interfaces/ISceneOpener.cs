@@ -1,6 +1,9 @@
-public interface ISceneOpener
+namespace Interfaces
 {
-    void OpenScene();
+    public interface ISceneOpener
+    {
+        void OpenScene();
 
-    void OpenRandomScene();
+        void OpenRandomScene();
+    }
 }

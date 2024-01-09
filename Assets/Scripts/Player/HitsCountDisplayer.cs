@@ -1,20 +1,26 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class HitsCountDisplayer : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private PlayerKickingBall _kickingBall;
-
-    private void Update()
+    public class HitsCountDisplayer : MonoBehaviour
     {
-        StartCoroutine(HitsDisplaying());
-    }
+        [SerializeField] private TMP_Text _text;
+        [SerializeField] private PlayerKickingBall _kickingBall;
 
-    private IEnumerator HitsDisplaying()
-    {
-        _text.text = _kickingBall.HitsRemained.ToString();
-        yield return null;
+        private void OnEnable()
+        {
+            _kickingBall.OnHitsRemainedChanged += UpdateHitsDisplaying;
+        }
+
+        private void OnDisable()
+        {
+            _kickingBall.OnHitsRemainedChanged -= UpdateHitsDisplaying;
+        }
+
+        private void UpdateHitsDisplaying(int hitsRemained)
+        {
+            _text.text = hitsRemained.ToString();
+        }
     }
 }

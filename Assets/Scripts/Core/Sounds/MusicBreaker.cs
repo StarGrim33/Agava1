@@ -1,51 +1,54 @@
 using Agava.WebUtility;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MusicBreaker : MonoBehaviour, IMusicHandler
+namespace Core
 {
-    [SerializeField] private Button _button;
-    [SerializeField] private Sprite _turnedOffMusicImage;
-    [SerializeField] private Sprite _turnedOnMusicImage;
-    [SerializeField] private AudioYB _audioYB;
-    [SerializeField] private Image _startImage;
-
-    private void OnEnable()
+    public class MusicBreaker : MonoBehaviour, IMusicHandler
     {
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
-    }
+        [SerializeField] private Button _button;
+        [SerializeField] private Sprite _turnedOffMusicImage;
+        [SerializeField] private Sprite _turnedOnMusicImage;
+        [SerializeField] private AudioYB _audioYB;
+        [SerializeField] private Image _startImage;
 
-    private void OnDisable()
-    {
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
-    }
-
-    private void Start()
-    {
-        if (_audioYB.isPlaying)
+        private void OnEnable()
         {
-            _startImage.sprite = _turnedOnMusicImage;
-        }    
-    }
-
-    public void TurnMusic()
-    {
-        if(_audioYB.isPlaying)
-        {
-            _audioYB.Pause();
-            _startImage.sprite = _turnedOffMusicImage;
+            WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
         }
-        else
-        {
-            _audioYB.UnPause();
-            _startImage.sprite = _turnedOnMusicImage;
-        }
-    }
 
-    private void OnInBackgroundChange(bool inBackground)
-    {
-        AudioListener.pause = inBackground;
-        AudioListener.volume = inBackground ? 0f : 1f;
+        private void OnDisable()
+        {
+            WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+        }
+
+        private void Start()
+        {
+            if (_audioYB.isPlaying)
+            {
+                _startImage.sprite = _turnedOnMusicImage;
+            }
+        }
+
+        public void TurnMusic()
+        {
+            if (_audioYB.isPlaying)
+            {
+                _audioYB.Pause();
+                _startImage.sprite = _turnedOffMusicImage;
+            }
+            else
+            {
+                _audioYB.UnPause();
+                _startImage.sprite = _turnedOnMusicImage;
+            }
+        }
+
+        private void OnInBackgroundChange(bool inBackground)
+        {
+            AudioListener.pause = inBackground;
+            AudioListener.volume = inBackground ? 0f : 1f;
+        }
     }
 }
-

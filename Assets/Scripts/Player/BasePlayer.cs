@@ -1,31 +1,46 @@
-using System.Collections;
+﻿using System.Collections;
+using Ball;
 using UnityEngine;
 
-public abstract class BasePlayer : MonoBehaviour
+namespace Player
 {
-    [SerializeField] protected BaseBall Ball;
-    [SerializeField] protected ParticleSystem ParticleSystem;
-    protected float Delay = 1f;
-    protected bool CanTeleport = false;
-
-    protected void Update()
+    public abstract class PlayerBoundaryChecker : MonoBehaviour
     {
-        StartCoroutine(Teleport());
-    }
+        private WaitForSeconds _waitForSeconds;
+        [SerializeField] protected BaseBall Ball;
+        [SerializeField] protected ParticleSystem ParticleSystem;
+        protected float Delay = 1f;
+        protected bool IsTeleporting = false;
 
-    protected virtual IEnumerator Teleport()
-    {
-        var waitForSeconds = new WaitForSeconds(Delay);
-
-        if (transform.position != Ball.transform.position)
+        protected virtual void Start()
         {
-            Vector3 newPosition = Ball.transform.position;
-            newPosition.y = 0f;
-            transform.position = newPosition;
-            ParticleSystem.Play();
-            Ball.StopMoving();
+            _waitForSeconds = new WaitForSeconds(Delay);
         }
 
-        yield return waitForSeconds;
+        protected void Update()
+        {
+            if (!IsTeleporting)
+            {
+                StartCoroutine(TeleportCoroutine());
+            }
+        }
+
+        protected virtual IEnumerator TeleportCoroutine()
+        {
+            IsTeleporting = true;
+
+            if (transform.position != Ball.transform.position)
+            {
+                Vector3 newPosition = Ball.transform.position;
+                newPosition.y = 0f;
+                transform.position = newPosition;
+                ParticleSystem.Play();
+                Ball.StopMoving();
+            }
+
+            yield return _waitForSeconds;
+
+            IsTeleporting = false;
+        }
     }
 }

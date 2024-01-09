@@ -1,18 +1,21 @@
 using System;
 using UnityEngine;
 
-public class AnimatorEnemyPlayer : MonoBehaviour
+namespace Enemy
 {
-    public event Action OnKickedEnemyAnimation;
-
-    public void AnimationEvent()
+    public class AnimatorEnemyPlayer : MonoBehaviour
     {
-        OnKickedEnemyAnimation.Invoke();
-    }
+        public event Action OnKickedEnemyAnimation;
 
-    public static class States
-    {
-        public const string NinjaIdle = nameof(NinjaIdle);
-        public const string Strike = nameof(Strike);
+        public void AnimationEvent()
+        {
+            OnKickedEnemyAnimation.Invoke();
+        }
+
+        public static class States
+        {
+            public const string NinjaIdle = nameof(NinjaIdle);
+            public const string Strike = nameof(Strike);
+        }
     }
 }

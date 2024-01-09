@@ -1,18 +1,22 @@
+using Interfaces;
 using UnityEngine;
 
-public class PanelSwitcher : MonoBehaviour, IPanelSwitcher
+namespace Core
 {
-    [SerializeField] private GameObject _object;
-
-    public void OpenPanel(GameObject panel)
+    public class PanelSwitcher : MonoBehaviour, IPanelSwitcher
     {
-        _object.SetActive(false);
-        _object.SetActive(true);
-        panel.SetActive(true);
-    }
+        [SerializeField] private GameObject _object;
 
-    public void ClosePanel(GameObject panel)
-    {
-        panel.SetActive(false);
+        public void OpenPanel(GameObject panel)
+        {
+            _object.SetActive(false);
+            _object.SetActive(true);
+            panel.SetActive(true);
+        }
+
+        public void ClosePanel(GameObject panel)
+        {
+            panel.SetActive(false);
+        }
     }
 }

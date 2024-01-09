@@ -1,4 +1,7 @@
-public interface IOptimizeText
+namespace Interfaces
 {
-    string Optimize(string text);
+    public interface IOptimizeText
+    {
+        string Optimize(string text);
+    }
 }

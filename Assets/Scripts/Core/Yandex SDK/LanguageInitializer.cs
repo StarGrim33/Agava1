@@ -1,38 +1,51 @@
+using System.Collections;
 using Agava.YandexGames;
 using Lean.Localization;
-using System.Collections;
 using UnityEngine;
+using Utils;
 
-public class LanguageInitializer : MonoBehaviour
+namespace Core
 {
-    private void Start()
+    public class LanguageInitializer : MonoBehaviour
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            StartCoroutine(InitializeAndChangeLanguage());
-#endif
-    }
-    private IEnumerator InitializeAndChangeLanguage()
-    {
-        while (!YandexGamesSdk.IsInitialized)
+        private void Start()
         {
-            yield return null;
+            StartCoroutine(InitializeAndChangeLanguage());
         }
 
-        ChangeLanguage();
-    }
-
-    private void ChangeLanguage()
-    {
-        string languageCode = YandexGamesSdk.Environment.i18n.lang;
-
-        string language = languageCode switch
+        private IEnumerator InitializeAndChangeLanguage()
         {
-            Constants.EnglishCode => Constants.EnglishLanguage,
-            Constants.RussianCode => Constants.RussianLanguage,
-            Constants.TurkishCode => Constants.TurkishLanguage,
-            _ => Constants.RussianLanguage
-        };
+            while (!YandexGamesSdk.IsInitialized)
+            {
+                yield return null;
+            }
 
-        LeanLocalization.SetCurrentLanguageAll(language);
+            ChangeLanguage();
+        }
+
+        private void ChangeLanguage()
+        {
+            string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            string language;
+
+            if (languageCode == Constants.EnglishCode)
+            {
+                language = Constants.EnglishLanguage;
+            }
+            else if (languageCode == Constants.RussianCode)
+            {
+                language = Constants.RussianLanguage;
+            }
+            else if (languageCode == Constants.TurkishCode)
+            {
+                language = Constants.TurkishLanguage;
+            }
+            else
+            {
+                language = Constants.RussianLanguage;
+            }
+
+            LeanLocalization.SetCurrentLanguageAll(language);
+        }
     }
 }

@@ -1,34 +1,39 @@
 using UnityEngine;
 
-public abstract class BaseBall : MonoBehaviour
+namespace Ball
 {
-    [SerializeField] protected Rigidbody Rigidbody;
-    [SerializeField] protected Transform TargetPosition;
-    protected float MaxXBorder = 9.4f;
-    protected float MinXBorder = -19.23f;
-    protected float MaxZBorder = 16.81f;
-    protected float MinZBorder = -4.83f;
-
-    protected virtual void Update()
+    public abstract class BaseBall : MonoBehaviour
     {
-        CheckOutOfBounds();
-    }
+        [SerializeField] protected Rigidbody Rigidbody;
+        [SerializeField] protected Transform TargetPosition;
+        protected float MaxXBorder = 9.4f;
+        protected float MinXBorder = -19.23f;
+        protected float MaxZBorder = 16.81f;
+        protected float MinZBorder = -4.83f;
 
-    public virtual void StopMoving()
-    {
-        Rigidbody.velocity = Vector3.zero;
-    }
+        protected virtual void Update()
+        {
+            CheckOutOfBounds();
+        }
 
-    protected void CheckOutOfBounds()
-    {
-        if (transform.position.x > MaxXBorder || transform.position.x < MinXBorder ||
-            transform.position.z > MaxZBorder || transform.position.z < MinZBorder)
-            HandleOutOfBounds();
-    }
+        public virtual void StopMoving()
+        {
+            Rigidbody.velocity = Vector3.zero;
+        }
 
-    protected virtual void HandleOutOfBounds()
-    {
-        transform.position = TargetPosition.position;
-        StopMoving();
+        protected void CheckOutOfBounds()
+        {
+            if (transform.position.x > MaxXBorder || transform.position.x < MinXBorder ||
+                transform.position.z > MaxZBorder || transform.position.z < MinZBorder)
+            {
+                HandleOutOfBounds();
+            }
+        }
+
+        protected virtual void HandleOutOfBounds()
+        {
+            transform.position = TargetPosition.position;
+            StopMoving();
+        }
     }
 }

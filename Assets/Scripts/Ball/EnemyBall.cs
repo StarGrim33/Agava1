@@ -1,1 +1,6 @@
-public class EnemyBall : BaseBall { }
+namespace Ball
+{
+    public class EnemyBall : BaseBall
+    {
+    }
+}

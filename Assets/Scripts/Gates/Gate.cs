@@ -1,51 +1,59 @@
 using System;
+using Ball;
 using UnityEngine;
 
-public class Gate : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private ParticleSystem[] _particleSystem;
-    [SerializeField] private Transform _middleTarget;
-
-    public event Action<Gate, bool> OnGoalScored;
-
-    private void OnTriggerEnter(Collider other)
+    public class Gate : MonoBehaviour
     {
-        if (other.TryGetComponent<PlayerBall>(out _))
-            PlayerGoal();
+        [SerializeField] private ParticleSystem[] _particleSystem;
+        [SerializeField] private Transform _middleTarget;
 
-        if (other.TryGetComponent<EnemyBall>(out _))
-            EnemyGoal();
-    }
+        public event Action<Gate> OnPlayerGoalScored;
+        public event Action<Gate> OnEnemyGoalScored;
 
-    public Vector3 MiddleTarget()
-    {
-        Vector3 target = _middleTarget.position;
-        return target;
-    }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent<PlayerBall>(out _))
+            {
+                PlayerGoal();
+            }
+            else if (other.TryGetComponent<EnemyBall>(out _))
+            {
+                EnemyGoal();
+            }
+        }
 
-    private void PlayerGoal()
-    {
-        Goal();
-        OnGoalScored?.Invoke(this, false);
-    }
+        public Vector3 DetermineMiddlePosition()
+        {
+            Vector3 target = _middleTarget.position;
+            return target;
+        }
 
-    private void EnemyGoal()
-    {
-        Goal();
-        OnGoalScored?.Invoke(this, true);
-    }
+        private void PlayerGoal()
+        {
+            Goal();
+            OnPlayerGoalScored?.Invoke(this);
+        }
 
-    private ParticleSystem GetRandomParticle()
-    {
-        int randomNumber = UnityEngine.Random.Range(0, _particleSystem.Length);
-        return _particleSystem[randomNumber];
-    }
+        private void EnemyGoal()
+        {
+            Goal();
+            OnEnemyGoalScored?.Invoke(this);
+        }
 
-    private void Goal()
-    {
-        float destroyDelay = 1f;
-        ParticleSystem particle = GetRandomParticle();
-        particle.Play();
-        Destroy(gameObject, destroyDelay);
+        private ParticleSystem GetRandomParticle()
+        {
+            int randomNumber = UnityEngine.Random.Range(0, _particleSystem.Length);
+            return _particleSystem[randomNumber];
+        }
+
+        private void Goal()
+        {
+            float destroyDelay = 1f;
+            ParticleSystem particle = GetRandomParticle();
+            particle.Play();
+            Destroy(gameObject, destroyDelay);
+        }
     }
 }
