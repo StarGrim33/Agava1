@@ -6,12 +6,10 @@ namespace Ball
 {
     public class BallChoser : MonoBehaviour
     {
-        [SerializeField] private PlayerBoundaryChecker _player;
         [SerializeField] private PlayerBall[] _balls;
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerKickingBall _playerKickingBall;
         [SerializeField] private CinemachineVirtualCamera _camera;
-        [SerializeField] private PlayerData _playerData;
 
         private int _currentBallIndex = 0;
 

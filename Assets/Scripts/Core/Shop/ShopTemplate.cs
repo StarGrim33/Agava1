@@ -10,9 +10,9 @@ namespace Core
         [SerializeField] private TMP_Text _desription;
         [SerializeField] private TMP_Text _baseCost;
         [SerializeField] private Image _image;
-        [SerializeField] private int _ballId;
+        private int _ballId;
 
-        public Image Image { get; private set; }
+        public Image Image => _image;
 
         public TMP_Text Title => _title;
 

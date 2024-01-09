@@ -9,6 +9,7 @@ namespace Core
         [SerializeField] private List<Transform> _rightSide;
 
         public int LeftSideCount => _leftSide.Count;
+
         public int RightSideCount => _rightSide.Count;
 
         public List<Transform> LeftSideSpawnPoints => _leftSide;

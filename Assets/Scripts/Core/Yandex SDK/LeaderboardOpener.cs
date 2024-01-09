@@ -3,17 +3,14 @@ using Lean.Localization;
 using Utils;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using Interfaces;
 
 namespace Core
 {
-    public class LeaderboardOpener : MonoBehaviour
+    public class LeaderboardOpener : MonoBehaviour, IAuthorize
     {
         [SerializeField] private GameObject _leaderboardPanel;
         [SerializeField] private GameObject _notAuthorizedPanel;
-        [SerializeField] private Button _openLeaderboardButton;
-        [SerializeField] private Button _authorizeButton;
-        [SerializeField] private Button _declineAuthorizeButton;
         [SerializeField] private TMP_Text[] _playersName;
         [SerializeField] private TMP_Text[] _playersScore;
         [SerializeField] private TextOptimizer _textOptimizer;
@@ -22,14 +19,18 @@ namespace Core
         {
             if (PlayerAccount.IsAuthorized)
             {
-                OnGetLeaderboardEntriesButtonClick();
-                _leaderboardPanel.SetActive(true);
+                ShowLeaderboard();
             }
             else
             {
-                PlayerAccount.Authorize();
-                _notAuthorizedPanel.gameObject.SetActive(true);
+                Authorize();
             }
+        }
+
+        public void Authorize()
+        {
+            PlayerAccount.Authorize();
+            _notAuthorizedPanel.gameObject.SetActive(true);
         }
 
         public void OnGetLeaderboardEntriesButtonClick()
@@ -47,13 +48,21 @@ namespace Core
                     if (string.IsNullOrEmpty(name))
                     {
                         if (LeanLocalization.GetFirstCurrentLanguage() == Constants.RussianCode)
+                        {
                             name = Constants.RussianAnonimName;
+                        }
                         else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.EnglishCode)
+                        {
                             name = Constants.EnglishAnonimName;
+                        }
                         else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.TurkishCode)
+                        {
                             name = Constants.EnglishAnonimName;
+                        }
                         else
+                        {
                             name = Constants.RussianAnonimName;
+                        }
                     }
 
                     _playersName[i].text = _textOptimizer.Optimize(name);
@@ -73,6 +82,12 @@ namespace Core
             {
                 text.text = string.Empty;
             }
+        }
+
+        private void ShowLeaderboard()
+        {
+            OnGetLeaderboardEntriesButtonClick();
+            _leaderboardPanel.SetActive(true);
         }
     }
 }

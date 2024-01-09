@@ -16,11 +16,18 @@ namespace Core
         private float _spawnDelay = 2f;
         private float _spawnDelayAfterFalseGate = 5f;
 
-        public event Action<Gate> OnGoalGateSpawned;
+        private WaitForSeconds _waitForSpawnDelay;
+        private WaitForSeconds _waitForSpawnDelayAfterFalseGate;
 
+        public event Action<Gate> OnGoalGateSpawned;
         public event Action<Vector3> OnGateSpawned;
 
-        private void Start() => SpawnGate();
+        private void Start()
+        {
+            _waitForSpawnDelay = new WaitForSeconds(_spawnDelay);
+            _waitForSpawnDelayAfterFalseGate = new WaitForSeconds(_spawnDelayAfterFalseGate);
+            SpawnGate();
+        }
 
         public void OnGoalScored(Gate gate)
         {
@@ -29,12 +36,14 @@ namespace Core
             SpawnGate();
         }
 
-        private void SpawnGate() => StartCoroutine(Spawner());
+        private void SpawnGate()
+        {
+            StartCoroutine(Spawner());
+        }
 
         private IEnumerator Spawner()
         {
-            var waitForSeconds = new WaitForSeconds(_spawnDelay);
-            yield return waitForSeconds;
+            yield return _waitForSpawnDelay;
             var randomPosition = GetRandomPosition();
 
             if (IsGateFalse())
@@ -49,19 +58,14 @@ namespace Core
 
         private IEnumerator SpawnFalseGate(Transform spawnPosition)
         {
-            var waitForSeconds = new WaitForSeconds(_spawnDelayAfterFalseGate);
             _currentFalseGate = Instantiate(_falseGatePrefab, spawnPosition.position, Quaternion.identity);
-
-            yield return waitForSeconds;
-
+            yield return _waitForSpawnDelayAfterFalseGate;
             StartCoroutine(Spawner());
         }
 
         private IEnumerator SpawnTrueGate(Transform spawnPosition)
         {
-            var waitForSeconds = new WaitForSeconds(_spawnDelay);
-            yield return waitForSeconds;
-
+            yield return _waitForSpawnDelay;
             _currentGate = Instantiate(_gatePrefab, spawnPosition.position, Quaternion.identity);
             _currentGate.transform.rotation = SetGateRotationBySpawnPosition(spawnPosition);
             _currentGate.OnPlayerGoalScored += OnGoalScored;
@@ -75,9 +79,13 @@ namespace Core
             float angle = -90f;
 
             if (_spawnPointParts.LeftSideSpawnPoints.Contains(spawnPoint))
+            {
                 return Quaternion.Euler(angle, angle, angle);
+            }
             else if (_spawnPointParts.RightSideSpawnPoints.Contains(spawnPoint))
+            {
                 return Quaternion.Euler(angle, 0f, 0f);
+            }
 
             return Quaternion.identity;
         }
@@ -109,10 +117,7 @@ namespace Core
             float randomValue = UnityEngine.Random.value;
             float chance = 0.3f;
 
-            if (randomValue < chance && _isFalseGateEnabled)
-                return true;
-
-            return false;
+            return randomValue < chance && _isFalseGateEnabled;
         }
     }
 }

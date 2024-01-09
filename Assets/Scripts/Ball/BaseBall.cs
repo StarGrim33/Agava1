@@ -25,7 +25,9 @@ namespace Ball
         {
             if (transform.position.x > MaxXBorder || transform.position.x < MinXBorder ||
                 transform.position.z > MaxZBorder || transform.position.z < MinZBorder)
+            {
                 HandleOutOfBounds();
+            }
         }
 
         protected virtual void HandleOutOfBounds()

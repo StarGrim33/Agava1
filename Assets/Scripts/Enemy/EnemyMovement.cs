@@ -16,7 +16,9 @@ namespace Enemy
         {
             if (_kickingBall.IsKicking && Vector3.Distance(_enemy.transform.position,
                 _ball.transform.position) > _maxDistance)
+            {
                 Teleport();
+            }
         }
 
         private void Teleport()

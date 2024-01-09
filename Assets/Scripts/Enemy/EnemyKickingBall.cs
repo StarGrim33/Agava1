@@ -14,6 +14,8 @@ namespace Enemy
         [SerializeField] private BaseBall _ball;
         [SerializeField] private float _missProbability;
         [SerializeField] private int _hits;
+        private WaitForSeconds _waitForSeconds;
+        private WaitForSeconds _reloadWaitForSeconds;
         private Vector3 _goalPosition;
         private bool _isKicking = false;
         private bool _isKickingCoroutineRunning = false;
@@ -33,6 +35,13 @@ namespace Enemy
             _enemyAnimator.OnKickedEnemyAnimation -= OnKickedAnimationFinished;
         }
 
+        protected override void Start()
+        {
+            _waitForSeconds = new WaitForSeconds(_delayBeforeHit);
+            _reloadWaitForSeconds = new WaitForSeconds(TimeHitsReload);
+            base.Start();
+        }
+
         private void Update()
         {
             if (HitsRemained > 0 && !_isKickingCoroutineRunning)
@@ -48,7 +57,6 @@ namespace Enemy
         protected override IEnumerator Kicking()
         {
             _isKickingCoroutineRunning = true;
-            var waitForFourthSeconds = new WaitForSeconds(_delayBeforeHit);
 
             while (HitsRemained > 0 && _goalPosition != null)
             {
@@ -59,7 +67,7 @@ namespace Enemy
                     Animator.Play(AnimatorEnemyPlayer.States.Strike, 0, 0);
                     _isKicking = true;
 
-                    yield return waitForFourthSeconds;
+                    yield return _waitForSeconds;
 
                     _isKicking = false;
                 }
@@ -77,7 +85,6 @@ namespace Enemy
             BallRigidbody.velocity = Vector3.zero;
             BallRigidbody.AddForce(HitDirection * HifForce, ForceMode.Impulse);
 
-
             if (HitsRemained > 0)
                 HitsRemained--;
 
@@ -89,11 +96,9 @@ namespace Enemy
 
         protected override IEnumerator ReloadHits()
         {
-            var waitForSeconds = new WaitForSeconds(TimeHitsReload);
-
             if (HitsRemained <= 0)
             {
-                yield return waitForSeconds;
+                yield return _reloadWaitForSeconds;
                 HitsRemained = _hits;
             }
         }

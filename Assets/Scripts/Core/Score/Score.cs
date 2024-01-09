@@ -11,8 +11,6 @@ namespace Core
         [SerializeField] private GateSpawner _gateSpawner;
         [SerializeField] private PlayerTotalScore _totalScore;
         [SerializeField] private int _scoreForWin;
-        private int _playerScore = 0;
-        private int _enemyScore = 0;
         private int _scorePerGoal = 10;
 
         public event Action OnPlayerScoreChanged;
@@ -55,7 +53,7 @@ namespace Core
 
         public void DoubleScoreForAD()
         {
-            int doubleMultiply = 2;
+            const int doubleMultiply = 2;
             PlayerScore *= doubleMultiply;
             _totalScore.AddScore(PlayerScore);
             _totalScore.SaveTotalScore();

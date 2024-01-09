@@ -6,10 +6,16 @@ namespace Player
 {
     public abstract class PlayerBoundaryChecker : MonoBehaviour
     {
+        private WaitForSeconds _waitForSeconds;
         [SerializeField] protected BaseBall Ball;
         [SerializeField] protected ParticleSystem ParticleSystem;
         protected float Delay = 1f;
         protected bool IsTeleporting = false;
+
+        protected virtual void Start()
+        {
+            _waitForSeconds = new WaitForSeconds(Delay);
+        }
 
         protected void Update()
         {
@@ -22,7 +28,6 @@ namespace Player
         protected virtual IEnumerator TeleportCoroutine()
         {
             IsTeleporting = true;
-            var waitForSeconds = new WaitForSeconds(Delay);
 
             if (transform.position != Ball.transform.position)
             {
@@ -33,7 +38,7 @@ namespace Player
                 Ball.StopMoving();
             }
 
-            yield return waitForSeconds;
+            yield return _waitForSeconds;
 
             IsTeleporting = false;
         }

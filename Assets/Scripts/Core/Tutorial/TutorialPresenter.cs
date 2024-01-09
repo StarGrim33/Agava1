@@ -5,8 +5,8 @@ namespace Core
 {
     public class TutorialPresenter
     {
-        private TutorialModel _model;
-        private TutorialView _view;
+        private readonly TutorialModel _model;
+        private readonly TutorialView _view;
 
         public TutorialPresenter(TutorialView view)
         {

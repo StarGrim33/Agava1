@@ -12,6 +12,7 @@ namespace Player
         [SerializeField] private AnimatorPlayer _playerAnimator;
         [SerializeField] private int _hits;
         [SerializeField] private GameObject _arrowImage;
+        private WaitForSeconds _waitForReloadDelay;
         private bool _isMouseDown = false;
         private bool _canControlBall = true;
         private float _currentHoldTime = 0f;
@@ -35,38 +36,15 @@ namespace Player
             _playerAnimator.OnKickedAnimationFinished -= OnKickedAnimationFinished;
         }
 
+        protected override void Start()
+        {
+            _waitForReloadDelay = new WaitForSeconds(TimeHitsReload);
+            base.Start();
+        }
+
         private void Update()
         {
-            if (HitsRemained > 0)
-            {
-                if (!_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonDown(0))
-                {
-                    _currentHoldTime = 0f;
-                    _isMouseDown = true;
-                    _arrowImage.SetActive(true);
-                    Time.timeScale = _timeDelayForAiming;
-                    StartCoroutine(Kicking());
-                    Animator.SetBool(Constants.IsAiming, true);
-                    Animator.Play(AnimatorStates.Strike, 0, 0f);
-                }
-                else if (_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
-                {
-                    _isMouseDown = false;
-                    _arrowImage.SetActive(false);
-                    Time.timeScale = 1f;
-                    Animator.SetBool(Constants.IsAiming, false);
-                }
-            }
-
-            if (_isMouseDown)
-            {
-                _currentHoldTime += Time.deltaTime;
-
-                if (_currentHoldTime >= _maxHoldTime)
-                {
-                    PerformKick();
-                }
-            }
+            HandleMouseInput();
         }
 
         public void SetBall(PlayerBall newBall)
@@ -82,10 +60,14 @@ namespace Player
             _canControlBall = false;
 
             if (base.HitsRemained > 0)
+            {
                 base.HitsRemained--;
+            }
 
             if (HitsRemained <= 0)
+            {
                 StartCoroutine(ReloadHits());
+            }
 
             Time.timeScale = 1f;
             OnHitsRemainedChanged?.Invoke(HitsRemained);
@@ -119,11 +101,9 @@ namespace Player
 
         protected override IEnumerator ReloadHits()
         {
-            var waitForSeconds = new WaitForSeconds(TimeHitsReload);
-
             if (HitsRemained <= 0)
             {
-                yield return waitForSeconds;
+                yield return _waitForReloadDelay;
                 base.HitsRemained = _hits;
                 OnHitsRemainedChanged?.Invoke(HitsRemained);
             }
@@ -140,6 +120,55 @@ namespace Player
                 OnHitsRemainedChanged?.Invoke(HitsRemained);
                 StartCoroutine(ReloadHits());
             }
+        }
+
+        private void HandleMouseInput()
+        {
+            if (HitsRemained > 0)
+            {
+                if (!_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonDown(0))
+                {
+                    StartAiming();
+                }
+                else if (_isMouseDown && EventSystem.current.currentSelectedGameObject == null && Input.GetMouseButtonUp(0))
+                {
+                    StopAiming();
+                }
+            }
+
+            if (_isMouseDown)
+            {
+                UpdateHoldTime();
+            }
+        }
+
+        private void UpdateHoldTime()
+        {
+            _currentHoldTime += Time.deltaTime;
+
+            if (_currentHoldTime >= _maxHoldTime)
+            {
+                PerformKick();
+            }
+        }
+
+        private void StopAiming()
+        {
+            _isMouseDown = false;
+            _arrowImage.SetActive(false);
+            Time.timeScale = 1f;
+            Animator.SetBool(Constants.IsAiming, false);
+        }
+
+        private void StartAiming()
+        {
+            _currentHoldTime = 0f;
+            _isMouseDown = true;
+            _arrowImage.SetActive(true);
+            Time.timeScale = _timeDelayForAiming;
+            StartCoroutine(Kicking());
+            Animator.SetBool(Constants.IsAiming, true);
+            Animator.Play(AnimatorStates.Strike, 0, 0f);
         }
     }
 }

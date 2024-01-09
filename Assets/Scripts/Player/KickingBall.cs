@@ -7,6 +7,7 @@ namespace Player
     [RequireComponent(typeof(Animator))]
     public abstract class KickingBall : MonoBehaviour
     {
+        private WaitForSeconds _waitForReloadDelay;
         [SerializeField] protected Rigidbody BallRigidbody;
         [SerializeField] protected Transform BallSpawnPoint;
         [SerializeField] protected float HifForce = 10.0f;
@@ -22,6 +23,7 @@ namespace Player
         protected virtual void Start()
         {
             Animator = GetComponent<Animator>();
+            _waitForReloadDelay = new WaitForSeconds(TimeHitsReload);
         }
 
         protected virtual void OnKickedAnimationFinished()
@@ -40,10 +42,8 @@ namespace Player
 
         protected virtual IEnumerator ReloadHits()
         {
-            var waitForSeconds = new WaitForSeconds(TimeHitsReload);
-
             if (HitsRemained <= 0)
-                yield return waitForSeconds;
+                yield return _waitForReloadDelay;
         }
 
         protected virtual IEnumerator Kicking()

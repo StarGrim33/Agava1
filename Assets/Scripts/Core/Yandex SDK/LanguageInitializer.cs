@@ -1,6 +1,6 @@
+using System.Collections;
 using Agava.YandexGames;
 using Lean.Localization;
-using System.Collections;
 using UnityEngine;
 using Utils;
 
@@ -10,9 +10,7 @@ namespace Core
     {
         private void Start()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        StartCoroutine(InitializeAndChangeLanguage());
-#endif
+            StartCoroutine(InitializeAndChangeLanguage());
         }
 
         private IEnumerator InitializeAndChangeLanguage()
@@ -28,14 +26,24 @@ namespace Core
         private void ChangeLanguage()
         {
             string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            string language;
 
-            string language = languageCode switch
+            if (languageCode == Constants.EnglishCode)
             {
-                Constants.EnglishCode => Constants.EnglishLanguage,
-                Constants.RussianCode => Constants.RussianLanguage,
-                Constants.TurkishCode => Constants.TurkishLanguage,
-                _ => Constants.RussianLanguage
-            };
+                language = Constants.EnglishLanguage;
+            }
+            else if (languageCode == Constants.RussianCode)
+            {
+                language = Constants.RussianLanguage;
+            }
+            else if (languageCode == Constants.TurkishCode)
+            {
+                language = Constants.TurkishLanguage;
+            }
+            else
+            {
+                language = Constants.RussianLanguage;
+            }
 
             LeanLocalization.SetCurrentLanguageAll(language);
         }

@@ -75,14 +75,7 @@ namespace Core
             {
                 if (score >= _items[i].BaseCost)
                 {
-                    if (!_playerData.IsBallPurchased(_ballNames[i]))
-                    {
-                        _purchaseButtons[i].interactable = true;
-                    }
-                    else
-                    {
-                        _purchaseButtons[i].interactable = false;
-                    }
+                    _purchaseButtons[i].interactable = !_playerData.IsBallPurchased(_ballNames[i]);
                 }
                 else
                 {

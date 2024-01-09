@@ -12,10 +12,10 @@ namespace Utils
             string nameToLower = name.ToLower();
             char[] letters = nameToLower.ToCharArray();
             letters[0] = char.ToUpper(letters[0]);
-            string finalName = new(letters);
+            string finalName = new (letters);
 
             if (finalName.Length > _maxLength)
-                return finalName.Substring(0, _maxLength);
+                return finalName[.._maxLength];
             else
                 return finalName;
         }

@@ -6,20 +6,20 @@ namespace Core
     [RequireComponent(typeof(Scrollbar))]
     public class ScrollableMenuHandler : MonoBehaviour
     {
-        [SerializeField] private GameObject _scrollbar;
+        private readonly float _xPosition = 1.5f;
+        private readonly float _yPosition = 1.5f;
+        private readonly float _lerpTime = 0.1f;
+        private readonly float _innerXPosition = 0.8f;
+        private readonly float _innerYPosition = 0.8f;
+        private readonly int _divider = 2;
+
         private Scrollbar _scrollbarComponent;
         private float _scrollPosition = 0;
         private float[] _scrollPositions;
-        private float _xPosition = 1.5f;
-        private float _yPosition = 1.5f;
-        private float _lerpTime = 0.1f;
-        private float _innerXPosition = 0.8f;
-        private float _innerYPosition = 0.8f;
-        private int _divider = 2;
 
         private void Start()
         {
-            _scrollbarComponent = _scrollbar.GetComponent<Scrollbar>();
+            _scrollbarComponent = GetComponent<Scrollbar>();
         }
 
         private void Update()
@@ -40,7 +40,9 @@ namespace Core
                 {
                     if (_scrollPosition < _scrollPositions[i] + (distance / _divider)
                         && _scrollPosition > _scrollPositions[i] - (distance / _divider))
+                    {
                         _scrollbarComponent.value = Mathf.Lerp(_scrollbarComponent.value, _scrollPositions[i], _lerpTime);
+                    }
                 }
             }
 

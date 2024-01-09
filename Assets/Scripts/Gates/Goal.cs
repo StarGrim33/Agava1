@@ -4,6 +4,5 @@ namespace Core
 {
     public class Goal : MonoBehaviour
     {
-
     }
 }
