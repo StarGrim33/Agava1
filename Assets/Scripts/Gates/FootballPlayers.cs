@@ -1,5 +1,8 @@
-public enum FootballPlayers
+namespace Core
 {
-    Gamer,
-    Enemy
+    public enum FootballPlayers
+    {
+        Gamer,
+        Enemy
+    }
 }

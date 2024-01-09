@@ -1,21 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
-public class DeceptiveGoal : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private float _lifeTime;
-
-    private void Start()
+    public class DeceptiveGoal : MonoBehaviour
     {
-        StartCoroutine(LifeCycle());
-    }
+        [SerializeField] private float _lifeTime;
 
-    private IEnumerator LifeCycle()
-    {
-        var waitForSeconds = new WaitForSeconds(_lifeTime);
+        private void Start()
+        {
+            StartCoroutine(LifeCycle());
+        }
 
-        yield return waitForSeconds;
+        private IEnumerator LifeCycle()
+        {
+            var waitForSeconds = new WaitForSeconds(_lifeTime);
 
-        Destroy(gameObject);
+            yield return waitForSeconds;
+
+            Destroy(gameObject);
+        }
     }
 }

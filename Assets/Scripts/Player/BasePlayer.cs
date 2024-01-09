@@ -1,38 +1,41 @@
-﻿using Ball;
-using System.Collections;
+﻿using System.Collections;
+using Ball;
 using UnityEngine;
 
-public abstract class BasePlayer : MonoBehaviour
+namespace Player
 {
-    [SerializeField] protected BaseBall Ball;
-    [SerializeField] protected ParticleSystem ParticleSystem;
-    protected float Delay = 1f;
-    protected bool IsTeleporting = false;
-
-    protected void Update()
+    public abstract class PlayerBoundaryChecker : MonoBehaviour
     {
-        if (!IsTeleporting)
-        {
-            StartCoroutine(TeleportCoroutine());
-        }
-    }
+        [SerializeField] protected BaseBall Ball;
+        [SerializeField] protected ParticleSystem ParticleSystem;
+        protected float Delay = 1f;
+        protected bool IsTeleporting = false;
 
-    protected virtual IEnumerator TeleportCoroutine()
-    {
-        IsTeleporting = true;
-        var waitForSeconds = new WaitForSeconds(Delay);
-
-        if (transform.position != Ball.transform.position)
+        protected void Update()
         {
-            Vector3 newPosition = Ball.transform.position;
-            newPosition.y = 0f;
-            transform.position = newPosition;
-            ParticleSystem.Play();
-            Ball.StopMoving();
+            if (!IsTeleporting)
+            {
+                StartCoroutine(TeleportCoroutine());
+            }
         }
 
-        yield return waitForSeconds;
+        protected virtual IEnumerator TeleportCoroutine()
+        {
+            IsTeleporting = true;
+            var waitForSeconds = new WaitForSeconds(Delay);
 
-        IsTeleporting = false;
+            if (transform.position != Ball.transform.position)
+            {
+                Vector3 newPosition = Ball.transform.position;
+                newPosition.y = 0f;
+                transform.position = newPosition;
+                ParticleSystem.Play();
+                Ball.StopMoving();
+            }
+
+            yield return waitForSeconds;
+
+            IsTeleporting = false;
+        }
     }
 }

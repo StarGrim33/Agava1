@@ -2,34 +2,37 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class RulesViewer : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private GameObject _levelRules;
-    [SerializeField] private string _additionalRuleText;
-    [SerializeField] private float _delay;
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private Score _score;
-
-    private void Start()
+    public class RulesViewer : MonoBehaviour
     {
-        StartCoroutine(ShowRules());
-    }
+        [SerializeField] private GameObject _levelRules;
+        [SerializeField] private string _additionalRuleText;
+        [SerializeField] private float _delay;
+        [SerializeField] private TMP_Text _text;
+        [SerializeField] private Score _score;
 
-    private IEnumerator ShowRules()
-    {
-        var waitForSeconds = new WaitForSeconds(_delay);
+        private void Start()
+        {
+            StartCoroutine(ShowRules());
+        }
 
-        Invoke(nameof(SetScoreRule), 1f);
+        private IEnumerator ShowRules()
+        {
+            var waitForSeconds = new WaitForSeconds(_delay);
 
-        yield return waitForSeconds;
+            Invoke(nameof(SetScoreRule), 1f);
 
-        SetScoreRule();
+            yield return waitForSeconds;
 
-        _levelRules.SetActive(false);
-    }
+            SetScoreRule();
 
-    private void SetScoreRule()
-    {
-        _levelRules.SetActive(true);
+            _levelRules.SetActive(false);
+        }
+
+        private void SetScoreRule()
+        {
+            _levelRules.SetActive(true);
+        }
     }
 }

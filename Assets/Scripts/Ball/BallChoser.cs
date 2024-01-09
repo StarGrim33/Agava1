@@ -1,11 +1,12 @@
 using Cinemachine;
+using Player;
 using UnityEngine;
 
 namespace Ball
 {
     public class BallChoser : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerBoundaryChecker _player;
         [SerializeField] private PlayerBall[] _balls;
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerKickingBall _playerKickingBall;

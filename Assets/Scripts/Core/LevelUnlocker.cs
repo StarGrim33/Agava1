@@ -2,21 +2,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-public class LevelUnlocker : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private Button[] _buttons;
-
-    private int _levelsUnlocked;
-    
-    private void Start()
+    public class LevelUnlocker : MonoBehaviour
     {
-        _levelsUnlocked = PlayerPrefs.GetInt(Constants.LevelsUnlocked, 1);
+        [SerializeField] private Button[] _buttons;
 
-        for (int i = 0; i < _buttons.Length; i++)
+        private int _levelsUnlocked;
+
+        private void Start()
         {
-            _buttons[i].interactable = i < _levelsUnlocked;
-        }
+            _levelsUnlocked = PlayerPrefs.GetInt(Constants.LevelsUnlocked, 1);
 
-        PlayerPrefs.Save();
+            for (int i = 0; i < _buttons.Length; i++)
+            {
+                _buttons[i].interactable = i < _levelsUnlocked;
+            }
+
+            PlayerPrefs.Save();
+        }
     }
 }

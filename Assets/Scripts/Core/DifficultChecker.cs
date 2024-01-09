@@ -1,26 +1,30 @@
+using Enemy;
 using UnityEngine;
 using Utils;
 
-public class DifficultChecker : MonoBehaviour
+namespace Core
 {
-    private readonly int _lastLevel = 12;
-    [SerializeField] private EnemyKickingBall _enemy;
-
-    private void Start()
+    public class DifficultChecker : MonoBehaviour
     {
-        if (CheckLastLevelReached())
-            ChangeEnemyAcurracy();
-    }
+        private readonly int _lastLevel = 12;
+        [SerializeField] private EnemyKickingBall _enemy;
 
-    private void ChangeEnemyAcurracy()
-    {
-        float missProbability = 0.1f;
-        _enemy.ChangeMissProbability(missProbability);
-    }
+        private void Start()
+        {
+            if (CheckLastLevelReached())
+                ChangeEnemyAcurracy();
+        }
 
-    private bool CheckLastLevelReached()
-    {
-        int unlockedLevels = PlayerPrefs.GetInt(Constants.LevelsUnlocked, 0);
-        return unlockedLevels >= _lastLevel;
+        private void ChangeEnemyAcurracy()
+        {
+            float missProbability = 0.1f;
+            _enemy.ChangeMissProbability(missProbability);
+        }
+
+        private bool CheckLastLevelReached()
+        {
+            int unlockedLevels = PlayerPrefs.GetInt(Constants.LevelsUnlocked, 0);
+            return unlockedLevels >= _lastLevel;
+        }
     }
 }

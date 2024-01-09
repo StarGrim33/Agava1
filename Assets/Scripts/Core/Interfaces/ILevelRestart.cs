@@ -1,4 +1,7 @@
-public interface ILevelRestart
+namespace Interfaces
 {
-    void Restart();
+    public interface ILevelRestart
+    {
+        void Restart();
+    }
 }

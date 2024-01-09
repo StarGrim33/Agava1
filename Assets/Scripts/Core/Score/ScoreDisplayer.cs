@@ -1,33 +1,37 @@
+using Player;
 using TMPro;
 using UnityEngine;
 
-public class ScoreDisplayer : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private TMP_Text _text;
-    [SerializeField] private PlayerTotalScore _totalScore;
-
-    private void OnEnable()
+    public class ScoreDisplayer : MonoBehaviour
     {
-        _totalScore.ScoreChanged += OnScoreChanged;
-    }
+        [SerializeField] private TMP_Text _text;
+        [SerializeField] private PlayerTotalScore _totalScore;
 
-    private void OnDisable()
-    {
-        _totalScore.ScoreChanged -= OnScoreChanged;
-    }
+        private void OnEnable()
+        {
+            _totalScore.ScoreChanged += OnScoreChanged;
+        }
 
-    private void Start()
-    {
-        UpdateCoinCountText();
-    }
+        private void OnDisable()
+        {
+            _totalScore.ScoreChanged -= OnScoreChanged;
+        }
 
-    public void UpdateCoinCountText()
-    {
-        _text.text = _totalScore.TotalScore.ToString();
-    }
+        private void Start()
+        {
+            UpdateCoinCountText();
+        }
 
-    private void OnScoreChanged()
-    {
-        UpdateCoinCountText();
+        public void UpdateCoinCountText()
+        {
+            _text.text = _totalScore.TotalScore.ToString();
+        }
+
+        private void OnScoreChanged()
+        {
+            UpdateCoinCountText();
+        }
     }
 }

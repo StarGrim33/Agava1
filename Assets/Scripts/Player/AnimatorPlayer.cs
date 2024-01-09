@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 
-public class AnimatorPlayer : MonoBehaviour
+namespace Player
 {
-    public event Action OnKickedAnimationFinished;
-
-    public void AnimationEvent()
+    public class AnimatorPlayer : MonoBehaviour
     {
-        OnKickedAnimationFinished?.Invoke();
+        public event Action OnKickedAnimationFinished;
+
+        public void AnimationEvent()
+        {
+            OnKickedAnimationFinished?.Invoke();
+        }
     }
 }

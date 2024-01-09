@@ -1,68 +1,72 @@
 using Agava.YandexGames;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils;
 
-public class LevelSwitcher : MonoBehaviour, IAdShow, IGameStatesHandler
+namespace Core
 {
-    [SerializeField] private Score _score;
-    [SerializeField] private AudioYB _audioSource;
-
-    public void UnlockNextLevel()
+    public class LevelSwitcher : MonoBehaviour, IAdShow, IGameStatesHandler
     {
-        int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextLevelIndex = currentLevelIndex;
+        [SerializeField] private Score _score;
+        [SerializeField] private AudioYB _audioSource;
 
-        int maxLevelIndex = SceneManager.sceneCountInBuildSettings - 1;
-
-        if (nextLevelIndex <= maxLevelIndex)
+        public void UnlockNextLevel()
         {
-            PlayerPrefs.SetInt(Constants.LevelsUnlocked, nextLevelIndex);
-            PlayerPrefs.Save();
-            SceneManager.LoadScene(1);
+            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextLevelIndex = currentLevelIndex;
+
+            int maxLevelIndex = SceneManager.sceneCountInBuildSettings - 1;
+
+            if (nextLevelIndex <= maxLevelIndex)
+            {
+                PlayerPrefs.SetInt(Constants.LevelsUnlocked, nextLevelIndex);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                SceneManager.LoadScene(1);
+            }
         }
-        else
+
+        public void UnlockNextLevelWithAD()
         {
-            SceneManager.LoadScene(1);
+            _score.DoubleScoreForAD();
+            VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
+            UnlockNextLevel();
         }
-    }
 
-    public void UnlockNextLevelWithAD()
-    {
-        _score.DoubleScoreForAD();
-        VideoAd.Show(OnOpenCallback, null, OnCloseCallback, OnErrorCallback);
-        UnlockNextLevel();
-    }
+        public void ContinueGame()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(1);
 
-    public void ContinueGame()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+            if (_audioSource.clip != null)
+                _audioSource.Play();
+        }
 
-        if (_audioSource.clip != null)
-            _audioSource.Play();
-    }
+        public void PauseGame()
+        {
+            Time.timeScale = 0;
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
+            if (_audioSource.clip != null)
+                _audioSource.Pause();
+        }
 
-        if (_audioSource.clip != null)
-            _audioSource.Pause();
-    }
+        public void OnCloseCallback()
+        {
+            ContinueGame();
+        }
 
-    public void OnCloseCallback()
-    {
-        ContinueGame();
-    }
+        public void OnOpenCallback()
+        {
+            PauseGame();
+        }
 
-    public void OnOpenCallback()
-    {
-        PauseGame();
-    }
-
-    public void OnErrorCallback(string errorMessage)
-    {
-        ContinueGame();
+        public void OnErrorCallback(string errorMessage)
+        {
+            ContinueGame();
+        }
     }
 }

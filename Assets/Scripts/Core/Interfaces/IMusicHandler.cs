@@ -1,4 +1,7 @@
-public interface IMusicHandler
+namespace Interfaces
 {
-    void TurnMusic();
+    public interface IMusicHandler
+    {
+        void TurnMusic();
+    }
 }

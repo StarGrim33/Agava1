@@ -1,84 +1,88 @@
-using Agava.YandexGames;
 using System;
+using Agava.YandexGames;
+using Player;
 using UnityEngine;
 using Utils;
 
-public class Score : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private GateSpawner _gateSpawner;
-    [SerializeField] private PlayerTotalScore _totalScore;
-    [SerializeField] private int _scoreForWin;
-    private int _playerScore = 0;
-    private int _enemyScore = 0;
-    private int _scorePerGoal = 10;
-
-    public event Action OnPlayerScoreChanged;
-    public event Action OnEnemyScoreChanged;
-
-    public int ScoreForWin => _scoreForWin;
-
-    public int PlayerScore { get; private set; } = 0;
-
-    public int EnemyScore { get; private set; } = 0;
-
-    private void OnEnable()
+    public class Score : MonoBehaviour
     {
-        _gateSpawner.OnGoalGateSpawned += OnGoalGateSpawned;
-        _totalScore.LoadTotalScore();
-    }
+        [SerializeField] private GateSpawner _gateSpawner;
+        [SerializeField] private PlayerTotalScore _totalScore;
+        [SerializeField] private int _scoreForWin;
+        private int _playerScore = 0;
+        private int _enemyScore = 0;
+        private int _scorePerGoal = 10;
 
-    private void OnDisable()
-    {
-        _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
-    }
+        public event Action OnPlayerScoreChanged;
+        public event Action OnEnemyScoreChanged;
 
-    public void UpdateLeaderboardScore()
-    {
-        Leaderboard.GetPlayerEntry(Constants.LeaderboardName, (result) =>
+        public int ScoreForWin => _scoreForWin;
+
+        public int PlayerScore { get; private set; } = 0;
+
+        public int EnemyScore { get; private set; } = 0;
+
+        private void OnEnable()
         {
-            if (result == null)
+            _gateSpawner.OnGoalGateSpawned += OnGoalGateSpawned;
+            _totalScore.LoadTotalScore();
+        }
+
+        private void OnDisable()
+        {
+            _gateSpawner.OnGoalGateSpawned -= OnGoalGateSpawned;
+        }
+
+        public void UpdateLeaderboardScore()
+        {
+            Leaderboard.GetPlayerEntry(Constants.LeaderboardName, (result) =>
             {
-                Leaderboard.SetScore(Constants.LeaderboardName, _totalScore.TotalScore);
-            }
-            else
-            {
-                if (result.score < _totalScore.TotalScore)
+                if (result == null)
                 {
                     Leaderboard.SetScore(Constants.LeaderboardName, _totalScore.TotalScore);
                 }
-            }
-        });
-    }
-
-    public void DoubleScoreForAD()
-    {
-        int doubleMultiply = 2;
-        PlayerScore *= doubleMultiply;
-        _totalScore.AddScore(PlayerScore);
-        _totalScore.SaveTotalScore();
-    }
-
-    private void OnGoalGateSpawned(Gate gate)
-    {
-        gate.OnPlayerGoalScored += OnPlayerGoalScored;
-        gate.OnEnemyGoalScored += OnEnemyGoalScored;
-    }
-
-    private void OnPlayerGoalScored(Gate gate)
-    {
-        PlayerScore += _scorePerGoal;
-        OnPlayerScoreChanged?.Invoke();
-
-        if (PlayerScore >= _scoreForWin)
-        {
-            UpdateLeaderboardScore();
-            _totalScore.SaveTotalScore(PlayerScore);
+                else
+                {
+                    if (result.score < _totalScore.TotalScore)
+                    {
+                        Leaderboard.SetScore(Constants.LeaderboardName, _totalScore.TotalScore);
+                    }
+                }
+            });
         }
-    }
 
-    private void OnEnemyGoalScored(Gate gate)
-    {
-        EnemyScore += _scorePerGoal;
-        OnEnemyScoreChanged?.Invoke();
+        public void DoubleScoreForAD()
+        {
+            int doubleMultiply = 2;
+            PlayerScore *= doubleMultiply;
+            _totalScore.AddScore(PlayerScore);
+            _totalScore.SaveTotalScore();
+        }
+
+        private void OnGoalGateSpawned(Gate gate)
+        {
+            gate.OnPlayerGoalScored += OnPlayerGoalScored;
+            gate.OnEnemyGoalScored += OnEnemyGoalScored;
+        }
+
+        private void OnPlayerGoalScored(Gate gate)
+        {
+            PlayerScore += _scorePerGoal;
+            OnPlayerScoreChanged?.Invoke();
+
+            if (PlayerScore >= _scoreForWin)
+            {
+                UpdateLeaderboardScore();
+                _totalScore.SaveTotalScore(PlayerScore);
+            }
+        }
+
+        private void OnEnemyGoalScored(Gate gate)
+        {
+            EnemyScore += _scorePerGoal;
+            OnEnemyScoreChanged?.Invoke();
+        }
     }
 }

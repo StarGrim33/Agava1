@@ -2,18 +2,21 @@ using System.Collections;
 using Agava.YandexGames;
 using UnityEngine;
 
-public class SDKInitialization : MonoBehaviour
+namespace Core
 {
-    private void Awake()
+    public class SDKInitialization : MonoBehaviour
     {
-        YandexGamesSdk.CallbackLogging = true;
-    }
+        private void Awake()
+        {
+            YandexGamesSdk.CallbackLogging = true;
+        }
 
-    private IEnumerator Start()
-    {
-        yield return YandexGamesSdk.Initialize();
+        private IEnumerator Start()
+        {
+            yield return YandexGamesSdk.Initialize();
 
-        if (YandexGamesSdk.IsInitialized)
-            InterstitialAd.Show();
+            if (YandexGamesSdk.IsInitialized)
+                InterstitialAd.Show();
+        }
     }
 }

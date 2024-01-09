@@ -1,5 +1,8 @@
-public enum GateSides
+namespace Core
 {
-    Left,
-    Right,
+    public enum GateSides
+    {
+        Left,
+        Right,
+    }
 }

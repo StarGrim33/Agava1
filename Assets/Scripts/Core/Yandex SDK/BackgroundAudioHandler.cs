@@ -1,21 +1,24 @@
 using Agava.WebUtility;
 using UnityEngine;
 
-public class BackgroundAudioHandler : MonoBehaviour
+namespace Core
 {
-    private void OnEnable()
+    public class BackgroundAudioHandler : MonoBehaviour
     {
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
-    }
+        private void OnEnable()
+        {
+            WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+        }
 
-    private void OnDisable()
-    {
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
-    }
+        private void OnDisable()
+        {
+            WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
+        }
 
-    private void OnInBackgroundChange(bool inBackground)
-    {
-        AudioListener.pause = inBackground;
-        AudioListener.volume = inBackground ? 0f : 1f;
+        private void OnInBackgroundChange(bool inBackground)
+        {
+            AudioListener.pause = inBackground;
+            AudioListener.volume = inBackground ? 0f : 1f;
+        }
     }
 }

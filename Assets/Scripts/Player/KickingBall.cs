@@ -2,54 +2,57 @@ using System.Collections;
 using UnityEngine;
 using Utils;
 
-[RequireComponent(typeof(Animator))]
-public abstract class KickingBall : MonoBehaviour
+namespace Player
 {
-    [SerializeField] protected Rigidbody BallRigidbody;
-    [SerializeField] protected Transform BallSpawnPoint;
-    [SerializeField] protected float HifForce = 10.0f;
-    [SerializeField] protected GameObject FooballPlayer;
-    [SerializeField] protected ParticleSystem ParticleSystem;
-    [SerializeField] protected int HitsRemained;
-
-    protected Animator Animator;
-    protected Vector3 HitDirection = Vector3.forward;
-    protected float AngleRotation = 7.0f;
-    protected float TimeHitsReload = 3f;
-
-    protected virtual void Start()
+    [RequireComponent(typeof(Animator))]
+    public abstract class KickingBall : MonoBehaviour
     {
-        Animator = GetComponent<Animator>();
-    }
+        [SerializeField] protected Rigidbody BallRigidbody;
+        [SerializeField] protected Transform BallSpawnPoint;
+        [SerializeField] protected float HifForce = 10.0f;
+        [SerializeField] protected GameObject FooballPlayer;
+        [SerializeField] protected ParticleSystem ParticleSystem;
+        [SerializeField] protected int HitsRemained;
 
-    protected virtual void OnKickedAnimationFinished()
-    {
-        ParticleSystem.Play();
-        BallRigidbody.AddForce(HitDirection * HifForce, ForceMode.Impulse);
+        protected Animator Animator;
+        protected Vector3 HitDirection = Vector3.forward;
+        protected float AngleRotation = 7.0f;
+        protected float TimeHitsReload = 3f;
 
-        if (HitsRemained > 0)
-            HitsRemained--;
+        protected virtual void Start()
+        {
+            Animator = GetComponent<Animator>();
+        }
 
-        if (HitsRemained <= 0)
-            StartCoroutine(ReloadHits());
+        protected virtual void OnKickedAnimationFinished()
+        {
+            ParticleSystem.Play();
+            BallRigidbody.AddForce(HitDirection * HifForce, ForceMode.Impulse);
 
-        Time.timeScale = 1f;
-    }
+            if (HitsRemained > 0)
+                HitsRemained--;
 
-    protected virtual IEnumerator ReloadHits()
-    {
-        var waitForSeconds = new WaitForSeconds(TimeHitsReload);
+            if (HitsRemained <= 0)
+                StartCoroutine(ReloadHits());
 
-        if (HitsRemained <= 0)
-            yield return waitForSeconds;
-    }
+            Time.timeScale = 1f;
+        }
 
-    protected virtual IEnumerator Kicking()
-    {
-        while (HitsRemained > 0)
-            yield return null;
+        protected virtual IEnumerator ReloadHits()
+        {
+            var waitForSeconds = new WaitForSeconds(TimeHitsReload);
 
-        if (HitsRemained <= 0)
-            Animator.SetBool(Constants.IsAiming, false);
+            if (HitsRemained <= 0)
+                yield return waitForSeconds;
+        }
+
+        protected virtual IEnumerator Kicking()
+        {
+            while (HitsRemained > 0)
+                yield return null;
+
+            if (HitsRemained <= 0)
+                Animator.SetBool(Constants.IsAiming, false);
+        }
     }
 }

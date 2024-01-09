@@ -1,7 +1,8 @@
-using UnityEngine;
-
-public class AnimatorStates
+namespace Player
 {
-    public const string Idle = nameof(Idle);
-    public const string Strike = nameof(Strike);
+    public class AnimatorStates
+    {
+        public const string Idle = nameof(Idle);
+        public const string Strike = nameof(Strike);
+    }
 }

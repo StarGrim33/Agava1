@@ -1,4 +1,7 @@
-public interface IAuthorize
+namespace Interfaces
 {
-    void Authorize() { }
+    public interface IAuthorize
+    {
+        void Authorize() { }
+    }
 }

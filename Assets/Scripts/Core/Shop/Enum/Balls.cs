@@ -1,6 +1,9 @@
-public enum Balls
+namespace Core
 {
-    BasketBall,
-    IceBall,
-    SpiderBall,
+    public enum Balls
+    {
+        BasketBall,
+        IceBall,
+        SpiderBall,
+    }
 }
