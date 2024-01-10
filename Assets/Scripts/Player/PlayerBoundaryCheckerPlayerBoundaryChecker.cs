@@ -6,11 +6,11 @@ namespace Player
 {
     public abstract class PlayerBoundaryChecker : MonoBehaviour
     {
-        private WaitForSeconds _waitForSeconds;
         [SerializeField] protected BaseBall Ball;
         [SerializeField] protected ParticleSystem ParticleSystem;
         protected float Delay = 1f;
         protected bool IsTeleporting = false;
+        private WaitForSeconds _waitForSeconds;
 
         protected virtual void Start()
         {

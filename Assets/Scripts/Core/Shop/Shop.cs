@@ -18,11 +18,11 @@ namespace Core
         [SerializeField] private PlayerData _playerData;
 
         private Dictionary<int, string> _ballNames = new()
-    {
-        { (int)Balls.BasketBall, Constants.BasketBall },
-        { (int)Balls.IceBall, Constants.IceBall },
-        { (int)Balls.SpiderBall, Constants.SpiderBall },
-    };
+        {
+            { (int)Balls.BasketBall, Constants.BasketBall },
+            { (int)Balls.IceBall, Constants.IceBall },
+            { (int)Balls.SpiderBall, Constants.SpiderBall },
+        };
 
         private void Start()
         {

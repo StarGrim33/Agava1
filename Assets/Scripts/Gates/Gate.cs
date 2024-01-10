@@ -10,6 +10,7 @@ namespace Core
         [SerializeField] private Transform _middleTarget;
 
         public event Action<Gate> OnPlayerGoalScored;
+
         public event Action<Gate> OnEnemyGoalScored;
 
         private void OnTriggerEnter(Collider other)

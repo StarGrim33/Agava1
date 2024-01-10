@@ -114,7 +114,7 @@ namespace Enemy
             else if (IsKickMissed())
             {
                 Vector2 randomPoint = Random.insideUnitCircle.normalized;
-                Vector3 kickDirection = new(randomPoint.x, 0f, randomPoint.y);
+                Vector3 kickDirection = new (randomPoint.x, 0f, randomPoint.y);
                 return kickDirection.normalized;
             }
 
