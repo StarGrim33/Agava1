@@ -1,9 +1,9 @@
 using Agava.YandexGames;
+using Interfaces;
 using Lean.Localization;
-using Utils;
 using TMPro;
 using UnityEngine;
-using Interfaces;
+using Utils;
 
 namespace Core
 {
@@ -17,13 +17,15 @@ namespace Core
 
         public void OnOpenLeaderBoard()
         {
-            if (PlayerAccount.IsAuthorized)
+            switch (PlayerAccount.IsAuthorized)
             {
-                ShowLeaderboard();
-            }
-            else
-            {
-                Authorize();
+                case true:
+                    ShowLeaderboard();
+                    break;
+
+                case false:
+                    Authorize();
+                    break;
             }
         }
 
@@ -47,22 +49,13 @@ namespace Core
 
                     if (string.IsNullOrEmpty(name))
                     {
-                        if (LeanLocalization.GetFirstCurrentLanguage() == Constants.RussianCode)
+                        name = LeanLocalization.GetFirstCurrentLanguage() switch
                         {
-                            name = Constants.RussianAnonimName;
-                        }
-                        else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.EnglishCode)
-                        {
-                            name = Constants.EnglishAnonimName;
-                        }
-                        else if (LeanLocalization.GetFirstCurrentLanguage() == Constants.TurkishCode)
-                        {
-                            name = Constants.EnglishAnonimName;
-                        }
-                        else
-                        {
-                            name = Constants.RussianAnonimName;
-                        }
+                            Constants.RussianCode => Constants.RussianAnonimName,
+                            Constants.EnglishCode => Constants.EnglishAnonimName,
+                            Constants.TurkishCode => Constants.EnglishAnonimName,
+                            _ => Constants.RussianAnonimName,
+                        };
                     }
 
                     _playersName[i].text = _textOptimizer.Optimize(name);

@@ -22,17 +22,19 @@ namespace Player
         {
             string key = string.Empty;
 
-            if (ballName == Constants.BasketBall)
+            switch (ballName)
             {
-                key = Constants.BasketBall;
-            }
-            else if (ballName == Constants.IceBall)
-            {
-                key = Constants.IceBall;
-            }
-            else if (ballName == Constants.SpiderBall)
-            {
-                key = Constants.SpiderBall;
+                case Constants.BasketBall:
+                    key = Constants.BasketBall;
+                    break;
+
+                case Constants.SpiderBall:
+                    key = Constants.SpiderBall;
+                    break;
+
+                case Constants.IceBall:
+                    key = Constants.IceBall;
+                    break;
             }
 
             return key;

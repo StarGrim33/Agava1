@@ -20,6 +20,7 @@ namespace Core
         private WaitForSeconds _waitForSpawnDelayAfterFalseGate;
 
         public event Action<Gate> OnGoalGateSpawned;
+
         public event Action<Vector3> OnGateSpawned;
 
         private void Start()
@@ -67,14 +68,14 @@ namespace Core
         {
             yield return _waitForSpawnDelay;
             _currentGate = Instantiate(_gatePrefab, spawnPosition.position, Quaternion.identity);
-            _currentGate.transform.rotation = SetGateRotationBySpawnPosition(spawnPosition);
+            _currentGate.transform.rotation = GetGateRotationFromSpawnPosition(spawnPosition);
             _currentGate.OnPlayerGoalScored += OnGoalScored;
             OnGoalGateSpawned?.Invoke(_currentGate);
             Vector3 gatePosition = _currentGate.DetermineMiddlePosition();
             OnGateSpawned?.Invoke(gatePosition);
         }
 
-        private Quaternion SetGateRotationBySpawnPosition(Transform spawnPoint)
+        private Quaternion GetGateRotationFromSpawnPosition(Transform spawnPoint)
         {
             float angle = -90f;
 

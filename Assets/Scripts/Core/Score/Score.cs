@@ -14,6 +14,7 @@ namespace Core
         private int _scorePerGoal = 10;
 
         public event Action OnPlayerScoreChanged;
+
         public event Action OnEnemyScoreChanged;
 
         public int ScoreForWin => _scoreForWin;

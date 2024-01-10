@@ -7,7 +7,6 @@ namespace Player
     [RequireComponent(typeof(Animator))]
     public abstract class KickingBall : MonoBehaviour
     {
-        private WaitForSeconds _waitForReloadDelay;
         [SerializeField] protected Rigidbody BallRigidbody;
         [SerializeField] protected Transform BallSpawnPoint;
         [SerializeField] protected float HifForce = 10.0f;
@@ -19,6 +18,7 @@ namespace Player
         protected Vector3 HitDirection = Vector3.forward;
         protected float AngleRotation = 7.0f;
         protected float TimeHitsReload = 3f;
+        private WaitForSeconds _waitForReloadDelay;
 
         protected virtual void Start()
         {

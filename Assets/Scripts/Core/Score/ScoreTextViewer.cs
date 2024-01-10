@@ -46,7 +46,7 @@ namespace Core
             float elapsedTime = 0f;
 
             Color startColor = _goalText.color;
-            Color targetColor = new(startColor.r, startColor.g, startColor.b, 0f);
+            Color targetColor = new (startColor.r, startColor.g, startColor.b, 0f);
 
             while (elapsedTime < duration)
             {
