@@ -28,7 +28,9 @@ namespace Core
             float distance = 1f / (_scrollPositions.Length - 1f);
 
             for (int i = 0; i < _scrollPositions.Length; i++)
+            {
                 _scrollPositions[i] = distance * i;
+            }
 
             if (Input.GetMouseButton(0))
             {
